@@ -4,67 +4,104 @@ const static_html = () => {
   anchor = d3.select(".ringe")
   Object.keys(circles).forEach((r,ri) => {
     var array = points.filter(p => p.ring == r)
+    var length = points.filter(p => p.ring == r).length
     var ring_anchor =anchor.append("div").attr("class","start_"+r)
     ring_anchor.append("p")
     .attr("class","bheader hover")
     .attr("id","start_"+r+"_header")
     .html("<img class='picto' src='Data/Pics/"+r+".svg'> "+r)
+    .on("mouseover",()=>{d3.selectAll("."+r).attr("fill",colors.red).attr("r",12).transition().duration(500).attr("r",5)})
+    .on("mouseout",()=>{d3.selectAll("."+r).attr("fill",colors.gray)})
+    .on("click",()=>{change_view("ring_topics_"+r)})
     array.slice(0,5).map((p,pi) => {
       ring_anchor.append("p")
       .attr("id","start_"+r+"_"+pi)
       .attr("class","hover")
       .html(p.name)
+      .on("mouseover",()=>{d3.select(".id"+p.id).attr("fill",colors.red).attr("r",12).transition().duration(500).attr("r",5)})
+      .on("mouseout",()=>{d3.select(".id"+p.id).attr("fill",colors.gray)})
+      .on("click",()=>{change_view("point_view")})
     })
+    ring_anchor.append("br")
+    ring_anchor.append("p")
+    .attr("class","hover")
+    .html("See All "+length+" Items")
+    .on("click",()=>{change_view("ring_topics_"+r)})
   })
   //Rings and their Topics
   anchor = d3.select(".ring_topics")
   Object.keys(circles).forEach((r,ri) => {
-    var topics = [...new Set((points.filter(p => p.ring == r)).map(p => p = p.topic))]
+    var topics = [...new Set(points.filter(p => p.ring == r).map(p => p = p.topic))]
     var length = points.filter(p => p.ring == r).length
     var ring_anchor = anchor.append("div")
     .attr("class","ring_topics_"+r)
     ring_anchor.append("p")
-    .attr("class","aheader")
+    .attr("class","aheader hover")
     .attr("id","ring_topics_header")
     .html("<img class='picto' src='Data/Pics/"+r+".svg'> "+r+" / "+length+" Items")
-    topics.map((t,ti) => {
+    .on("click",()=>{change_view("ringe")})
+    topics.sort().map((t,ti) => {
       if(t != null){
-        var length = points.filter(p => p.ring == r && p.topic == t)
+        var topic_wsc = t.replace(/&/g,"u").replace(/ /g,"_")
+        var length = points.filter(p => p.ring == r && p.topic == t).length
         ring_anchor.append("p")
         .attr("class","hover")
-        .html(t +" / "+length+" Items")
+        .html("<span class='cheader'>"+t+"</span><br> "+length+" Items")
+        .on("mouseover",()=>{
+          d3.selectAll("."+r+"."+topic_wsc).attr("fill",colors.red).attr("r",12).transition().duration(500).attr("r",5)})
+        .on("mouseout",()=>{
+          d3.selectAll("."+r+"."+topic_wsc).attr("fill",colors.gray)})
+        .on("click",()=>{change_view("ring_topic_points_"+r+"_"+topic_wsc)})
       }
     })
+
   })
-  // Rings and for each topic the specific points
+  // Rings Topics Points
   anchor = d3.select(".ring_topic_points")
   Object.keys(circles).forEach((r,ri) => {
     var topics = [...new Set(points.filter(p => p.ring == r).map(p => p = p.topic))]
+    console.log(topics)
     var ring_anchor = anchor.append("div")
-    .attr("class","ring_topic_points_"+r)
-    topics.map((t,ti) => {
-      if(t == null){t = "No Topic"}
-      var topic_wsc = t.replace(/&/g,"u").replace(/ /g,"_")//withour special Characters e.g " ","&"
-      var length = points.filter(p => p.ring == r && p.topic == t).length
-      var array = points.filter(p => p.ring == r && p.topic == t)
-      var ring_topic_anchor = ring_anchor.append("div")
-      .attr("class","ring_tpic_points_"+r+"_"+topic_wsc)
-      ring_topic_anchor.append("p")
-      .attr("class","aheader")
-      .attr("id","ring_topics_points_"+r+"_"+topic_wsc+"_header")
-      .html("<img class='picto' src='Data/Pics/"+r+".svg'> "+r+" / "+t+" / "+length+" Items")
-      var ring_topic_points_anchor = ring_topic_anchor.append("div")
-      array.map((p,pi) => {
-        if(pi%5 == 0 && pi!=0){
-          ring_topic_points_anchor = ring_topic_anchor.append("div")
-        }
-        ring_topic_points_anchor.append("p")
-        .attr("class","hover")
-        .attr("id","ring_topics_points_"+r+"_"+topic_wsc+"_"+pi)
-        .html(p.name)
-      })
-    })
+    .attr("class","ring_topic_points")
+    topics.sort().map((t,ti) => {
+      if(t != null){
+        var topic_wsc = t.replace(/&/g,"u").replace(/ /g,"_")//withour special Characters e.g " ","&"
+        var length = points.filter(p => p.ring == r && p.topic == t).length
+        var array = points.filter(p => p.ring == r && p.topic == t)
+        var ring_topic_anchor = ring_anchor.append("div")
+        .attr("class","ring_topic_points_"+r+"_"+topic_wsc)
+        ring_topic_anchor.append("p")
+        .attr("class","aheader hover")
+        .attr("id","ring_topic_points_"+r+"_"+topic_wsc+"_header")
+        .html("<img class='picto' src='Data/Pics/"+r+".svg'> "+r+" / "+t+" / "+length+" Items")
+        .on("click",()=>{change_view("ring_topics_"+r)})
+        var ring_topic_points_anchor = ring_topic_anchor.append("div")
+        array.map((p,pi) => {
+          if(pi%5 == 0 && pi!=0){
+            ring_topic_points_anchor = ring_topic_anchor.append("div")
+          }
+          ring_topic_points_anchor.append("p")
+          .attr("class","hover")
+          .attr("id","ring_topics_points_"+r+"_"+topic_wsc+"_"+pi)
+          .html(p.name)
+          .on("mouseover",()=>{d3.select(".id"+p.id).attr("fill",colors.red).attr("r",12).transition().duration(500).attr("r",5)})
+          .on("mouseout",()=>{d3.select(".id"+p.id).attr("fill",colors.gray)})
+          .on("click",()=>{change_view("point_view")})
+        })
+        var topics_holder = ring_topic_anchor.append("div").attr("class","topics_holder")
+        topics.map(p =>{
+          if(p != null){
+            var topic_wsc = p.replace(/&/g,"u").replace(/ /g,"_")
+            topics_holder.append("p")
+            .attr("class","hover")
+            .attr("style",()=>{if(p == t){return "color:"+colors.red}})
+            .html(p)
+            .on("click",()=>{change_view("ring_topic_points_"+r+"_"+topic_wsc)})
+          }
+        })
+    }
   })
+})
   //Search View
   anchor = d3.select(".search")
   anchor.append("p")

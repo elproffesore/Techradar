@@ -15,12 +15,15 @@ const draw_radar = () => {
       .attr("stroke", "white")
       .attr("stroke-width", "0.5px")
       .on("click", function() {
-        redraw_rings();
-        svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
-        svg.selectAll("#main_circle_" + r).attr("fill", "rgba(92,72,151,0.7)")
+        redraw_rings(r)
         change_view("ring_topics_" + r);
       })
   })
+  const redraw_rings = (ring) => {
+    svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
+    svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
+    svg.selectAll("#main_circle_" + ring).attr("fill", colors.purple)
+  }
 }
 const draw_radargadgets = () => {
   var gadget_group = svg.append("g").attr("class", "gadget_group")
