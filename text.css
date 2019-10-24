@@ -1,0 +1,61 @@
+div p {
+  font-size: 1.6vh;
+  color: white;
+  cursor: pointer;
+}
+div p:hover {
+  color:rgba(231,69,79,1.0);
+}
+span:hover{
+  color:rgba(231,69,79,1.0)
+}
+.topic_header {
+  grid-column: 1 / span 3;
+  font-size:3.5vh;
+  font-weight: 700;
+}
+.header {
+  font-size: 3.5vh;
+  font-weight: 700;
+  color: white;
+  cursor: pointer
+}
+.start_header:hover {
+  color: rgba(231,69,79,1.0);
+}
+.picto {
+  height: 2.3vh
+}
+
+.start, .search, .ring_topics div, div[class^='ring_topic_points_div'], .search_topics, .search_topic_points {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  padding-top: 7.5vh;
+  padding-left: 7.5vw;
+}
+div[class^='ring_topic_points_div'] {
+  grid-template-columns: 1fr 1fr 1fr 1fr
+}
+.point_view{
+  display: none;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.5fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  padding-top: 7.5vh;
+  padding-left: 7.5vw;
+}
+.point_view .point{
+  display: grid;
+  grid-template-columns: 20vw 20vw;
+}
+.point_view_description{
+  font-size: 1.5vh;
+  grid-area: 2 / 2 / 7 / 2
+}
+#point_view_header{
+  grid-column: 1 / span 2
+}
