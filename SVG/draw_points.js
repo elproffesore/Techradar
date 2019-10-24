@@ -1,5 +1,5 @@
 function draw_points() {
-  var circles_group = svg.append("g").attr("class", "circles_group").attr("transform","translate("+offsets[0]+","+offsets[1]+")")
+  var circles_group = svg.append("g").attr("class", "circles_group")
   //Iterate over every Ring Array then create a circle svg ovject for every point object with their specific start points
     circles_group.selectAll(".new")
       .data(points)

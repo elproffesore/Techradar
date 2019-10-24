@@ -15,9 +15,13 @@ d3.json('Data/radar_data.json')
 .then(() => {
   draw_radar()
   draw_points()
-
+  draw_radargadgets()
+  static_html()
 })
-
+.then(() => {
+  d3.selectAll("svg > g")
+  .attr("transform","translate("+offsets[0]+","+offsets[1]+")")
+})
 const clear_data = (data) => {
   data.map((datapoint,dpi) => {
     Object.keys(datapoint.fields).forEach((key) => {

@@ -3,7 +3,7 @@
  <head>
    <meta charset="utf-16">
    <link rel="stylesheet" href="main.css">
-   <link rel="stylesheet" href="text.css">
+   <link rel="stylesheet" href="newtext.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.min.js" charset="utf-8"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.5/fuse.min.js" charset="utf-8"></script>
@@ -25,12 +25,12 @@
    <div class="main">
      <svg viewBox="50 50 1000 1000"></svg>
      <div class="text-body">
-       <div class="start"></div>
+       <div class="ringe"></div>
+       <div class="ring_topics"></div>
+       <div class="ring_topic_points"></div>
        <div class="search"></div>
        <div class="search_topics"></div>
        <div class="search_topic_points"></div>
-       <div class="ring_topics"></div>
-       <div class="ring_topic_points"></div>
        <div class="point_view">
          <div class="point">
            <p class="header" id="point_view_header"></p>
@@ -52,12 +52,12 @@
      </div>
    </div>
    <script src="global.js" charset="utf-8"></script>
-   <script src="Data_Process/points.js" charset="utf-8"></script>
-   <script src="Data_Process/density.js" charset="utf-8"></script>
    <script src="SVG/draw_points.js" charset="utf-8"></script>
    <script src="SVG/draw_radar.js" charset="utf-8"></script>
    <script src="Dynamic/search.js" charset="utf-8"></script>
    <script src="Dynamic/actions.js" charset="utf-8"></script>
-   <script src="HTML/dynamic_html.js" charset="utf-8"></script>
+   <script src="HTML/static_html.js" charset="utf-8"></script>
+   <script src="Data_Process/points.js" charset="utf-8"></script>
+   <script src="Data_Process/density.js" charset="utf-8"></script>
  </body>
 </html>

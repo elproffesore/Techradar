@@ -1,38 +1,28 @@
-div p {
+p{
   font-size: 1.6vh;
-  color: white;
-  cursor: pointer;
-}
-div p:hover {
-  color:rgba(231,69,79,1.0);
-}
-span:hover{
-  color:rgba(231,69,79,1.0)
-}
-.topic_header {
-  grid-column: 1 / span 3;
-  font-size:3.5vh;
-  font-weight: 700;
-}
-.header {
-  font-size: 3.5vh;
-  font-weight: 700;
-  color: white;
   cursor: pointer
 }
-.start_header:hover {
-  color: rgba(231,69,79,1.0);
+.aheader{
+  font-size: 3.5vh
 }
-.picto {
+.bheader{
+  font-size: 2.5vh
+}
+.cheader{
+  font-size: 2vh
+}
+.hover:hover{
+  color:rgba(231,69,79,1.0);
+}
+.picto{
   height: 2.3vh
 }
-
 .ringe,
+.ring_topics,
+.ring_topic_points,
 .search,
-.ring_topics div,
-div[class^='ring_topic_points_div'],
 .search_topics,
-.search_topic_points {
+.search_topic_points{
   display: none;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
@@ -40,9 +30,6 @@ div[class^='ring_topic_points_div'],
   grid-row-gap: 15px;
   padding-top: 7.5vh;
   padding-left: 7.5vw;
-}
-div[class^='ring_topic_points_div'] {
-  grid-template-columns: 1fr 1fr 1fr 1fr
 }
 .point_view{
   display: none;
@@ -61,6 +48,4 @@ div[class^='ring_topic_points_div'] {
   font-size: 1.5vh;
   grid-area: 2 / 2 / 7 / 2
 }
-#point_view_header{
-  grid-column: 1 / span 2
-}
+.ringe{display: grid}
