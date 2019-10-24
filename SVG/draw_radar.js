@@ -19,11 +19,15 @@ const draw_radar = () => {
         change_view("ring_topics_" + r);
       })
   })
-  const redraw_rings = (ring) => {
-    svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
-    svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
-    svg.selectAll("#main_circle_" + ring).attr("fill", colors.purple)
-  }
+}
+const redraw_rings = (ring) => {
+  svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
+  svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
+  svg.selectAll("#main_circle_" + ring).attr("fill", colors.purple)
+}
+const clear_rings = () => {
+  svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
+  svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
 }
 const draw_radargadgets = () => {
   var gadget_group = svg.append("g").attr("class", "gadget_group")

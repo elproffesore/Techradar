@@ -15,11 +15,11 @@
        <img src="Data/Pics/nt-logo.png.svg" class="nt-logo" alt="nt-logo" style="cursor:pointer;" onclick="window.location.reload();">
      </div>
      <input type="text" class="search-bar" name="search" onfocus="this.value=''" value="Search a Technologie" onkeyup="search(this.value);" onchange="this.value = ''">
-     <select class="cluster-option" onchange="draw(this.value)">
+     <select class="cluster-option" onchange="change_cluster(this.value)">
        <option disabled selected>Cluster by ...</option>
        <option value="category">Category</option>
        <option value="topic">Topic (Some points don't have a topic)</option>
-       <option value="ring" >Random</option>
+       <option value="normal" >Normal</option>
      </select>
    </div>
    <div class="main">

@@ -32,13 +32,13 @@ div[class^='ring_topic_points_'],
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-column-gap: 1vw;
-  grid-row-gap: 5vh;
+  grid-row-gap: 2vh;
   padding-top: 7.5vh;
   padding-left: 5vw;
 }
 /*Specialrules*/
 .ring_topics div{
-  grid-row-gap:2vh
+  grid-row-gap:4vh
 }
 div[class^='ring_topic_points_'] .aheader{
   grid-column: 1 / span 4

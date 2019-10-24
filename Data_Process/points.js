@@ -38,7 +38,7 @@ const clear_data = (data) => {
       "category":datapoint.fields.customfield_13501,
       "description":datapoint.fields.customfield_13513,
       "coordinates":{
-        "start":{
+        "normal":{
           "x":0,
           "y":0
         },
@@ -66,8 +66,8 @@ const create_coordinate = (points) => {
         }
         var x = Math.round((distance*Math.cos(pi*radiant_ring))*100)/100
         var y = Math.round((distance*Math.sin(pi*radiant_ring))*100)/100
-        p.coordinates.start.x = x
-        p.coordinates.start.y = y
+        p.coordinates.normal.x = x
+        p.coordinates.normal.y = y
       })
     })
 }

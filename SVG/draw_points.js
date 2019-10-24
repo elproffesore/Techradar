@@ -14,10 +14,10 @@ function draw_points() {
       })
       .attr("r", 5)
       .attr("cx", function(d){
-        return d.coordinates.start.x
+        return d.coordinates.normal.x
       })
       .attr("cy", function(d){
-        return d.coordinates.start.y
+        return d.coordinates.normal.y
       })
       .attr("fill", "rgba(255,255,255,0.7)")
       .attr("stroke", "black")
