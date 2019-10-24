@@ -8,7 +8,7 @@ var circles = {
   "Reduce":100
 }//radius of each ring from outer to inner
 var offsets = [500,550] //x,y offsets of the radar
-var oldview = "start";//Global visible View
+var oldview = null;//Global visible View
 var colors = {
   red:"rgba(231,69,79,1.0)",
   violett:"rgba(92,72,151,1.0)",

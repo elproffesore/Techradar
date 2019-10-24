@@ -1,7 +1,6 @@
 const draw_radar = () => {
 
   var radar_group = svg.append("g").attr("class", "radar_group")
-  console.log(Object.keys(circles))
   var keys = Object.keys(circles)
   keys.forEach((r, ri) => {
     var ir = ri == 4 ? 0 : circles[keys[ri + 1]]
