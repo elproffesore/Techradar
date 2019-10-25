@@ -2,14 +2,18 @@ const change_view = (newview,ring) => {
   ring?redraw_rings(ring):null
   d3.select("."+oldview).attr("style","display:none")
   d3.select("."+newview).attr("style","display:grid")
+  if(oldview.includes("search") && !newview.includes("search")){
+    d3.selectAll(".ci").attr("fill",colors.gray)
+  }
   oldview  = newview;
 }
 const show_searches = (search_array,searchword) => {
   d3.selectAll(".ci").attr("fill",colors.gray)
+  clear_rings()
   if(searchword == ""){
     change_view("ringe")
   }else{
-    search_array.map(p => {d3.select(".id"+p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)})
+    search_array.map(p => {d3.select(".id"+p.id).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)})
     d3.selectAll(".search > div > p").html("")
     d3.select("#search_header").html('"'+searchword+'" / '+search_array.length+" Items found")
     Object.keys(circles).forEach((r,ri) => {
@@ -19,8 +23,11 @@ const show_searches = (search_array,searchword) => {
       .html("<img class='picto' src='Data/Pics/"+r+".svg'> "+r+"/"+length+" Items")
       .on("mouseover", () => {
         array.map(p => {
-          d3.selectAll(".id" + p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
+          d3.selectAll(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
         })
+      })
+      .on("mouseout",()=>{
+          d3.selectAll(".ci").attr("r", points_radius)
       })
       .on("click", () => {
         change_view("search_topics_"+r)
@@ -29,7 +36,10 @@ const show_searches = (search_array,searchword) => {
         d3.select("#search_"+r+"_"+pi)
         .html(p.name)
         .on("mouseover", () => {
-          d3.select(".id" + p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
+          d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
+        })
+        .on("mouseout",()=>{
+          d3.select(".id"+p.id).attr("r", points_radius)
         })
         .on("click", () => {
           change_view("point_view")
@@ -84,6 +94,16 @@ const change_cluster = (cluster) => {
       break;
   }
 }
-const show_point = (point) => {
-  
+const show_point = (point,point_ref) => {
+  d3.selectAll(".ci").attr("fill",colors.gray)
+  d3.select(point_ref).attr("fill",colors.red)
+  d3.select("#point_view_header")
+  .attr("style","grid-column:1 /span 2")
+  .html("<img class='picto' src='Data/Pics/"+point.ring+".svg'> "+point.name)
+  d3.select("#point_0").html("Ring: "+point.ring)
+  d3.select("#point_1").html("Topic: "+point.topic)
+  d3.select("#point_2").html("Subtopic: "+point.subtopic)
+  d3.select("#point_3").html("Category: "+point.category)
+  d3.select("#point_4").html(point.description)
+  change_view("point_view")
 }

@@ -3,7 +3,6 @@ const draw_radar = () => {
   keys.forEach((r, ri) => {
     var ir = ri == 4 ? 0 : circles[keys[ri + 1]]
     var or = circles[r]
-    console.log(or, ir)
     var arc = d3.arc().innerRadius(ir).outerRadius(or).startAngle(0).endAngle(2 * Math.PI)
     radar_group.append("path")
       .attr("class", "main_circs")
@@ -28,7 +27,6 @@ const clear_rings = () => {
   svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
 }
 const draw_radargadgets = () => {
-
   var radar_needle =
   gadget_group.append("line")
     .attr("x1", 0)
@@ -78,7 +76,6 @@ const create_hulls = (points,cluster) => {
       var array = points.filter(p => p[cluster] == cl)
       var points_processed = [...array.map(p => {return [p.coordinates[cluster].x,p.coordinates[cluster].y]})]
       var hull = array.length > 2 ?d3.polygonHull(points_processed):points_processed
-      console.log(points_processed,hull)
       draw_hulls(hull,cl,cluster,group,group_names)
     }
   })
@@ -95,15 +92,23 @@ const draw_hulls = (hull,cl,cluster,group,group_names) => {
   group.append("path")
   .attr("class","hull")
   .attr("d",polygonPath)
-  .attr("fill",colors.red)
-  .on("mouseover",()=>{d3.select(this).attr("fill",colors.red).attr("stroke",colors.red).attr("stroke-width","5px")})
-  .on("mouseout",()=>{d3.select(this).attr("fill",colors.red).attr("stroke","none")})
-  .on("click",()=>{})
+  .attr("fill",opacity_colors.red+"0.5)")
+  .on("mouseover",function(d){d3.select(this).attr("fill",opacity_colors.red+"0.7)").attr("stroke",colors.red).attr("stroke-width","5px")})
+  .on("mouseout",function(d){d3.select(this).attr("fill",opacity_colors.red+"0.5").attr("stroke","none")})
+  .on("click",function(){})
   draw_hull_names(hull,cl,cluster,group_names)
 
 }
 const draw_hull_names = (hull,cl,cluster,group) => {
-  var center = d3.polygonCentroid(hull)
+  var center = new Array();
+  if(hull.length > 2){
+    center = d3.polygonCentroid(hull)
+  }
+  // else{
+  //   console.log(hull)
+  //   center[0] = (hull[0][0]+hull[1][0])/2
+  //   center[1] = (hull[0][1]+hull[0][1])/2
+  // }
   group.append("text")
   .attr("class","hull_name")
   .attr("x",center[0])
@@ -111,7 +116,7 @@ const draw_hull_names = (hull,cl,cluster,group) => {
   .attr("text-anchor","middle")
   .attr("font-family","Roboto")
   .attr("font-weight",700)
-  .attr("font-size","2.6vh")
+  .attr("font-size","3vh")
   .attr("cursor","normal")
   .text(cl)
   .attr("fill","white")

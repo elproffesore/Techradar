@@ -12,7 +12,7 @@ const static_html = () => {
       .attr("id", "start_" + r + "_header")
       .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r)
       .on("mouseover", () => {
-        d3.selectAll("." + r).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
+        d3.selectAll("." + r).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)
       })
       .on("mouseout", () => {
         d3.selectAll("." + r).attr("fill", colors.gray)
@@ -26,7 +26,7 @@ const static_html = () => {
         .attr("class", "hover")
         .html(p.name)
         .on("mouseover", () => {
-          d3.select(".id" + p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
+          d3.select(".id" + p.id).attr("fill", colors.red).attr("r",points_radius*2).transition().duration(500).attr("r", points_radius)
         })
         .on("mouseout", () => {
           d3.select(".id" + p.id).attr("fill", colors.gray)
@@ -59,14 +59,14 @@ const static_html = () => {
         clear_rings()
       })
     topics.sort().map((t, ti) => {
-      var topic = t == null ? "No Topic" : t
+      var topic = t || "No Topic"
       var topic_wsc = t != null ? topic.replace(/&/g, "u").replace(/ /g, "_") : t
       var length = points.filter(p => p.ring == r && p.topic == t).length
       ring_anchor.append("p")
         .attr("class", "hover")
         .html("<span class='cheader'>" + topic + "</span><br> " + length + " Items")
         .on("mouseover", () => {
-          d3.selectAll("." + r + "." + topic_wsc).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
+          d3.selectAll("." + r + "." + topic_wsc).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)
         })
         .on("mouseout", () => {
           d3.selectAll("." + r + "." + topic_wsc).attr("fill", colors.gray)
@@ -84,7 +84,7 @@ const static_html = () => {
     var ring_anchor = anchor.append("div")
       .attr("class", "ring_topic_points")
     topics.sort().map((t, ti) => {
-      var topic = t == null ? "No Topic" : t
+      var topic = t || "No Topic"
       var topic_wsc = t != null ? topic.replace(/&/g, "u").replace(/ /g, "_") : t //withour special Characters e.g " ","&"
       var length = points.filter(p => p.ring == r && p.topic == t).length
       var array = points.filter(p => p.ring == r && p.topic == t)
@@ -107,7 +107,7 @@ const static_html = () => {
           .attr("id", "ring_topics_points_" + r + "_" + topic_wsc + "_" + pi)
           .html(p.name)
           .on("mouseover", () => {
-            d3.select(".id" + p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
+            d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)
           })
           .on("mouseout", () => {
             d3.select(".id" + p.id).attr("fill", colors.gray)
@@ -118,7 +118,7 @@ const static_html = () => {
       })
       var topics_holder = ring_topic_anchor.append("div").attr("class", "topics_holder")
       topics.sort().map((p,pi) => {
-        var topic = p == null ? "No Topic" : p
+        var topic = p || "No Topic"
         var topic_wsc = p != null ? p.replace(/&/g, "u").replace(/ /g, "_") : p
         topics_holder.append("p")
           .attr("class", "hover")

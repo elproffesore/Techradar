@@ -58,7 +58,7 @@ div[class^='ring_topic_points_'] .aheader{
 }
 .point_view .point{
   display: grid;
-  grid-template-columns: 20vw 20vw;
+  grid-template-columns: 50% 50%;
 }
 .point_view_description{
   font-size: 1.5vh;
