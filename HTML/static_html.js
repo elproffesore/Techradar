@@ -2,7 +2,6 @@ const static_html = () => {
   var anchor = null;
   //Append start HTML
   anchor = d3.select(".ringe")
-  anchor.append("p").attr("class","aheader").html("Novatec Techradar")
   Object.keys(circles).forEach((r, ri) => {
     var array = points.filter(p => p.ring == r)
     var length = points.filter(p => p.ring == r).length
@@ -35,13 +34,12 @@ const static_html = () => {
           change_view("point_view")
         })
     })
-    // ring_anchor.append("br")
-    // ring_anchor.append("p")
-    //   .attr("class", "hover")
-    //   .html("See All " + length + " Items")
-    //   .on("click", () => {
-    //     change_view("ring_topics_" + r, r)
-    //   })
+    ring_anchor.append("p")
+      .attr("class", "hover")
+      .html("... and " + (length-5) + " more Items")
+      .on("click", () => {
+        change_view("ring_topics_" + r, r)
+      })
   })
   //Rings and their Topics
   anchor = d3.select(".ring_topics")
@@ -149,6 +147,7 @@ const static_html = () => {
     for (let i = 0; i < 5; i++) {
       ring_anchor.append("p").attr("class", "hover").attr("id", "search_" + r + "_" + i)
     }
+    ring_anchor.append("p").attr("class","hover").attr("id","search_"+r+"_seeall")
   })
   //Search Topics View
   var max_topic = 0
@@ -158,8 +157,8 @@ const static_html = () => {
   })
   anchor = d3.select(".search_topics")
   anchor.append("p")
-    .attr("class", "aheader")
-    .attr("id", "seach_topics_header")
+    .attr("class", "aheader hover")
+    .attr("id", "search_topics_header")
   for (let i = 0; i < max_topic; i++) {
     anchor.append("p").attr("class", "hover").attr("id", "search_topics_" + i)
   }
@@ -175,7 +174,7 @@ const static_html = () => {
   anchor = d3.select(".search_topic_points")
   anchor.append("p")
     .attr("class", "aheader")
-    .attr("id", "seach_topic_points_header")
+    .attr("id", "search_topic_points_header")
   var anchor_stp = anchor.append("div")
   for (let i = 0; i < max_points; i++) {
     if (i % 5 == 0 && i != 0) {

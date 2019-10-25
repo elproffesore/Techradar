@@ -30,7 +30,7 @@ const show_searches = (search_array,searchword) => {
           d3.selectAll(".ci").attr("r", points_radius)
       })
       .on("click", () => {
-        change_view("search_topics_"+r)
+        show_search_topics(r,search_array,searchword)
       })
       array.slice(0,5).map((p,pi) => {
         d3.select("#search_"+r+"_"+pi)
@@ -42,12 +42,69 @@ const show_searches = (search_array,searchword) => {
           d3.select(".id"+p.id).attr("r", points_radius)
         })
         .on("click", () => {
-          change_view("point_view")
+          show_point(p)
         })
       })
+      if(length > 5) {
+        d3.select("#search_"+r+"_seeall")
+        .html("... and "+(length-5)+" more Items")
+        .on("click",() => {show_search_topics(r,search_array,searchword)})
+      }
     })
     change_view("search")
   }
+}
+const show_search_topics = (ring,array,searchword) => {
+  d3.selectAll(".search_topics > p").html("")
+  d3.selectAll(".ci").attr("fill",colors.gray)
+  var ring_array = array.filter(p => p.ring == ring)
+  d3.select("#search_topics_header")
+  .html("<img class='picto' src='Data/Pics/"+ring+".svg'> "+'"'+searchword+'"'+" / "+ring+" / "+ring_array.length+" Items")
+  .on("click",()=>{show_searches(array,searchword)})
+  var topics = [...new Set(ring_array.map(p => p = p.topic))]
+  ring_array.map(p => {d3.select(".id"+p.id).attr("fill",colors.red)})
+  topics.map((t,ti) => {
+    var topic = t || "No Topic"
+    var topic_array = ring_array.filter(p => p.topic == t)
+    var length = topic_array.length
+    d3.select("#search_topics_"+ti)
+    .html("<span class='cheader'>" + topic + "</span><br> " + length + " Items")
+    .on("mouseover", () => {
+      topic_array.map(p=> {
+              d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
+      })
+    })
+    .on("mouseout",()=>{
+      d3.selectAll(".ci").attr("r", points_radius)
+    })
+    .on("click", () => {
+      show_search_topic_points(t,ring,ring_array,searchword)
+    })
+  })
+  change_view("search_topics")
+}
+const show_search_topic_points = (topic,ring,ring_array,searchword) => {
+d3.selectAll(".search_topic_points > div > p").html("")
+d3.selectAll(".ci").attr("fill",colors.gray)
+var ring_topic_array = ring_array.filter(p => p.topic == topic)
+var ring_topic = topic || "No Topic"
+d3.select("#search_topic_points_header")
+.html("<img class='picto' src='Data/Pics/"+ring+".svg'> "+'"'+searchword+'"'+" / "+ring+" / "+ring_topic+" / "+ring_topic_array.length+" Items")
+.on("click",()=>{show_search_topics(ring,ring_array,searchword)})
+ring_topic_array.map((p,pi) => {
+  d3.select("#search_topic_points_"+pi).html(p.name)
+  .on("mouseover", () => {
+    d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
+  })
+  .on("mouseout",()=>{
+    d3.select(".id"+p.id).attr("r", points_radius)
+  })
+  .on("click", () => {
+    show_point(p)
+  })
+
+})
+change_view("search_topic_points")
 }
 const change_cluster = (cluster) => {
   d3.selectAll(".ci").attr("display","block")
