@@ -63,7 +63,7 @@ const show_search_topics = (ring,array,searchword) => {
   .on("click",()=>{show_searches(array,searchword)})
   var topics = [...new Set(ring_array.map(p => p = p.topic))]
   ring_array.map(p => {d3.select(".id"+p.id).attr("fill",colors.red)})
-  topics.map((t,ti) => {
+  topics.sort().map((t,ti) => {
     var topic = t || "No Topic"
     var topic_array = ring_array.filter(p => p.topic == t)
     var length = topic_array.length
@@ -164,3 +164,31 @@ const show_point = (point,point_ref) => {
   d3.select("#point_4").html(point.description)
   change_view("point_view")
 }
+const show_cluster_info = (single_cluster) => {
+  d3.selectAll(".ci").attr("opacity","0.2")
+  d3.selectAll(".hull_group > g").attr("opacity","0.2")
+  d3.selectAll(".hullnames_group > g").attr("display","none")
+  d3.selectAll("."+single_cluster).attr("opacity","1")
+  d3.select("#hull_"+single_cluster).attr("opacity","1")
+  change_view("cluster_info")
+}
+Mousetrap.bind("1",() => {
+  change_view("ring_topics_Observe")
+  redraw_rings("Observe")
+})
+Mousetrap.bind("2",() => {
+  change_view("ring_topics_Evaluate")
+  redraw_rings("Evaluate")
+})
+Mousetrap.bind("3",() => {
+  change_view("ring_topics_Build-Up")
+  redraw_rings("Build-Up")
+})
+Mousetrap.bind("4",() => {
+  change_view("ring_topics_Work")
+  redraw_rings("Work")
+})
+Mousetrap.bind("5",() => {
+  change_view("ring_topics_Reduce")
+  redraw_rings("Reduce")
+})

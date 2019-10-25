@@ -88,14 +88,16 @@ const draw_hulls = (hull,cl,cluster,group,group_names) => {
       .y(function (d) {
            return d[1];
       })
+  var cl_wsc = cl.split(" (")[0].replace(/&/g,"u").replace(/ /g,"_")
   var polygonPath = path(hull)
-  group.append("path")
+  var polygon = group.append("path")
   .attr("class","hull")
+  .attr("id","hull_"+cl_wsc)
   .attr("d",polygonPath)
   .attr("fill",opacity_colors.red+"0.5)")
   .on("mouseover",function(d){d3.select(this).attr("fill",opacity_colors.red+"0.7)").attr("stroke",colors.red).attr("stroke-width","5px")})
   .on("mouseout",function(d){d3.select(this).attr("fill",opacity_colors.red+"0.5").attr("stroke","none")})
-  .on("click",function(){})
+  .on("click",function(){show_cluster_info(cl_wsc)})
   draw_hull_names(hull,cl,cluster,group_names)
 
 }
@@ -104,11 +106,6 @@ const draw_hull_names = (hull,cl,cluster,group) => {
   if(hull.length > 2){
     center = d3.polygonCentroid(hull)
   }
-  // else{
-  //   console.log(hull)
-  //   center[0] = (hull[0][0]+hull[1][0])/2
-  //   center[1] = (hull[0][1]+hull[0][1])/2
-  // }
   group.append("text")
   .attr("class","hull_name")
   .attr("x",center[0])
