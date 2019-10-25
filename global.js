@@ -16,3 +16,8 @@ var colors = {
   green:"rgba(31,175,152,1.0)",
   gray:"rgba(255,255,255,0.7)"
 }
+var radar_group = svg.append("g").attr("class", "radar_group")
+var hull_group = svg.append("g").attr("class","hull_group")
+var circles_group = svg.append("g").attr("class", "circles_group")
+var hullnames_group = svg.append("g").attr("class","hullnames_group")
+var gadget_group = svg.append("g").attr("class", "gadget_group")

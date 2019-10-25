@@ -1,6 +1,4 @@
 const draw_radar = () => {
-
-  var radar_group = svg.append("g").attr("class", "radar_group")
   var keys = Object.keys(circles)
   keys.forEach((r, ri) => {
     var ir = ri == 4 ? 0 : circles[keys[ri + 1]]
@@ -30,10 +28,9 @@ const clear_rings = () => {
   svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
 }
 const draw_radargadgets = () => {
-  var gadget_group = svg.append("g").attr("class", "gadget_group")
 
-  var radar_needle = svg.select(".gadget_group")
-    .append("line")
+  var radar_needle =
+  gadget_group.append("line")
     .attr("x1", 0)
     .attr("y1", 0)
     .attr("x2", 0)
@@ -49,8 +46,8 @@ const draw_radargadgets = () => {
     .attr("dur", "17s")
     .attr("repeatCount", "indefinite")
 
-  var radar_ping = svg.select(".gadget_group")
-    .append("circle")
+  var radar_ping =
+  gadget_group.append("circle")
     .attr("r", 0)
     .attr("cx", 0)
     .attr("cy", 0)
@@ -73,13 +70,49 @@ const draw_radargadgets = () => {
     .attr("repeatCount", "indefinite")
 }
 const create_hulls = (points,cluster) => {
-  var points_processed = [...points.map(p => {return [p.coordinates[cluster].x,p.coordinates[cluster].y]})]
-  var hull = d3.polygonHull(point_processed)
-  draw_hulls(hull)
+  var group = hull_group.append("g").attr("class","hull_"+cluster+"_group").attr("display","none")
+  var group_names = hullnames_group.append("g").attr("class","hullnames_"+cluster+"_group").attr("display","none")
+  var clusters = [...new Set(points.map(p => p = p[cluster]))]
+  clusters.map((cl,cli) => {
+    if(cl != null){
+      var array = points.filter(p => p[cluster] == cl)
+      var points_processed = [...array.map(p => {return [p.coordinates[cluster].x,p.coordinates[cluster].y]})]
+      var hull = array.length > 2 ?d3.polygonHull(points_processed):points_processed
+      console.log(points_processed,hull)
+      draw_hulls(hull,cl,cluster,group,group_names)
+    }
+  })
 }
-const draw_hulls = (hull) => {
+const draw_hulls = (hull,cl,cluster,group,group_names) => {
+  var path = d3.line()
+      .x(function (d) {
+           return d[0];
+      })
+      .y(function (d) {
+           return d[1];
+      })
+  var polygonPath = path(hull)
+  group.append("path")
+  .attr("class","hull")
+  .attr("d",polygonPath)
+  .attr("fill",colors.red)
+  .on("mouseover",()=>{d3.select(this).attr("fill",colors.red).attr("stroke",colors.red).attr("stroke-width","5px")})
+  .on("mouseout",()=>{d3.select(this).attr("fill",colors.red).attr("stroke","none")})
+  .on("click",()=>{})
+  draw_hull_names(hull,cl,cluster,group_names)
 
 }
-const draw_hull_names = () => {
-
+const draw_hull_names = (hull,cl,cluster,group) => {
+  var center = d3.polygonCentroid(hull)
+  group.append("text")
+  .attr("class","hull_name")
+  .attr("x",center[0])
+  .attr("y",center[1])
+  .attr("text-anchor","middle")
+  .attr("font-family","Roboto")
+  .attr("font-weight",700)
+  .attr("font-size","2.6vh")
+  .attr("cursor","normal")
+  .text(cl)
+  .attr("fill","white")
 }

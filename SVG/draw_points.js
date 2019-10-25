@@ -1,5 +1,5 @@
 function draw_points() {
-  var circles_group = svg.append("g").attr("class", "circles_group")
+
   //Iterate over every Ring Array then create a circle svg ovject for every point object with their specific start points
     circles_group.selectAll(".new")
       .data(points)
@@ -30,5 +30,6 @@ function draw_points() {
       })
       .on("click",function(d){
         d3.select(this).attr("fill",colors.red)
+        show_point(d)
       })
 }

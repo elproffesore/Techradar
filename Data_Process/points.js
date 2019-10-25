@@ -5,6 +5,7 @@ d3.json('Data/radar_data.json')
 })
 .then((data) => {
   clear_data(data)
+  draw_radar()
   return data
 })
 .then((data) => {
@@ -13,7 +14,6 @@ d3.json('Data/radar_data.json')
   create_clustering(points,"category")
 })
 .then(() => {
-  draw_radar()
   draw_points()
   draw_radargadgets()
   static_html()
@@ -127,4 +127,5 @@ const create_clustering = (points,cluster) => {
       })
   }
   private_calc_cluster(points,densitys_cluster)
+  create_hulls(points,cluster)
 }

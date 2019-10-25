@@ -5,9 +5,11 @@ const change_view = (newview,ring) => {
   oldview  = newview;
 }
 const show_searches = (search_array,searchword) => {
+  d3.selectAll(".ci").attr("fill",colors.gray)
   if(searchword == ""){
     change_view("ringe")
   }else{
+    search_array.map(p => {d3.select(".id"+p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)})
     d3.selectAll(".search > div > p").html("")
     d3.select("#search_header").html('"'+searchword+'" / '+search_array.length+" Items found")
     Object.keys(circles).forEach((r,ri) => {
@@ -20,9 +22,6 @@ const show_searches = (search_array,searchword) => {
           d3.selectAll(".id" + p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
         })
       })
-      .on("mouseout", () => {
-        d3.selectAll(".ci").attr("fill", colors.gray)
-      })
       .on("click", () => {
         change_view("search_topics_"+r)
       })
@@ -31,9 +30,6 @@ const show_searches = (search_array,searchword) => {
         .html(p.name)
         .on("mouseover", () => {
           d3.select(".id" + p.id).attr("fill", colors.red).attr("r", 12).transition().duration(500).attr("r", 5)
-        })
-        .on("mouseout", () => {
-          d3.select(".id" + p.id).attr("fill", colors.gray)
         })
         .on("click", () => {
           change_view("point_view")
@@ -45,6 +41,8 @@ const show_searches = (search_array,searchword) => {
 }
 const change_cluster = (cluster) => {
   d3.selectAll(".ci").attr("display","block")
+  d3.selectAll(".hull_group > g").attr("display","none")
+  d3.selectAll(".hullnames_group > g").attr("display","none")
   switch (cluster) {
     case "normal":
       d3.selectAll(".ci")
@@ -58,6 +56,8 @@ const change_cluster = (cluster) => {
       })
       break;
     case "category":
+      d3.select(".hull_category_group").transition().delay(500).attr("display","block")
+      d3.select(".hullnames_category_group").transition().delay(500).attr("display","block")
       d3.selectAll(".ci")
       .transition()
       .duration(500)
@@ -70,6 +70,8 @@ const change_cluster = (cluster) => {
       break;
     case "topic":
       d3.selectAll(".null").attr("display","none")
+      d3.select(".hullnames_topic_group").transition().delay(500).attr("display","block")
+      d3.select(".hull_topic_group").transition().delay(500).attr("display","block")
       d3.selectAll(".ci")
       .transition()
       .duration(500)
@@ -81,4 +83,7 @@ const change_cluster = (cluster) => {
       })
       break;
   }
+}
+const show_point = (point) => {
+  
 }
