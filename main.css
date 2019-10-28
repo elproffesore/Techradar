@@ -20,7 +20,7 @@ body{
   display: grid;
   align-content: center;
   justify-content: center;
-  grid-template-columns: 10% 20% 10%;
+  grid-template-columns:  10% 20% 10% 10%;
 }
 .nt-logo{
   height: 100%;

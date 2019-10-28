@@ -1,4 +1,9 @@
-const static_html = () => {
+const append_static_html = () => {
+  append_static_html_normal()
+  append_static_html_search()
+  append_static_html_cluster()
+}
+const append_static_html_normal = () => {
   var anchor = null;
   //Append start HTML
   anchor = d3.select(".ringe")
@@ -7,7 +12,7 @@ const static_html = () => {
     var length = points.filter(p => p.ring == r).length
     var ring_anchor = anchor.append("div").attr("class", "start_" + r)
     ring_anchor.append("p")
-      .attr("class", "bheader hover")
+      .attr("class", "aheader hover")
       .attr("id", "start_" + r + "_header")
       .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r)
       .on("mouseover", () => {
@@ -54,7 +59,6 @@ const static_html = () => {
       .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r + " / " + length + " Items")
       .on("click", () => {
         change_view("ringe");
-        clear_rings()
       })
     topics.sort().map((t, ti) => {
       var topic = t || "No Topic"
@@ -132,55 +136,5 @@ const static_html = () => {
       })
     })
   })
-  //Search View
-  anchor = d3.select(".search")
-  anchor.append("p")
-    .attr("class", "aheader")
-    .attr("id", "search_header")
-  Object.keys(circles).forEach((r, ri) => {
-    var ring_anchor = anchor.append("div")
-      .attr("class", "search_" + r)
-
-    ring_anchor.append("p")
-    .attr("class","hover bheader")
-    .attr("id","search_"+r+"_header")
-    for (let i = 0; i < 5; i++) {
-      ring_anchor.append("p").attr("class", "hover").attr("id", "search_" + r + "_" + i)
-    }
-    ring_anchor.append("p").attr("class","hover").attr("id","search_"+r+"_seeall")
-  })
-  //Search Topics View
-  var max_topic = 0
-  Object.keys(circles).forEach((r, ri) => {
-    var ring_topic_length = [...new Set(points.filter(p => p.ring == r).filter(p => p.topic != null).map(p => p = p.topic))].length
-    ring_topic_length > max_topic ? max_topic = ring_topic_length : null
-  })
-  anchor = d3.select(".search_topics")
-  anchor.append("p")
-    .attr("class", "aheader hover")
-    .attr("id", "search_topics_header")
-  for (let i = 0; i < max_topic; i++) {
-    anchor.append("p").attr("class", "hover").attr("id", "search_topics_" + i)
-  }
-  //Search Topic Points View
-  var max_points = 0
-  Object.keys(circles).forEach((r, ri) => {
-    var ring_topics = [...new Set(points.filter(p => p.ring == r).map(p => p = p.topic))]
-    ring_topics.map((t, ti) => {
-      var points_length = points.filter(p => p.ring == r && p.topic == t).length
-      points_length > max_points ? max_points = points_length : null
-    })
-  })
-  anchor = d3.select(".search_topic_points")
-  anchor.append("p")
-    .attr("class", "aheader")
-    .attr("id", "search_topic_points_header")
-  var anchor_stp = anchor.append("div")
-  for (let i = 0; i < max_points; i++) {
-    if (i % 5 == 0 && i != 0) {
-      anchor_stp = anchor.append("div")
-    }
-    anchor_stp.append("p").attr("class", "hover").attr("id", "search_topic_points_" + i)
-  }
   change_view("ringe")
 }

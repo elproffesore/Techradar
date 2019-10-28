@@ -1,5 +1,4 @@
 function draw_points() {
-
   //Iterate over every Ring Array then create a circle svg ovject for every point object with their specific start points
     circles_group.selectAll(".new")
       .data(points)

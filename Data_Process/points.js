@@ -16,7 +16,7 @@ d3.json('Data/radar_data.json')
 .then(() => {
   draw_points()
   draw_radargadgets()
-  static_html()
+  append_static_html()
 })
 .then(() => {
   d3.selectAll("svg > g")

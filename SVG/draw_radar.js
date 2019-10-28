@@ -76,11 +76,11 @@ const create_hulls = (points,cluster) => {
       var array = points.filter(p => p[cluster] == cl)
       var points_processed = [...array.map(p => {return [p.coordinates[cluster].x,p.coordinates[cluster].y]})]
       var hull = array.length > 2 ?d3.polygonHull(points_processed):points_processed
-      draw_hulls(hull,cl,cluster,group,group_names)
+      draw_hulls(hull,cl,cluster,group,group_names,cli)
     }
   })
 }
-const draw_hulls = (hull,cl,cluster,group,group_names) => {
+const draw_hulls = (hull,cl,cluster,group,group_names,index) => {
   var path = d3.line()
       .x(function (d) {
            return d[0];
@@ -89,14 +89,16 @@ const draw_hulls = (hull,cl,cluster,group,group_names) => {
            return d[1];
       })
   var cl_wsc = cl.split(" (")[0].replace(/&/g,"u").replace(/ /g,"_")
-  var polygonPath = path(hull)
+  var polygonPathOpen = path(hull)
+  var polygonPath = polygonPathOpen+"L"+polygonPathOpen.split("M")[1].split("L")[0]
   var polygon = group.append("path")
   .attr("class","hull")
   .attr("id","hull_"+cl_wsc)
   .attr("d",polygonPath)
-  .attr("fill",opacity_colors.red+"0.5)")
-  .on("mouseover",function(d){d3.select(this).attr("fill",opacity_colors.red+"0.7)").attr("stroke",colors.red).attr("stroke-width","5px")})
-  .on("mouseout",function(d){d3.select(this).attr("fill",opacity_colors.red+"0.5").attr("stroke","none")})
+  .attr("fill",cluster_colors[index])
+  .attr("opacity","0.8")
+  .on("mouseover",function(d){d3.select(this).attr("stroke","rgba(0,0,0,0.5)").attr("stroke-width","5px")})
+  .on("mouseout",function(d){d3.select(this).attr("stroke","none")})
   .on("click",function(){show_cluster_info(cl_wsc)})
   draw_hull_names(hull,cl,cluster,group_names)
 

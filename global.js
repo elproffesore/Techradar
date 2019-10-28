@@ -11,6 +11,7 @@ var circles = {
 }
 var offsets = [500,550] //x,y offsets of the radar
 var oldview = "NoD";//Global visible View
+var cluster = "Normal"
 var colors = {
   red:"rgba(231,69,79,1.0)",
   purple:"rgba(92,72,151,0.8)",
@@ -25,6 +26,22 @@ var opacity_colors = {
   green:"rgba(31,175,152,",
   gray:"rgba(255,255,255,"
 }
+var cluster_colors = [
+  "#E7454F",
+  "#5C4897",
+    "#45E7A6",
+  "#E745B1",
+  "#4550E7",
+  "#45E4E7",
+  "rgba()",
+  "rgba()",
+  "rgba()",
+  "rgba()",
+  "rgba()",
+  "rgba()",
+  "rgba()",
+  "rgba()",
+]
 //In a specified arrangement because render layer is specified by Order and hullnames
 //and Gadgets have to be on top of all
 var radar_group = svg.append("g").attr("class", "radar_group")
