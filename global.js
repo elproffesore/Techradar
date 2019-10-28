@@ -27,20 +27,21 @@ var opacity_colors = {
   gray:"rgba(255,255,255,"
 }
 var cluster_colors = [
-  "#E7454F",
-  "#5C4897",
-    "#45E7A6",
-  "#E745B1",
-  "#4550E7",
-  "#45E4E7",
-  "rgba()",
-  "rgba()",
-  "rgba()",
-  "rgba()",
-  "rgba()",
-  "rgba()",
-  "rgba()",
-  "rgba()",
+  "#634893",
+  "#604894",
+  "#BE4664",
+  "#D1455A",
+  "#944779",
+  "#794788",
+  "#DE4553",
+  "#E34553",
+  "#B54669",
+  "#8C477E",
+  "#72488B",
+  "#5D4896",
+  "#5E4869",
+  "#E34551",
+  "#D34559"
 ]
 //In a specified arrangement because render layer is specified by Order and hullnames
 //and Gadgets have to be on top of all

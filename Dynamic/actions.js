@@ -132,6 +132,34 @@ const show_point = (point) => {
   d3.select("#point_4").html(point.description)
   change_view("point_view")
 }
+const show_cluster_view = (cluster_spec,cluster) => {
+  d3.selectAll(".cluster_view_header").html("")
+  d3.selectAll(".cluster_view_p").html("")
+  d3.selectAll(".cluster_next").html("")
+  var array = points.filter(p => p[cluster] == cluster_spec)
+  d3.select("#cluster_view_header").html(cluster_spec+" / "+array.length+" Items")
+  array.map((p,pi) => {
+    if(pi % 40 == 0 && pi != 0){
+      d3.select("#cluster_view_header_"+(pi/40))
+      .html(cluster_spec+" / "+array.length+" Items")
+      d3.select("#cluster_next_"+(pi/40))
+      .html("... next "+(array.length-(40*(pi/40)))+" Items")
+      .on("click",() => {change_view("cluster_view_div"+(pi/40))})
+    }
+    d3.select("#cluster_view_"+pi)
+    .html(p.name)
+    .on("mouseover", () => {
+      d3.select(".id" + p.id).attr("fill", colors.red).attr("r",points_radius*2)
+    })
+    .on("mouseout", () => {
+      d3.select(".id" + p.id).attr("fill", colors.gray).attr("r", points_radius)
+    })
+    .on("click", () => {
+      show_point(p)
+    })
+  })
+  change_view("cluster_view_div")
+}
 const change_cluster = (cluster) => {
   d3.selectAll(".ci").attr("display","block")
   d3.selectAll(".hull_group > g").attr("display","none")
@@ -147,7 +175,6 @@ const change_cluster = (cluster) => {
       .attr("cy",function(d){
         return d.coordinates.normal.y
       })
-      change_view("ringe")
       break;
     case "Category":
       d3.select(".hull_category_group").transition().delay(500).attr("display","block")
@@ -162,7 +189,7 @@ const change_cluster = (cluster) => {
         return d.coordinates.category.y
       })
       clear_rings()
-      change_view("cluster")
+
       break;
     case "Topic":
       d3.selectAll(".null").attr("display","none")
@@ -177,6 +204,15 @@ const change_cluster = (cluster) => {
       .attr("cy",function(d){
         return d.coordinates.topic.y
       })
+      break;
+  }
+}
+const change_appview = (view) => {
+  switch (view) {
+    case "Category":
+      change_view("cluster")
+      break;
+    case "Ringe":
       change_view("ringe")
       break;
   }

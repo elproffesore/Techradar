@@ -96,10 +96,10 @@ const draw_hulls = (hull,cl,cluster,group,group_names,index) => {
   .attr("id","hull_"+cl_wsc)
   .attr("d",polygonPath)
   .attr("fill",cluster_colors[index])
-  .attr("opacity","0.8")
-  .on("mouseover",function(d){d3.select(this).attr("stroke","rgba(0,0,0,0.5)").attr("stroke-width","5px")})
-  .on("mouseout",function(d){d3.select(this).attr("stroke","none")})
-  .on("click",function(){show_cluster_info(cl_wsc)})
+  .attr("opacity",0.7)
+  .on("mouseover",function(d){d3.select(this).attr("opacity",1).attr("stroke","rgba(0,0,0,0.5)").attr("stroke-width","5px")})
+  .on("mouseout",function(d){d3.select(this).attr("opacity",0.7).attr("stroke","none")})
+  .on("click",function(){show_cluster_view(cl,cluster)})
   draw_hull_names(hull,cl,cluster,group_names)
 
 }

@@ -32,6 +32,7 @@ div[class^='ring_topic_points_'],
 .cluster,
 .cluster_rings div,
 .cluster_viewable,
+div[class^="cluster_view_div"],
 .search,
 .search_topics,
 .search_topic_points
