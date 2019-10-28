@@ -151,44 +151,21 @@ const change_cluster = (cluster) => {
       break;
   }
 }
-const show_point = (point,point_ref) => {
-  d3.selectAll(".ci").attr("fill",colors.gray)
-  d3.select(point_ref).attr("fill",colors.red)
+const show_point = (point) => {
+  clear_rings()
+  d3.select(".id"+point.id).attr("fill",colors.red)
   d3.select("#point_view_header")
   .attr("style","grid-column:1 /span 2")
   .html("<img class='picto' src='Data/Pics/"+point.ring+".svg'> "+point.name)
-  d3.select("#point_0").html("Ring: "+point.ring)
-  d3.select("#point_1").html("Topic: "+point.topic)
+  var topic = point.topic || "No Topic"
+  var topic_wsc = point.topic == null ? null : point.topic.replace(/ /g,"_").replace(/&/g,"u")
+  d3.select("#point_0").html("Ring: "+point.ring).on("click",() => {change_view("ring_topics_"+point.ring)})
+  d3.select("#point_1").html("Topic: "+topic).on("click",() => {change_view("ring_topic_points_"+point.ring+"_"+topic_wsc)})
   d3.select("#point_2").html("Subtopic: "+point.subtopic)
   d3.select("#point_3").html("Category: "+point.category)
   d3.select("#point_4").html(point.description)
   change_view("point_view")
 }
 const show_cluster_info = (single_cluster) => {
-  d3.selectAll(".ci").attr("opacity","0.2")
-  d3.selectAll(".hull_group > g").attr("opacity","0.2")
-  d3.selectAll(".hullnames_group > g").attr("display","none")
-  d3.selectAll("."+single_cluster).attr("opacity","1")
-  d3.select("#hull_"+single_cluster).attr("opacity","1")
-  change_view("cluster_info")
+  
 }
-Mousetrap.bind("1",() => {
-  change_view("ring_topics_Observe")
-  redraw_rings("Observe")
-})
-Mousetrap.bind("2",() => {
-  change_view("ring_topics_Evaluate")
-  redraw_rings("Evaluate")
-})
-Mousetrap.bind("3",() => {
-  change_view("ring_topics_Build-Up")
-  redraw_rings("Build-Up")
-})
-Mousetrap.bind("4",() => {
-  change_view("ring_topics_Work")
-  redraw_rings("Work")
-})
-Mousetrap.bind("5",() => {
-  change_view("ring_topics_Reduce")
-  redraw_rings("Reduce")
-})

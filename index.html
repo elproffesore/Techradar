@@ -4,10 +4,10 @@
    <meta charset="utf-16">
    <link rel="stylesheet" href="main.css">
    <link rel="stylesheet" href="text.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
    <script src="Librarys/fuse.js" charset="utf-8"></script>
    <script src="Librarys/d3.min.js" charset="utf-8"></script>
-   <script src="Librarys/mousetrap.js" charset="utf-8"></script>
    <title>Novatec Techradar</title>
  </head>
  <body>
@@ -32,25 +32,26 @@
        <div class="search"></div>
        <div class="search_topics"></div>
        <div class="search_topic_points"></div>
+       <div class="cluster"></div>
+       <div class="cluster_rings"></div>
+       <div class="cluster_ring_points"></div>
        <div class="point_view">
          <div class="point">
            <p class="aheader" id="point_view_header"></p>
-           <p id="point_0"></p>
-           <p id="point_1"></p>
-           <p id="point_2"></p>
-           <p id="point_3"></p>
+           <p class="info_section" id="point_0"></p>
+           <p class="info_section" id="point_1"></p>
+           <p class="info_section" id="point_2"></p>
+           <p class="info_section" id="point_3"></p>
            <article class="point_view_description" id="point_4"></article>
          </div>
-         <div class="point_more_information">
+         <!-- <div class="point_more_information">
            <div class="point_related">
              <p id="point_related_header">Related Points:</p>
              <p id="point_related_topic_0"></p>
              <p id="point_related_topic_1"></p>
              <p id="point_related_topic_2"></p>
            </div>
-         </div>
-       </div>
-     </div>
+         </div> -->
    </div>
    <script src="global.js" charset="utf-8"></script>
    <script src="Dynamic/actions.js" charset="utf-8"></script>

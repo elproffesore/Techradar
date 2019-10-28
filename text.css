@@ -60,7 +60,33 @@ div[class^='ring_topic_points_'] .aheader{
   display: grid;
   grid-template-columns: 50% 50%;
 }
+.info_section{
+  font-size: 2vh;
+}
 .point_view_description{
-  font-size: 1.5vh;
+  font-size: 2vh;
+  margin-right: 1vw;
   grid-area: 2 / 2 / 7 / 2
+}
+@media only screen and (max-width:900px){
+  .ringe,
+  .ring_topics div,
+  div[class^='ring_topic_points_'],
+  .search,
+  .search_topics,
+  .search_topic_points{
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 1vh;
+    padding-top: 3.5vh;
+    padding:2vw;
+    text-align: center;
+  }
+  .topics_holder{
+    grid-area: 2 / 1 / 4 / 2;
+  }
+  .aheader{
+    grid-column: 1 / span 2
+  }
 }

@@ -75,7 +75,7 @@ const create_clustering = (points,cluster) => {
   //get densitys
   var densitys_cluster = calculate_density(points,cluster)
   //calc the clusters coordinates
-  const private_calc_cluster = (points,densitys) => {
+  const calc_cluster = (points,densitys) => {
     //Creating the weighted radiants for each cluster element
       var radiants = {}
       var off = 0
@@ -126,6 +126,6 @@ const create_clustering = (points,cluster) => {
         })
       })
   }
-  private_calc_cluster(points,densitys_cluster)
+  calc_cluster(points,densitys_cluster)
   create_hulls(points,cluster)
 }

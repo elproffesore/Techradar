@@ -31,7 +31,7 @@ const static_html = () => {
           d3.select(".id" + p.id).attr("fill", colors.gray)
         })
         .on("click", () => {
-          change_view("point_view")
+          show_point(p)
         })
     })
     ring_anchor.append("p")
@@ -111,7 +111,7 @@ const static_html = () => {
             d3.select(".id" + p.id).attr("fill", colors.gray)
           })
           .on("click", () => {
-            change_view("point_view")
+            show_point(p)
           })
       })
       var topics_holder = ring_topic_anchor.append("div").attr("class", "topics_holder")
