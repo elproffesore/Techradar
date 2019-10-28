@@ -29,11 +29,13 @@ p{
 .ringe,
 .ring_topics div,
 div[class^='ring_topic_points_'],
+.cluster,
+.cluster_rings div,
+.cluster_viewable,
 .search,
 .search_topics,
-.search_topic_points,
-.cluster,
-.cluster_rings div{
+.search_topic_points
+{
   display: none;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
@@ -43,10 +45,13 @@ div[class^='ring_topic_points_'],
   padding-left: 5vw;
 }
 /*Specialrules*/
-div[class^='ring_topic_points_'] .aheader{
+div[class^='ring_topic_points_'] .aheader,
+.cluster_viewable .aheader{
   grid-column: 1 / span 4
 }
-.topics_holder{
+.topics_holder,
+.rings_holder{
+  text-align: end;
   grid-area: 2 / 4 / 5 / 4;
   padding-right: 1vw
 }
@@ -75,9 +80,13 @@ div[class^='ring_topic_points_'] .aheader{
   .ringe,
   .ring_topics div,
   div[class^='ring_topic_points_'],
+  .cluster,
+  .cluster_rings div,
+  .cluster_viewable,
   .search,
   .search_topics,
-  .search_topic_points{
+  .search_topic_points
+  {
     display: none;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;

@@ -107,16 +107,16 @@ const draw_hull_names = (hull,cl,cluster,group) => {
   var center = new Array();
   if(hull.length > 2){
     center = d3.polygonCentroid(hull)
+    group.append("text")
+    .attr("class","hull_name")
+    .attr("x",center[0])
+    .attr("y",center[1])
+    .attr("text-anchor","middle")
+    .attr("font-family","Roboto")
+    .attr("font-weight",700)
+    .attr("font-size","3vh")
+    .attr("cursor","normal")
+    .text(cl)
+    .attr("fill","white")
   }
-  group.append("text")
-  .attr("class","hull_name")
-  .attr("x",center[0])
-  .attr("y",center[1])
-  .attr("text-anchor","middle")
-  .attr("font-family","Roboto")
-  .attr("font-weight",700)
-  .attr("font-size","3vh")
-  .attr("cursor","normal")
-  .text(cl)
-  .attr("fill","white")
 }

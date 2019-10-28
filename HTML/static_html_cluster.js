@@ -1,6 +1,6 @@
 const append_static_html_cluster = () => {
   var categorys = [...new Set(points.map(p => p = p.category))]
-  //Cluster View
+  //Cluster View Category
   var anchor = d3.select(".cluster")
   categorys.map((cat, cati) => {
     var array = points.filter(p => p.category == cat)
@@ -59,7 +59,70 @@ const append_static_html_cluster = () => {
         cat_anchor.append("p")
         .attr("class","hover")
         .html("<img class='picto' src='Data/Pics/" + r + ".svg'><span class='cheader'> " +r+"</span><br>"+length +" Items")
+        .on("mouseover",() => {d3.selectAll("."+r+"."+cat_wsc).attr("fill",colors.red).attr("r",points_radius*2).transition().duration(500).attr("r",points_radius)})
+        .on("mouseout",() =>
+        {d3.selectAll("."+r+"."+cat_wsc).attr("fill",colors.gray).attr("r",points_radius)})
+        .on("click",() =>
+        {change_view("cluster_ring_points_"+cat_wsc+"_"+r)})
       }
+    })
+  })
+  anchor = d3.select(".cluster_ring_points")
+  categorys.map((cat,cati) => {
+    var cat_wsc = cat.split(" (")[0].replace(/ /g, "_").replace(/&/g, "u")
+    var cat_anchor = anchor.append("div").attr("class","cluster_ring_points_"+cat_wsc)
+    Object.keys(circles).forEach((r,ri) => {
+      var array = points.filter(p => p.category == cat && p.ring == r)
+      var length = array.length
+      var cat_ring_anchor = cat_anchor.append("div").attr("class","cluster_viewable cluster_ring_points_"+cat_wsc+"_"+r)
+      cat_ring_anchor.append("p")
+      .attr("class","hover aheader")
+      .html(cat+" / "+r+" / "+length+" Items")
+      .on("click",() => {change_view("cluster_rings_"+cat_wsc)})
+      var cat_ring_div_anchor = cat_ring_anchor.append("div")
+      array.map((p,pi) => {
+        if(pi % 5 == 0 && pi != 0){
+          cat_ring_div_anchor = cat_ring_anchor.append("div")
+          if(pi  == 40){
+            cat_ring_div_anchor.append("p")
+            .attr("class","hover cheader")
+            .html("... next "+(length-40)+" Items")
+            .on("click",() => {change_view("cluster_ring_points_" +cat_wsc+ "_" +r+"2")})
+            var rings_holder  = cat_ring_anchor.append("div").attr("class","rings_holder")
+            Object.keys(circles).forEach((rhc,rhci) => {
+              rings_holder.append("p")
+              .attr("class","hover")
+              .attr("style",() => {if(rhc == r){return "color:"+colors.red}})
+              .html(rhc)
+              .on("click",() =>{change_view("cluster_ring_points_"+cat_wsc+"_"+rhc)})
+            })
+            cat_ring_anchor = cat_anchor.append("div")
+            .attr("class", "cluster_viewable cluster_ring_points_" + cat_wsc + "_" + r+"2")
+            cat_ring_anchor.append("p")
+              .attr("class", "aheader hover")
+              .attr("id", "cluster_ring_points_" + cat_wsc + "_" +r+ "_header2")
+              .html( cat + " / " + r + " / " + length + " Items")
+              .on("click", () => {
+                change_view("cluster_rings_"+cat_wsc)
+              })
+            cat_ring_div_anchor = cat_ring_anchor.append("div")
+          }
+
+        }
+        cat_ring_div_anchor.append("p").attr("class","hover")
+        .html(p.name)
+        .on("mouseover",()=>{d3.select(".id"+p.id).attr("fill",colors.red).attr("r",points_radius*2)})
+        .on("mouseout",()=>{d3.select(".id"+p.id).attr("fill",colors.gray).attr("r",points_radius)})
+        .on("click",() => {show_point(p)})
+      })
+      var rings_holder  = cat_ring_anchor.append("div").attr("class","rings_holder")
+      Object.keys(circles).forEach((rhc,rhci) => {
+        rings_holder.append("p")
+        .attr("class","hover")
+        .attr("style",() => {if(rhc == r){return "color:"+colors.red}})
+        .html(rhc)
+        .on("click",() =>{change_view("cluster_ring_points_"+cat_wsc+"_"+rhc)})
+      })
     })
   })
 }

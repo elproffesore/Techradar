@@ -102,7 +102,39 @@ const append_static_html_normal = () => {
       var ring_topic_points_anchor = ring_topic_anchor.append("div")
       array.map((p, pi) => {
         if (pi % 5 == 0 && pi != 0) {
-            ring_topic_points_anchor = ring_topic_anchor.append("div")
+          ring_topic_points_anchor = ring_topic_anchor.append("div")
+          if(pi == 40){
+            ring_topic_points_anchor.append("p")
+            .attr("class","hover cheader")
+            .html("... next "+(length-40)+" Items")
+            .on("click",() => {change_view("ring_topic_points_" + r + "_" + topic_wsc+"2")})
+            var topics_holder = ring_topic_anchor.append("div").attr("class", "topics_holder")
+            topics.sort().map((p,pi) => {
+              var topic = p || "No Topic"
+              var topic_wsc = p != null ? p.replace(/&/g, "u").replace(/ /g, "_") : p
+              topics_holder.append("p")
+                .attr("class", "hover")
+                .attr("style", () => {
+                  if (p == t) {
+                    return "color:" + colors.red
+                  }
+                })
+                .html(topic)
+                .on("click", () => {
+                  change_view("ring_topic_points_" + r + "_" + topic_wsc)
+                })
+            })
+            ring_topic_anchor = ring_anchor.append("div")
+            .attr("class", "ring_topic_points_" + r + "_" + topic_wsc+"2")
+            ring_topic_anchor.append("p")
+              .attr("class", "aheader hover")
+              .attr("id", "ring_topic_points_" + r + "_" + topic_wsc + "_header2")
+              .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r + " / " + topic + " / " + length + " Items")
+              .on("click", () => {
+                change_view("ring_topics_" + r)
+              })
+              ring_topic_points_anchor = ring_topic_anchor.append("div")
+          }
         }
         ring_topic_points_anchor.append("p")
           .attr("class", "hover")
@@ -118,6 +150,7 @@ const append_static_html_normal = () => {
             show_point(p)
           })
       })
+
       var topics_holder = ring_topic_anchor.append("div").attr("class", "topics_holder")
       topics.sort().map((p,pi) => {
         var topic = p || "No Topic"

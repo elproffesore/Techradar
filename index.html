@@ -19,12 +19,11 @@
      </div>
      <input type="text" class="search-bar" name="search" onfocus="this.value=''" value="Search a Technologie" onkeyup="search(this.value);" onchange="this.value = ''">
      <select class="cluster-option" onchange="change_cluster(this.value);cluster=this.value">
-       <option disabled selected>Cluster by ...</option>
        <option value="Category">Category</option>
        <option value="Topic">Topic (Some points don't have a topic)</option>
-       <option value="Normal" >Normal</option>
+       <option selected value="Normal" >Normal</option>
      </select>
-     <p onclick="change_view('ringe');d3.select('.cluster-option').attr('value','Normal')" class="dheader hover" style="text-align:center;align-self:center">Start</p>
+     <p onclick="change_view('ringe');change_cluster('Normal')" class="dheader hover" style="text-align:center;align-self:center">Start</p>
    </div>
    <div class="main">
      <svg viewBox="0 0 950 950"></svg>

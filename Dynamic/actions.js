@@ -16,7 +16,14 @@ const show_searches = (search_array,searchword) => {
   d3.selectAll(".ci").attr("fill",colors.gray)
   clear_rings()
   if(searchword == ""){
-    change_view("ringe")
+    switch(cluster){
+      case "Normal":change_view("ringe")
+      break
+      case "Topic":change_view("topic")
+      break
+      case "Category":change_view("cluster")
+      break
+    }
   }else{
     search_array.map(p => {d3.select(".id"+p.id).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)})
     d3.selectAll(".search > div > p").html("")
@@ -170,6 +177,7 @@ const change_cluster = (cluster) => {
       .attr("cy",function(d){
         return d.coordinates.topic.y
       })
+      change_view("ringe")
       break;
   }
 }
