@@ -127,7 +127,7 @@ const append_static_html_cluster = () => {
   })
 //cluster_view
   anchor = d3.select(".cluster_view")
-  var anchor_div = anchor.append("div").attr("class","cluster_view_div")
+  var anchor_div = anchor.append("div").attr("class","cluster_view_div0")
   anchor_div.append("p").attr("class","cluster_view_header aheader").attr("id","cluster_view_header")
   var anchor_cluster_div = anchor_div.append("div")
   for(var i = 0; i < 200 ; i++){
@@ -135,6 +135,9 @@ const append_static_html_cluster = () => {
       anchor_cluster_div = anchor_div.append("div")
       if(i%40 == 0){
         anchor_cluster_div.append("p").attr("class","cluster_next hover cheader").attr("id","cluster_next_"+(i/40))
+        if(i > 45){
+          anchor_cluster_div.append("p").attr("class","cluster_back hover cheader").attr("id","cluster_back_"+(i/40))
+        }
         anchor_div = anchor.append("div").attr("class","cluster_view_div"+(i/40))
         anchor_div.append("p").attr("class","cluster_view_header aheader").attr("id","cluster_view_header_"+(i/40))
         anchor_cluster_div = anchor_div.append("div")

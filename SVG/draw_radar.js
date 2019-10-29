@@ -20,7 +20,7 @@ const draw_radar = () => {
 const redraw_rings = (ring) => {
   svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
   svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
-  svg.selectAll("#main_circle_" + ring).attr("fill", colors.purple)
+  svg.selectAll("#main_circle_" + ring).attr("fill", opacity_colors.purple+"0.5)")
 }
 const clear_rings = () => {
   svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")

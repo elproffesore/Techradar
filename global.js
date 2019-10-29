@@ -11,7 +11,7 @@ var circles = {
 }
 var offsets = [500,550] //x,y offsets of the radar
 var oldview = "NoD";//Global visible View
-var cluster = "Normal"
+var appview = "Ringe"
 var colors = {
   red:"rgba(231,69,79,1.0)",
   purple:"rgba(92,72,151,0.8)",

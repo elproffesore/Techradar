@@ -1,23 +1,23 @@
 p{
-  font-size: 1.8vh;
+  font-size: 1.6vmin;
   font-weight: 400;
   cursor: pointer;
 }
 .aheader{
-  font-size: 4.5vh;
+  font-size: 4.5vmin;
   font-weight: 700;
   grid-column:1/ span 3
 }
 .bheader{
-  font-size: 3.5vh;
+  font-size: 3.5vmin;
   font-weight: 700;
 }
 .cheader{
-  font-size: 3vh;
+  font-size: 3vmin;
   font-weight: 700;
 }
 .dheader{
-  font-size: 2.5vh;
+  font-size: 2.5vmin;
   font-weight: 700;
 }
 .hover:hover{
@@ -39,11 +39,12 @@ div[class^="cluster_view_div"],
 {
   display: none;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: 1fr;
   grid-column-gap: 1vw;
-  grid-row-gap: 1vh;
+  grid-row-gap: 0.75vh;
   padding-top: 5vh;
   padding-left: 5vw;
+  padding-bottom: 5vh;
 }
 /*Specialrules*/
 div[class^='ring_topic_points_'] .aheader,
