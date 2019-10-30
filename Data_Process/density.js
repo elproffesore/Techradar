@@ -13,11 +13,12 @@ const calculate_density = (points,cluster) => {
     var cluster_all = array.map(p => p[cluster])
     var cluster_unique = [...new Set(cluster_all)]
     cluster_unique.map((c,ci) => {
-       //Ignore the null cluster Elements and the Reduce Elements(to much power)
+       //Ignore the null cluster elements and the Reduce-Ring elements(to much power)
        if(c != null && r != "Reduce"){
         if(r == "Work"){
           length = points.filter(p => p[cluster] == c && p.ring == r).length/4
-          density = Math.ceil(length *(circles["Observe"]/130))//130 because its the smallest Work ring
+          //130 because its the smallest Work-ring
+          density = Math.ceil(length *(circles["Observe"]/130))
         }else{
           length = points.filter(p => p[cluster] == c && p.ring == r).length
           density = Math.ceil(length *(circles["Observe"]/(circles[r]-30)))
@@ -33,6 +34,7 @@ const calculate_density = (points,cluster) => {
        }
     })
   })
+  //return the calculated max density for each Cluster 
   Object.keys(densitysCluster.clusters).forEach(key => maxDensity += densitysCluster.clusters[key])
   densitysCluster.max = maxDensity
   return densitysCluster

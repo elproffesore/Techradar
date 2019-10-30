@@ -1,8 +1,5 @@
 const getData  =  async()  => {
   var data = await d3.json('Data/radar_data.json').then((data) => {data = data.issues;return data;})
-  while(!data){
-    console.log("waiting...")
-  }
   clear_data(data)
   create_coordinate(points)
   create_clustering(points,"topic")
@@ -64,9 +61,9 @@ const create_coordinate = (points) => {
 const create_clustering = (points,cluster) => {
   //get densitys
   var densitys_cluster = calculate_density(points,cluster)
-  //calc the clusters coordinates
+  //calculate the clusters coordinates
   const calc_cluster = (points,densitys) => {
-    //Creating the weighted radiants for each cluster element
+    //creating the weighted radiants for each cluster element
       var radiants = {}
       var off = 0
       Object.keys(densitys.clusters).forEach(key => {
@@ -80,7 +77,7 @@ const create_clustering = (points,cluster) => {
         off += part
         radiants[key] = cluster_part
       })
-      //create the Coordinates for each Cluster Element
+      //create the coordinates for each Cluster element
       Object.keys(circles).forEach((r,ri) => {
         //standard distance
         distance = circles[r] - 20
@@ -89,6 +86,7 @@ const create_clustering = (points,cluster) => {
           var cluster_item = 0;
           var cluster_length = array.length
           var cluster_item_part = 0;
+          //Special rules for the Work and Reduce -ring -> splited into 4 and 2 rings
           r == "Work" || r == "Reduce"
           //Math.round(circles[r]/50) => 2 for Reduce 4 for Work => dividing in more rings
           ? cluster_item_part = radiants[cl].part/Math.ceil(cluster_length/Math.round(circles[r]/50))
@@ -116,6 +114,7 @@ const create_clustering = (points,cluster) => {
         })
       })
   }
+  //in cluster.js
   calc_cluster(points,densitys_cluster)
   create_hulls(points,cluster)
 }
