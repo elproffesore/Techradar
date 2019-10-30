@@ -25,7 +25,7 @@ const show_searches = (search_array,searchword) => {
       break
     }
   }else{
-    search_array.map(p => {d3.select(".id"+p.id).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)})
+    search_array.map(p => {d3.select("#"+p.id).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)})
     d3.selectAll(".search > div > p").html("")
     Object.keys(circles).forEach((r,ri) => {
       var array = search_array.filter(p => p.ring == r)
@@ -34,7 +34,7 @@ const show_searches = (search_array,searchword) => {
       .html("<img class='picto' src='Data/Pics/"+r+".svg'> "+r)
       .on("mouseover", () => {
         array.map(p => {
-          d3.selectAll(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
+          d3.selectAll("#" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
         })
       })
       .on("mouseout",()=>{
@@ -47,10 +47,10 @@ const show_searches = (search_array,searchword) => {
         d3.select("#search_"+r+"_"+pi)
         .html(p.name)
         .on("mouseover", () => {
-          d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
+          d3.select("#" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
         })
         .on("mouseout",()=>{
-          d3.select(".id"+p.id).attr("r", points_radius)
+          d3.select("#"+p.id).attr("r", points_radius)
         })
         .on("click", () => {
           show_point(p)
@@ -73,7 +73,7 @@ const show_search_topics = (ring,array,searchword) => {
   .html("<img class='picto' src='Data/Pics/"+ring+".svg'> "+'"'+searchword+'"'+" / "+ring+" / "+ring_array.length+" Items")
   .on("click",()=>{show_searches(array,searchword)})
   var topics = [...new Set(ring_array.map(p => p = p.topic))]
-  ring_array.map(p => {d3.select(".id"+p.id).attr("fill",colors.red)})
+  ring_array.map(p => {d3.select("#"+p.id).attr("fill",colors.red)})
   topics.sort().map((t,ti) => {
     var topic = t || "No Topic"
     var topic_array = ring_array.filter(p => p.topic == t)
@@ -82,7 +82,7 @@ const show_search_topics = (ring,array,searchword) => {
     .html("<span class='cheader'>" + topic + "</span><br> " + length + " Items")
     .on("mouseover", () => {
       topic_array.map(p=> {
-              d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
+              d3.select("#" + p.id).attr("fill", colors.red).attr("r", points_radius*2)
       })
     })
     .on("mouseout",()=>{
@@ -105,10 +105,10 @@ d3.select("#search_topic_points_header")
 ring_topic_array.map((p,pi) => {
   d3.select("#search_topic_points_"+pi).html(p.name)
   .on("mouseover", () => {
-    d3.select(".id" + p.id).attr("r", points_radius*2)
+    d3.select("#" + p.id).attr("r", points_radius*2)
   })
   .on("mouseout",()=>{
-    d3.select(".id"+p.id).attr("r", points_radius)
+    d3.select("#"+p.id).attr("r", points_radius)
   })
   .on("click", () => {
     show_point(p)
@@ -119,7 +119,7 @@ change_view("search_topic_points")
 }
 const show_point = (point) => {
   clear_rings()
-  d3.select(".id"+point.id).attr("fill",colors.red)
+  d3.select("#"+point.id).attr("fill",colors.red)
   d3.select("#point_view_header")
   .attr("style","grid-column:1 /span 2")
   .html("<img class='picto' src='Data/Pics/"+point.ring+".svg'> "+point.name)
@@ -144,7 +144,7 @@ const show_cluster_view = (cluster_spec,cluster) => {
     appview == "Ringe"?change_view("ringe"):change_view("cluster")
   })
   array.map((p,pi) => {
-    d3.select(".id"+p.id).attr("fill",colors.red)
+    d3.select("#"+p.id).attr("fill",colors.red)
     if(pi % 40 == 0 && pi != 0){
       d3.select("#cluster_view_header_"+(pi/40))
       .html(cluster_spec+" / "+array.length+" Items")
@@ -160,10 +160,10 @@ const show_cluster_view = (cluster_spec,cluster) => {
     d3.select("#cluster_view_"+pi)
     .html(p.name)
     .on("mouseover", () => {
-      d3.select(".id" + p.id).attr("r",points_radius*2)
+      d3.select("#" + p.id).attr("r",points_radius*2)
     })
     .on("mouseout", () => {
-      d3.select(".id" + p.id).attr("r", points_radius)
+      d3.select("#" + p.id).attr("r", points_radius)
     })
     .on("click", () => {
       show_point(p)

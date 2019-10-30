@@ -18,7 +18,7 @@ const clear_data = (data) => {
       }
     })
     var point = {
-      "id":dpi,
+      "id":"id"+dpi,
       "name":datapoint.fields.summary,
       "ring":datapoint.fields.status.name,
       "topic":datapoint.fields.customfield_13502,

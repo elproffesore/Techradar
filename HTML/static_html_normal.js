@@ -30,10 +30,10 @@ const append_static_html_normal = () => {
         .attr("class", "hover")
         .html(p.name)
         .on("mouseover", () => {
-          d3.select(".id" + p.id).attr("fill", colors.red).attr("r",points_radius*2).transition().duration(500).attr("r", points_radius)
+          d3.select("#" + p.id).attr("fill", colors.red).attr("r",points_radius*2).transition().duration(500).attr("r", points_radius)
         })
         .on("mouseout", () => {
-          d3.select(".id" + p.id).attr("fill", colors.gray)
+          d3.select("#" + p.id).attr("fill", colors.gray)
         })
         .on("click", () => {
           show_point(p)
@@ -141,10 +141,10 @@ const append_static_html_normal = () => {
           .attr("id", "ring_topics_points_" + r + "_" + topic_wsc + "_" + pi)
           .html(p.name)
           .on("mouseover", () => {
-            d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)
+            d3.select("#" + p.id).attr("fill", colors.red).attr("r", points_radius*2).transition().duration(500).attr("r", points_radius)
           })
           .on("mouseout", () => {
-            d3.select(".id" + p.id).attr("fill", colors.gray)
+            d3.select("#" + p.id).attr("fill", colors.gray)
           })
           .on("click", () => {
             show_point(p)

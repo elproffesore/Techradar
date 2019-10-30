@@ -27,10 +27,10 @@ const append_static_html_cluster = () => {
         .attr("class", "hover")
         .html(p.name)
         .on("mouseover", () => {
-          d3.select(".id" + p.id).attr("fill", colors.red).attr("r", points_radius * 2).transition().duration(500).attr("r", points_radius)
+          d3.select("#" + p.id).attr("fill", colors.red).attr("r", points_radius * 2).transition().duration(500).attr("r", points_radius)
         })
         .on("mouseout", () => {
-          d3.select(".id" + p.id).attr("fill", colors.gray)
+          d3.select("#" + p.id).attr("fill", colors.gray)
         })
         .on("click", () => {
           show_point(p)
@@ -111,8 +111,8 @@ const append_static_html_cluster = () => {
         }
         cat_ring_div_anchor.append("p").attr("class","hover")
         .html(p.name)
-        .on("mouseover",()=>{d3.select(".id"+p.id).attr("fill",colors.red).attr("r",points_radius*2)})
-        .on("mouseout",()=>{d3.select(".id"+p.id).attr("fill",colors.gray).attr("r",points_radius)})
+        .on("mouseover",()=>{d3.select("#"+p.id).attr("fill",colors.red).attr("r",points_radius*2)})
+        .on("mouseout",()=>{d3.select("#"+p.id).attr("fill",colors.gray).attr("r",points_radius)})
         .on("click",() => {show_point(p)})
       })
       var rings_holder  = cat_ring_anchor.append("div").attr("class","rings_holder")
@@ -128,18 +128,18 @@ const append_static_html_cluster = () => {
 //cluster_view
   anchor = d3.select(".cluster_view")
   var anchor_div = anchor.append("div").attr("class","cluster_view_div0")
-  anchor_div.append("p").attr("class","cluster_view_header aheader").attr("id","cluster_view_header")
+  anchor_div.append("p").attr("class","cluster_view_header aheader hover").attr("id","cluster_view_header")
   var anchor_cluster_div = anchor_div.append("div")
   for(var i = 0; i < 200 ; i++){
     if(i%5 == 0 && i != 0){
       anchor_cluster_div = anchor_div.append("div")
       if(i%40 == 0){
-        anchor_cluster_div.append("p").attr("class","cluster_next hover cheader").attr("id","cluster_next_"+(i/40))
+        anchor_cluster_div.append("p").attr("class","cluster_button hover").attr("id","cluster_next_"+(i/40))
         if(i > 45){
-          anchor_cluster_div.append("p").attr("class","cluster_back hover cheader").attr("id","cluster_back_"+(i/40))
+          anchor_cluster_div.append("p").attr("class","cluster_button hover").attr("id","cluster_back_"+(i/40))
         }
         anchor_div = anchor.append("div").attr("class","cluster_view_div"+(i/40))
-        anchor_div.append("p").attr("class","cluster_view_header aheader").attr("id","cluster_view_header_"+(i/40))
+        anchor_div.append("p").attr("class","cluster_view_header aheader hover").attr("id","cluster_view_header_"+(i/40))
         anchor_cluster_div = anchor_div.append("div")
       }
     }

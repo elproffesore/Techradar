@@ -26,6 +26,9 @@ p{
 .picto{
   height: 3vh
 }
+.cluster_button{
+  font-size: 2vmin;
+}
 .ringe,
 .ring_topics div,
 div[class^='ring_topic_points_'],

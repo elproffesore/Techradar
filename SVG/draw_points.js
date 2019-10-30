@@ -9,8 +9,9 @@ function draw_points() {
         ? string = d.topic.replace(/"/g, '').replace(/ /g, '_').replace(/&/g, "u")
         :null
         var category = d.category.split(" (")[0].replace(/ /g,'_').replace(/&/g, "u")
-        return "ci id" + d.id + " " + string+" "+d.ring+" "+category
+        return "ci "+string+" "+d.ring+" "+category
       })
+      .attr("id",(d) => {return d.id})
       .attr("r", points_radius)
       .attr("cx", function(d){
         return d.coordinates.normal.x
