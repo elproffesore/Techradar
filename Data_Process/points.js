@@ -1,4 +1,5 @@
-const getData  =  async()  => {
+//Anonymous Data Funciton
+(async () => {
   var data = await d3.json('Data/radar_data.json').then((data) => {data = data.issues;return data;})
   clear_data(data)
   create_coordinate(points)
@@ -8,7 +9,7 @@ const getData  =  async()  => {
   draw_radar()
   d3.selectAll("svg > g")
     .attr("transform","translate("+offsets[0]+","+offsets[1]+")")
-}
+})()
 const clear_data = (data) => {
   data.map((datapoint,dpi) => {
     Object.keys(datapoint.fields).forEach((key) => {
