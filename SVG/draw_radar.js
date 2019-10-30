@@ -16,6 +16,8 @@ const draw_radar = () => {
         change_view("ring_topics_" + r);
       })
   })
+  draw_radargadgets()
+  draw_points()
 }
 const redraw_rings = (ring) => {
   svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")

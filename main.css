@@ -44,22 +44,25 @@ body{
     left: 96%;
     top: 4%;
     position: absolute;
-    border: 1px solid gray;
-    background-color: gray;
+    background-color: white;
+    border: 1px solid white;
     border-radius: 50%;
     width: 1vw;
     height: 1vw;
     text-align: center;
 }
 #tooltip{
-  display: none;
+  visibility:hidden;
   position: absolute;
-  background-color: rgba(105, 105, 105, 0.85);
-  left: 90%;
-  top: 8%;
-}
-#tooltip_hoverable:hover #tooltip{
-  display: block
+  background-color: rgb(74, 74, 74);
+  box-shadow: -0.1em 0.1em 1.2em #9d9d9d;
+  border-radius: 2%;
+  justify-content: center;
+  padding: 1vw;
+  left: 80vw;
+  width: 15vw;
+  height: 50vh;
+  top: 10vh;
 }
 #tooltip_mark{
   margin: 0px;

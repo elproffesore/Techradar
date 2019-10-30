@@ -1,27 +1,17 @@
-d3.json('Data/radar_data.json')
-.then((data) => {
-  data = data.issues;
-  return data;
-})
-.then((data) => {
+const getData  =  async()  => {
+  var data = await d3.json('Data/radar_data.json').then((data) => {data = data.issues;return data;})
+  while(!data){
+    console.log("waiting...")
+  }
   clear_data(data)
-  draw_radar()
-  return data
-})
-.then((data) => {
   create_coordinate(points)
   create_clustering(points,"topic")
   create_clustering(points,"category")
-})
-.then(() => {
-  draw_points()
-  draw_radargadgets()
   append_static_html()
-})
-.then(() => {
+  draw_radar()
   d3.selectAll("svg > g")
-  .attr("transform","translate("+offsets[0]+","+offsets[1]+")")
-})
+    .attr("transform","translate("+offsets[0]+","+offsets[1]+")")
+}
 const clear_data = (data) => {
   data.map((datapoint,dpi) => {
     Object.keys(datapoint.fields).forEach((key) => {
