@@ -7,7 +7,7 @@ const change_view = (newview,ring) => {
   if(ring){
     redraw_rings(ring)
   }
-  if(newview == "ringe"){
+  if(newview == "rings"){
     clear_rings()
   }
   oldview  = newview;
@@ -17,7 +17,7 @@ const show_searches = (search_array,searchword) => {
   clear_rings()
   if(searchword == ""){
     switch(cluster){
-      case "Normal":change_view("ringe")
+      case "Normal":change_view("rings")
       break
       case "Topic":change_view("topic")
       break
@@ -141,7 +141,7 @@ const show_cluster_view = (cluster_spec,cluster) => {
   d3.selectAll(".ci").attr("fill",colors.gray)
   var array = points.filter(p => p[cluster] == cluster_spec)
   d3.select("#cluster_view_header").html(cluster_spec+" / "+array.length+" Items").on("click",() => {
-    appview == "Ringe"?change_view("ringe"):change_view("cluster")
+    appview == "Ringe"?change_view("rings"):change_view("cluster")
   })
   array.map((p,pi) => {
     d3.select("#"+p.id).attr("fill",colors.red)
@@ -223,7 +223,7 @@ const change_appview = (view) => {
       appview = "Category"
       break;
     case "Ringe":
-      change_view("ringe")
+      change_view("rings")
       appview = "Ringe"
       break;
   }

@@ -7,7 +7,7 @@ const append_static_html_search = () => {
       .attr("class", "search_" + r)
 
     ring_anchor.append("p")
-      .attr("class", "hover aheader")
+      .attr("class", "hover aheader header")
       .attr("id", "search_" + r + "_header")
     for (let i = 0; i < 5; i++) {
       ring_anchor.append("p").attr("class", "hover").attr("id", "search_" + r + "_" + i)
@@ -22,7 +22,7 @@ const append_static_html_search = () => {
   })
   anchor = d3.select(".search_topics")
   anchor.append("p")
-    .attr("class", "aheader hover")
+    .attr("class", "aheader header hover")
     .attr("id", "search_topics_header")
   for (let i = 0; i < max_topic; i++) {
     anchor.append("p").attr("class", "hover").attr("id", "search_topics_" + i)
@@ -38,7 +38,7 @@ const append_static_html_search = () => {
   })
   anchor = d3.select(".search_topic_points")
   anchor.append("p")
-    .attr("class", "aheader hover")
+    .attr("class", "aheader header hover")
     .attr("id", "search_topic_points_header")
   var anchor_stp = anchor.append("div")
   for (let i = 0; i < max_points; i++) {

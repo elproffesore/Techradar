@@ -3,10 +3,12 @@ p{
   font-weight: 400;
   cursor: pointer;
 }
+.header{
+  grid-column: 1 / span 3
+}
 .aheader{
   font-size: 4.5vmin;
   font-weight: 700;
-  grid-column:1/ span 3
 }
 .bheader{
   font-size: 3.5vmin;
@@ -23,7 +25,7 @@ p{
 .hover:hover{
   color:rgba(231,69,79,1.0);
 }
-.ringe,
+.rings,
 .ring_topics div,
 div[class^='ring_topic_points_'],
 .cluster,
@@ -36,16 +38,23 @@ div[class^="cluster_view_div"],
 {
   display: none;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
   grid-column-gap: 1vw;
-  grid-row-gap: 0.75vh;
+  grid-row-gap: 1vh;
   padding-top: 5vh;
   padding-left: 5vw;
   padding-bottom: 5vh;
 }
+.search_topic_points,
+div[class^='ring_topic_points_'],
+div[class^="cluster_view_div"],
+.cluster_viewable
+{
+  grid-template-rows: 0fr 1fr 1fr 1fr;
+}
+
 /*Specialrules*/
-div[class^='ring_topic_points_'] .aheader,
-.cluster_viewable .aheader{
+div[class^='ring_topic_points_'] .header,
+.cluster_viewable .header{
   grid-column: 1 / span 4
 }
 .topics_holder,

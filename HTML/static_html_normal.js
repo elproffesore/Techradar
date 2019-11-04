@@ -6,13 +6,13 @@ const append_static_html = () => {
 const append_static_html_normal = () => {
   var anchor = null;
   //Append start HTML
-  anchor = d3.select(".ringe")
+  anchor = d3.select(".rings")
   Object.keys(circles).forEach((r, ri) => {
     var array = points.filter(p => p.ring == r)
     var length = points.filter(p => p.ring == r).length
     var ring_anchor = anchor.append("div").attr("class", "start_" + r)
     ring_anchor.append("p")
-      .attr("class", "aheader hover")
+      .attr("class", "aheader header hover")
       .attr("id", "start_" + r + "_header")
       .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r)
       .on("mouseover", () => {
@@ -54,11 +54,11 @@ const append_static_html_normal = () => {
     var ring_anchor = anchor.append("div")
       .attr("class", "ring_topics_" + r)
     ring_anchor.append("p")
-      .attr("class", "aheader hover")
+      .attr("class", "aheader header hover")
       .attr("id", "ring_topics_header_"+r)
       .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r + " / " + length + " Items")
       .on("click", () => {
-        change_view("ringe");
+        change_view("rings");
       })
     topics.sort().map((t, ti) => {
       var topic = t || "No Topic"
@@ -92,7 +92,7 @@ const append_static_html_normal = () => {
       var ring_topic_anchor = ring_anchor.append("div")
         .attr("class", "ring_topic_points_" + r + "_" + topic_wsc)
       ring_topic_anchor.append("p")
-        .attr("class", "aheader hover")
+        .attr("class", "aheader header hover")
         .attr("id", "ring_topic_points_" + r + "_" + topic_wsc + "_header")
         .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r + " / " + topic + " / " + length + " Items")
         .on("click", () => {
@@ -102,11 +102,7 @@ const append_static_html_normal = () => {
       array.map((p, pi) => {
         if (pi % 5 == 0 && pi != 0) {
           ring_topic_points_anchor = ring_topic_anchor.append("div")
-          if(pi == 40){
-            ring_topic_points_anchor.append("img")
-            .attr("class","picto arrow-right")
-            .attr("src","Data/Pics/Reduce.svg")
-            .on("click",() => {change_view("ring_topic_points_" + r + "_" + topic_wsc+"2")})
+          if(pi == 45){
             var topics_holder = ring_topic_anchor.append("div").attr("class", "topics_holder")
             topics.sort().map((p,pi) => {
               var topic = p || "No Topic"
@@ -123,10 +119,14 @@ const append_static_html_normal = () => {
                   change_view("ring_topic_points_" + r + "_" + topic_wsc)
                 })
             })
+            topics_holder.append("img")
+                          .attr("class","picto arrows arrow-right")
+                          .attr("src","Data/Pics/Reduce.svg")
+                          .on("click",() => {change_view("ring_topic_points_" + r + "_" + topic_wsc+"2")})
             ring_topic_anchor = ring_anchor.append("div")
             .attr("class", "ring_topic_points_" + r + "_" + topic_wsc+"2")
             ring_topic_anchor.append("p")
-              .attr("class", "aheader hover")
+              .attr("class", "aheader header hover")
               .attr("id", "ring_topic_points_" + r + "_" + topic_wsc + "_header2")
               .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r + " / " + topic + " / " + length + " Items")
               .on("click", () => {
@@ -166,7 +166,13 @@ const append_static_html_normal = () => {
             change_view("ring_topic_points_" + r + "_" + topic_wsc)
           })
       })
+      if(length > 45){
+        topics_holder.append("img")
+                      .attr("class","picto arrows arrow-left")
+                      .attr("src","Data/Pics/Reduce.svg")
+                      .on("click",() => {change_view("ring_topic_points_" + r + "_" + topic_wsc)})
+      }
     })
   })
-  change_view("ringe")
+  change_view("rings")
 }
