@@ -77,7 +77,6 @@ const append_static_html_normal = () => {
           change_view("ring_topic_points_" + r + "_" + topic_wsc)
         })
     })
-
   })
   // Rings Topics Points
   anchor = d3.select(".ring_topic_points")
@@ -104,9 +103,9 @@ const append_static_html_normal = () => {
         if (pi % 5 == 0 && pi != 0) {
           ring_topic_points_anchor = ring_topic_anchor.append("div")
           if(pi == 40){
-            ring_topic_points_anchor.append("p")
-            .attr("class","hover cheader")
-            .html("... next "+(length-40)+" Items")
+            ring_topic_points_anchor.append("img")
+            .attr("class","picto arrow-right")
+            .attr("src","Data/Pics/Reduce.svg")
             .on("click",() => {change_view("ring_topic_points_" + r + "_" + topic_wsc+"2")})
             var topics_holder = ring_topic_anchor.append("div").attr("class", "topics_holder")
             topics.sort().map((p,pi) => {

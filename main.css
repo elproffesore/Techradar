@@ -40,6 +40,18 @@ body{
 .search-bar{
   cursor: text;
 }
+.picto{
+  height: 4.5vmin;
+  vertical-align: -7px;
+}
+.cluster_button{
+  font-size: 2vmin;
+}
+.arrow-right{
+  transform: rotate(-90deg);
+  margin: 25%;
+  cursor: pointer;
+}
 #tooltip_hoverable{
     left: 96%;
     top: 4%;
@@ -70,13 +82,18 @@ body{
 
 }
 @media only screen and (max-width:900px) {
+  body{
+    overflow: visible;
+  }
   .main{
     grid-template-columns: 100%;
-    grid-template-rows:80%;
-    overflow:auto;
+    grid-template-rows:90%;
   }
   .nav{
-      grid-template-columns: 25% 35% 25%;
+      grid-template-columns: 25% 25% 25% 25%;
+  }
+  #tooltip_hoverable{
+    display: none
   }
 }
 @media only screen and (max-width:600px){

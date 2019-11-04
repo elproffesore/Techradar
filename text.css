@@ -23,12 +23,6 @@ p{
 .hover:hover{
   color:rgba(231,69,79,1.0);
 }
-.picto{
-  height: 3vh
-}
-.cluster_button{
-  font-size: 2vmin;
-}
 .ringe,
 .ring_topics div,
 div[class^='ring_topic_points_'],
@@ -100,10 +94,17 @@ div[class^='ring_topic_points_'] .aheader,
     padding:2vw;
     text-align: center;
   }
+  div[class^='ring_topic_points_'],
+  .search_topic_points{
+    text-align: left;
+  }
   .topics_holder{
-    grid-area: 2 / 1 / 4 / 2;
+    grid-area: 2 / 4 / 5 / 4;
   }
   .aheader{
     grid-column: 1 / span 2
+  }
+  .point_view{
+    grid-template-columns: 100%
   }
 }

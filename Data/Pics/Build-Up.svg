@@ -1,106 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   viewBox="0 0 428.99 524.33"
-   id="svg166"
-   sodipodi:docname="Build-Up.svg"
-   inkscape:version="0.92.4 (f8dce91, 2019-08-02)">
-  <metadata
-     id="metadata172">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs170" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1376"
-     id="namedview168"
-     showgrid="false"
-     inkscape:zoom="1.1424103"
-     inkscape:cx="-87.190664"
-     inkscape:cy="285.61027"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="g164" />
-  <g
-     transform="translate(-180.31 -244.48)"
-     id="g164">
-    <path
-       d="m333.27 244.48c-9.0304 0-16.342 10.519-16.342 19.55v7.7384c0 6.3886 3.685 11.885 9.0111 14.56-0.0798 1.0586-0.15314 2.1275-0.15314 3.2074v153.8c-2.4178 4.5548-4.7734 9.2986-7.3312 14l-132.17 239.08c-21.284 39.127 19.219 72.395 43.071 72.395h330.72c23.851 0 64.789-32.472 43.071-72.395l-132.16-239.08c-2.5578-4.7019-4.9134-9.4456-7.3312-14v-153.8c0-1.0798-0.0733-2.1487-0.15314-3.2074 5.3262-2.6758 9.0111-8.1719 9.0111-14.56v-7.7384c0-9.0306-7.2608-19.55-16.291-19.55z"
-       stroke-width="25.8"
-       id="path144" />
-    <g
-       transform="matrix(1.6291 0 0 1.6291 -1390.6 -814.74)"
-       fill="#fff"
-       stroke-width="25.8"
-       id="g152">
-      <path
-         d="m1080.3 768.8h31.307c12.456 0 16.531 11.607 22.483 22.611l70.701 130.71c14.28 26.399-10.028 38.012-22.484 38.012h-172.71c-12.456 0-35.208-14.489-22.483-38.012l70.701-130.71c5.9522-11.004 10.028-22.611 22.483-22.611z"
-         id="path146" />
-      <rect
-         x="1063.8"
-         y="670.49"
-         width="64.23"
-         height="117.7"
-         ry="0"
-         id="rect148" />
-      <rect
-         transform="rotate(-90)"
-         x="-671.96"
-         y="1058.1"
-         width="13.263"
-         height="75.529"
-         ry="4.3"
-         id="rect150" />
-    </g>
-    <path
-       d="m461.99 505.91 91.927 174.75c20.125 38.256-14.442 54.746-32.381 54.746h-248.74c-17.939 0-50.781-20.907-32.381-54.746l90.127-165.75c79.68 31.256 108.66-55.62 131.45-8.999z"
-       stroke-width="25.8"
-       id="path154" />
-    <path
-       transform="matrix(3.5487 0 0 3.5487 -3615.7 -2224.5)"
-       d="m1133.3 805.21c0 4.6217-3.7466 8.3683-8.3683 8.3683-4.6216 0-8.3682-3.7466-8.3682-8.3683s3.7466-8.3683 8.3682-8.3683c4.6217 0 8.3683 3.7466 8.3683 8.3683z"
-       fill="#fff"
-       id="path156" />
-    <path
-       transform="matrix(2.097 0 0 2.097 -2012.7 -1091.1)"
-       d="m1133.3 805.21c0 4.6217-3.7466 8.3683-8.3683 8.3683-4.6216 0-8.3682-3.7466-8.3682-8.3683s3.7466-8.3683 8.3682-8.3683c4.6217 0 8.3683 3.7466 8.3683 8.3683z"
-       fill="#fff"
-       id="path158" />
-    <path
-       transform="matrix(1.2367 0 0 1.2367 -968.45 -432.55)"
-       d="m1133.3 805.21c0 4.6217-3.7466 8.3683-8.3683 8.3683-4.6216 0-8.3682-3.7466-8.3682-8.3683s3.7466-8.3683 8.3682-8.3683c4.6217 0 8.3683 3.7466 8.3683 8.3683z"
-       fill="#fff"
-       id="path160" />
-    <rect
-       x="413.88"
-       y="281.54"
-       width="15.08"
-       height="164.1"
-       ry="7.5399"
-       id="rect162" />
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 25 25" style="enable-background:new 0 0 25 25;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_2_);}
+	.st2{fill:url(#SVGID_3_);}
+	.st3{fill:url(#SVGID_4_);}
+	.st4{fill:url(#SVGID_5_);}
+	.st5{fill:url(#SVGID_6_);}
+	.st6{fill:url(#SVGID_7_);}
+	.st7{fill:url(#SVGID_8_);}
+	.st8{fill:url(#SVGID_9_);}
+	.st9{fill:url(#SVGID_10_);}
+	.st10{fill:url(#SVGID_11_);}
+	.st11{fill:url(#SVGID_12_);}
+	.st12{fill:url(#SVGID_13_);}
+	.st13{fill:url(#SVGID_14_);}
+</style>
+<g>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="3.7515" y1="11.2839" x2="21.3807" y2="11.2839">
+		<stop  offset="0" style="stop-color:#5C4897"/>
+		<stop  offset="1" style="stop-color:#E7454F"/>
+	</linearGradient>
+	<path class="st0" d="M11.09,7.77V3.79c0-0.24,0.19-0.43,0.43-0.44c0.25,0,0.45,0.2,0.45,0.45v3.96c0,0.25-0.2,0.45-0.45,0.45
+		C11.28,8.2,11.09,8.01,11.09,7.77z M20.33,20.92h-0.69H5.09H4.8h0c-0.8,0-1.3-0.85-0.93-1.55l0.08-0.15
+		c0.18-0.34,0.77-1.42,0.77-1.43l4.65-8.63C9.42,9.09,9.44,9,9.44,8.91V2.7c0-0.58,0.47-1.05,1.05-1.05h4.16
+		c0.57,0,1.04,0.46,1.04,1.04v6.23c0,0.09,0.02,0.18,0.06,0.26l4.23,7.86l0,0l0.98,1.82l0.28,0.53
+		C21.63,20.07,21.12,20.92,20.33,20.92z M20.47,19.77l-5.6-10.38c-0.04-0.08-0.06-0.17-0.06-0.26V3.16c0-0.35-0.28-0.64-0.64-0.64
+		h-3.22c-0.35,0-0.64,0.28-0.64,0.64v5.97c0,0.09-0.02,0.18-0.06,0.26l-5.6,10.38c-0.07,0.13,0.02,0.28,0.17,0.28H20.3
+		C20.45,20.05,20.54,19.89,20.47,19.77z M18.51,18.29c0.24,0.44-0.08,0.98-0.59,0.98h-5.36H7.21c-0.5,0-0.83-0.54-0.59-0.98
+		l3.11-5.78c0.05-0.1,0.16-0.16,0.27-0.16c0.02,0,0.04,0,0.06,0.01c0.2,0.04,0.51,0.1,0.85,0.1c0.53,0,1.14-0.12,1.55-0.6
+		c0.35-0.4,0.81-0.87,1.88-0.92c0,0,0.01,0,0.01,0c0.11,0,0.22,0.06,0.27,0.16l3.64,6.75L18.51,18.29z M17.35,17.97l-3.19-5.93
+		c-0.07-0.13-0.22-0.18-0.35-0.13c-0.32,0.12-0.49,0.32-0.68,0.52c-0.52,0.58-1.28,0.89-2.21,0.89c-0.15,0-0.29-0.01-0.42-0.02
+		c-0.12-0.01-0.23,0.05-0.28,0.15l-2.43,4.52c-0.1,0.19,0.04,0.42,0.25,0.42h4.53h4.53C17.31,18.4,17.45,18.16,17.35,17.97z"/>
+</g>
 </svg>
