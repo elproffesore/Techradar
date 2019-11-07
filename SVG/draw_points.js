@@ -14,16 +14,29 @@ function draw_points() {
       .attr("id",(d) => {return d.id})
       .attr("r", points_radius)
       .attr("cx", function(d){
-        return d.coordinates.normal.x
+        return d.coordinates.category.x
       })
       .attr("cy", function(d){
-        return d.coordinates.normal.y
+        return d.coordinates.category.y
       })
-      .attr("fill", "rgba(255,255,255,0.7)")
-      .attr("stroke", "black")
-      .attr("stroke-width", "1px")
-      .on("mouseover",function(d){d3.select(this).attr("r",points_radius*2)})
-      .on("mouseout",function(d){d3.select(this).attr("r",points_radius)})
+      .attr("fill", colors.gray)
+      .on("mouseover",function(d){
+        d3.select(this).attr("r",points_radius*2)
+
+        d3.select("#tooltip")
+        .style("display","block")
+        .style("left",(event.clientX)+"px")
+        .style("top",(event.clientY-75)+"px")
+        d3.select("#tooltip > p")
+        .html(d.name)
+
+      })
+      .on("mouseout",function(d){
+        d3.select(this).attr("r",points_radius)
+
+        d3.select("#tooltip")
+        .style("display","none")
+      })
       .on("click",function(d){
         show_point(d,this)
       })

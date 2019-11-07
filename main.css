@@ -43,6 +43,7 @@ body{
 .picto{
   height: 4.5vmin;
   vertical-align: -7px;
+  padding-right: 2.5px;
 }
 .cluster_button{
   font-size: 2vmin;
@@ -63,34 +64,45 @@ body{
   cursor:pointer;
   text-align: center;
 }
-#tooltip_hoverable{
-    left: 96%;
-    top: 4%;
-    position: absolute;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 50%;
-    width: 1vw;
-    height: 1vw;
-    text-align: center;
+.header-div{
+  grid-column:span 3;
+}
+div[class^='ring_topic_points_'] .header-div{
+  grid-column: span 4;
+}
+.point .header-div{
+  grid-column: span 2;
 }
 #tooltip{
-  visibility:hidden;
-  position: absolute;
-  background-color: rgb(74, 74, 74);
-  border-radius: 2%;
-  justify-content: center;
-  padding: 1vw;
-  left: 80vw;
-  width: 15vw;
-  height: 50vh;
-  top: 10vh;
+    transform:translate(-30px, -35%);
+    padding:5px 15px;
+    color:#444444;
+    background-color:#EEEEEE;
+    font-weight:normal;
+    border-radius:5px;
+    position:absolute;
+    box-sizing:border-box;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.5);
 }
-#tooltip_mark{
-  margin: 0px;
-  font-size: 0.85vw;
+#tooltip i {
+    position:absolute;
+    top:90%;
+    left:15px;
+    width:24px;
+    height:24px;
+    overflow:hidden;
+}
 
+#tooltip i::after {
+    content:'';
+    position:absolute;
+    width:24px;
+    height:24px;
+    left: 50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+    background-color:#EEEEEE;
 }
+
 @media only screen and (max-width:900px) {
   body{
     overflow: visible;
@@ -101,9 +113,6 @@ body{
   }
   .nav{
       grid-template-columns: 25% 25% 25% 25%;
-  }
-  #tooltip_hoverable{
-    display: none
   }
 }
 @media only screen and (max-width:600px){

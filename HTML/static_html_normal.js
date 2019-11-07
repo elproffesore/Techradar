@@ -53,8 +53,9 @@ const append_static_html_normal = () => {
     var length = points.filter(p => p.ring == r).length
     var ring_anchor = anchor.append("div")
       .attr("class", "ring_topics_" + r)
-    ring_anchor.append("p")
-      .attr("class", "aheader header hover")
+
+    ring_anchor.append("div").attr("class","header-div").append("p")
+      .attr("class", "aheader hover")
       .attr("id", "ring_topics_header_"+r)
       .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r + " / " + length + " Items")
       .on("click", () => {
@@ -91,8 +92,8 @@ const append_static_html_normal = () => {
       var array = points.filter(p => p.ring == r && p.topic == t)
       var ring_topic_anchor = ring_anchor.append("div")
         .attr("class", "ring_topic_points_" + r + "_" + topic_wsc)
-      ring_topic_anchor.append("p")
-        .attr("class", "aheader header hover")
+      ring_topic_anchor.append("div").attr("class","header-div").append("p")
+        .attr("class", "aheader hover")
         .attr("id", "ring_topic_points_" + r + "_" + topic_wsc + "_header")
         .html("<img class='picto' src='Data/Pics/" + r + ".svg'> " + r + " / " + topic + " / " + length + " Items")
         .on("click", () => {

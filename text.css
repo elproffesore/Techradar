@@ -4,7 +4,7 @@ p{
   cursor: pointer;
 }
 .header{
-  grid-column: 1 / span 3
+  grid-column:span 3
 }
 .aheader{
   font-size: 4.5vmin;
@@ -26,7 +26,7 @@ p{
   color:rgba(231,69,79,1.0);
 }
 .rings,
-.ring_topics div,
+div[class^='ring_topics_'],
 div[class^='ring_topic_points_'],
 .cluster,
 .cluster_rings div,
@@ -55,7 +55,7 @@ div[class^="cluster_view_div"],
 /*Specialrules*/
 div[class^='ring_topic_points_'] .header,
 .cluster_viewable .header{
-  grid-column: 1 / span 4
+  grid-column:span 4
 }
 .topics_holder,
 .rings_holder{
@@ -81,7 +81,7 @@ div[class^='ring_topic_points_'] .header,
 }
 .point_view_description{
   font-size: 2vh;
-  margin-right: 1vw;
+  margin-right: 3vw;
   grid-area: 2 / 2 / 7 / 2
 }
 @media only screen and (max-width:900px){

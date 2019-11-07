@@ -8,8 +8,8 @@ const append_static_html_cluster = () => {
     var cat_wsc = cat.split(" (")[0].replace(/ /g, "_").replace(/&/g, "u")
     console.log(cat_wsc)
     var cat_anchor = anchor.append("div").attr("class", "cluster_" + cat_wsc)
-    cat_anchor.append("p")
-      .attr("class", "aheader header hover")
+    cat_anchor.append("div").attr("class","header-div").append("p")
+      .attr("class", "aheader hover")
       .attr("id", "cluster_" + cat_wsc + "_header")
       .html(cat.split("(")[0])
       .on("mouseover", () => {
@@ -49,7 +49,8 @@ const append_static_html_cluster = () => {
     var cat_wsc = cat.split(" (")[0].replace(/ /g, "_").replace(/&/g, "u")
     var cat_anchor = anchor.append("div").attr("class","cluster_rings_"+cat_wsc)
     var cat_length = points.filter(p => p.category == cat).length
-    cat_anchor.append("p").attr("class","aheader header hover")
+    cat_anchor.append("div").attr("class","header-div").append("p")
+    .attr("class","aheader hover")
     .html(cat.split("(")[0]+" / "+cat_length +" Items")
     .on("click",() => {change_view("cluster")})
     Object.keys(circles).forEach((r,ri) => {
@@ -75,8 +76,8 @@ const append_static_html_cluster = () => {
       var array = points.filter(p => p.category == cat && p.ring == r)
       var length = array.length
       var cat_ring_anchor = cat_anchor.append("div").attr("class","cluster_viewable cluster_ring_points_"+cat_wsc+"_"+r)
-      cat_ring_anchor.append("p")
-      .attr("class","hover aheader header")
+      cat_ring_anchor.append("div").attr("class","header-div").append("p")
+      .attr("class","hover aheader")
       .html(cat+" / "+r+" / "+length+" Items")
       .on("click",() => {change_view("cluster_rings_"+cat_wsc)})
       var cat_ring_div_anchor = cat_ring_anchor.append("div")
@@ -99,8 +100,8 @@ const append_static_html_cluster = () => {
 
             cat_ring_anchor = cat_anchor.append("div")
             .attr("class", "cluster_viewable cluster_ring_points_" + cat_wsc + "_" + r+"2")
-            cat_ring_anchor.append("p")
-              .attr("class", "aheader header hover")
+            cat_ring_anchor.append("div").attr("class","header-div").append("p")
+              .attr("class", "aheader hover")
               .attr("id", "cluster_ring_points_" + cat_wsc + "_" +r+ "_header2")
               .html( cat + " / " + r + " / " + length + " Items")
               .on("click", () => {
@@ -135,7 +136,7 @@ const append_static_html_cluster = () => {
 //cluster_view
   anchor = d3.select(".cluster_view")
   var anchor_div = anchor.append("div").attr("class","cluster_view_div0")
-  anchor_div.append("p").attr("class","cluster_view_header aheader header hover").attr("id","cluster_view_header")
+  anchor_div.append("div").attr("class","header-div").append("p").attr("class","cluster_view_header aheader hover").attr("id","cluster_view_header")
   var anchor_cluster_div = anchor_div.append("div")
   for(var i = 0; i < 200 ; i++){
     if(i%5 == 0 && i != 0){
@@ -146,7 +147,7 @@ const append_static_html_cluster = () => {
           anchor_cluster_div.append("p").attr("class","cluster_button hover").attr("id","cluster_back_"+(i/40))
         }
         anchor_div = anchor.append("div").attr("class","cluster_view_div"+(i/40))
-        anchor_div.append("p").attr("class","cluster_view_header aheader header hover").attr("id","cluster_view_header_"+(i/40))
+        anchor_div.append("div").attr("class","header-div").append("p").attr("class","cluster_view_header aheader hover").attr("id","cluster_view_header_"+(i/40))
         anchor_cluster_div = anchor_div.append("div")
       }
     }

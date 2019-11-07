@@ -1,9 +1,6 @@
 const change_view = (newview,ring) => {
   d3.select("."+oldview).attr("style","display:none")
   d3.select("."+newview).attr("style","display:grid")
-  if(oldview.includes("search") && !newview.includes("search")){
-    d3.selectAll(".ci").attr("fill",colors.gray)
-  }
   if(ring){
     redraw_rings(ring)
   }
@@ -16,10 +13,8 @@ const show_searches = (search_array,searchword) => {
   d3.selectAll(".ci").attr("fill",colors.gray)
   clear_rings()
   if(searchword == ""){
-    switch(cluster){
-      case "Normal":change_view("rings")
-      break
-      case "Topic":change_view("topic")
+    switch(appview){
+      case "Rings":change_view("rings")
       break
       case "Category":change_view("cluster")
       break
@@ -127,11 +122,11 @@ const show_point = (point) => {
   var topic_wsc = point.topic == null ? null : point.topic.replace(/ /g,"_").replace(/&/g,"u")
   d3.select("#point_0").html("Ring: "+point.ring).on("click",() => {change_view("ring_topics_"+point.ring)})
   d3.select("#point_1").html("Topic: "+topic).on("click",() => {change_view("ring_topic_points_"+point.ring+"_"+topic_wsc)})
-  d3.select("#point_2").html("Subtopic: "+point.subtopic)
+  d3.select("#point_2").html("Subtopic: "+(point.subtopic || "No Subtopic"))
   d3.select("#point_3").html("Category: "+point.category).on("click",() => {
     show_cluster_view(point.category,"category")
   })
-  d3.select("#point_4").html(point.description)
+  d3.select("#point_4").html(point.description || "No description available")
   change_view("point_view")
 }
 const show_cluster_view = (cluster_spec,cluster) => {
@@ -141,7 +136,7 @@ const show_cluster_view = (cluster_spec,cluster) => {
   d3.selectAll(".ci").attr("fill",colors.gray)
   var array = points.filter(p => p[cluster] == cluster_spec)
   d3.select("#cluster_view_header").html(cluster_spec+" / "+array.length+" Items").on("click",() => {
-    appview == "Ringe"?change_view("rings"):change_view("cluster")
+    appview == "Rings"?change_view("rings"):change_view("cluster")
   })
   array.map((p,pi) => {
     d3.select("#"+p.id).attr("fill",colors.red)
@@ -176,7 +171,7 @@ const change_cluster = (cluster) => {
   d3.selectAll(".hull_group > g").attr("display","none")
   d3.selectAll(".hullnames_group > g").attr("display","none")
   switch (cluster) {
-    case "Normal":
+    case "NoCluster":
       d3.selectAll(".ci")
       .transition()
       .duration(500)
@@ -222,7 +217,7 @@ const change_appview = (view) => {
       change_view("cluster")
       appview = "Category"
       break;
-    case "Ringe":
+    case "Rings":
       change_view("rings")
       appview = "Ringe"
       break;

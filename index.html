@@ -19,14 +19,13 @@
      </div>
      <input type="text" class="search-bar" name="search" onfocus="this.value=''" value="Search a Technologie" onkeyup="search(this.value);" onchange="this.value = ''">
      <select class="cluster-option" onchange="change_cluster(this.value);cluster=this.value">
-       <option selected disabled>Select clustering...</option>
-       <option value="Category">Category</option>
+       <option selected value="Category">Category</option>
        <option value="Topic">Topic (Some points don't have a topic)</option>
-       <option value="Normal" >Normal</option>
+       <option value="NoCluster" >No Clustering</option>
      </select>
      <select class="cluster-option" onchange="change_appview(this.value)">
        <option value="Category">Category</option>
-       <option selected value="Ringe" >Ringe</option>
+       <option selected value="Rings" >Ringe</option>
      </select>
    </div>
    <div class="main">
@@ -44,7 +43,9 @@
        <div class="cluster_view"></div>
        <div class="point_view">
          <div class="point">
-           <p class="aheader header" id="point_view_header"></p>
+           <div class="header-div">
+             <p class="aheader" id="point_view_header"></p>
+           </div>
            <p class="info_section" id="point_0"></p>
            <p class="info_section" id="point_1"></p>
            <p class="info_section" id="point_2"></p>
@@ -52,6 +53,10 @@
            <article class="point_view_description" id="point_4"></article>
          </div>
       </div>
+   </div>
+   <div id="tooltip" style="display:none">
+     <p></p>
+     <i></i>
    </div>
    <script src="global.js" charset="utf-8"></script>
    <script src="Dynamic/actions.js" charset="utf-8"></script>
@@ -61,7 +66,6 @@
    <script src="HTML/static_html_normal.js" charset="utf-8"></script>
    <script src="HTML/static_html_cluster.js" charset="utf-8"></script>
    <script src="HTML/static_html_search.js" charset="utf-8"></script>
-   <script src="HTML/tooltip.js" charset="utf-8"></script>
    <script src="Data_Process/points.js" charset="utf-8"></script>
    <script src="Data_Process/density.js" charset="utf-8"></script>
    <script src="Data_Process/clusters.js" charset="utf-8"></script>

@@ -1,8 +1,16 @@
 const create_hulls = (points,cluster) => {
-  var group = hull_group.append("g").attr("class","hull_"+cluster+"_group").attr("display","none")
-  var group_names = hullnames_group.append("g").attr("class","hullnames_"+cluster+"_group").attr("display","none")
+  var group = hull_group
+  .append("g")
+  .attr("class","hull_"+cluster+"_group")
+  .attr("display",() => {if(cluster=="topic"){return "none"}})
+
+  var group_names = hullnames_group
+  .append("g")
+  .attr("class","hullnames_"+cluster+"_group")
+  .attr("display",() => {if(cluster=="topic"){return "none"}})
+
   var clusters = [...new Set(points.map(p => p = p[cluster]))]
-  clusters.map((cl,cli) => {
+  clusters.sort().map((cl,cli) => {
     if(cl != null){
       var array = points.filter(p => p[cluster] == cl)
       var points_processed = [...array.map(p => {return [p.coordinates[cluster].x,p.coordinates[cluster].y]})]
@@ -26,20 +34,32 @@ const draw_hulls = (hull,cl,cluster,group,group_names,index) => {
   .attr("class","hull")
   .attr("id","hull_"+cl_wsc)
   .attr("d",polygonPath)
-  .attr("fill",cluster_colors[index])
-  .attr("opacity",0.7)
-  .on("mouseover",function(d){d3.select(this).attr("opacity",1).attr("stroke","rgba(0,0,0,0.5)").attr("stroke-width","5px")})
-  .on("mouseout",function(d){d3.select(this).attr("opacity",0.7).attr("stroke","none")})
+  //.attr("fill",url("#nt-gradient"))
+  .attr("opacity",0.5)
+  .on("mouseover",function(d){d3.select(this).attr("opacity",0.7)})
+  .on("mouseout",function(d){d3.select(this).attr("opacity",0.5)})
   .on("click",function(){show_cluster_view(cl,cluster)})
   draw_hull_names(hull,cl,cluster,group_names)
+
+  polygon.append("animate")
+  .attr("attributeName", "fill")
+  .attr("values",() => {
+    if(index % 2 == 0){
+       return "#CA465E;#774789;#CA465E"
+    }else{
+       return "#774789;#CA465E;#774789"
+    }
+  })
+  .attr("dur", "15s")
+  .attr("repeatCount", "indefinite")
 
 }
 const draw_hull_names = (hull,cl,cluster,group) => {
   var center = new Array();
+  var text = group.append("text")
   if(hull.length > 2){
     center = d3.polygonCentroid(hull)
-    group.append("text")
-    .attr("class","hull_name")
+    text.attr("class","hull_name")
     .attr("x",center[0])
     .attr("y",center[1])
     .attr("text-anchor","middle")
