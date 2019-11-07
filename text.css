@@ -29,7 +29,7 @@ p{
 div[class^='ring_topics_'],
 div[class^='ring_topic_points_'],
 .cluster,
-.cluster_rings div,
+div[class^="cluster_rings_"],
 .cluster_viewable,
 div[class^="cluster_view_div"],
 .search,
@@ -40,8 +40,8 @@ div[class^="cluster_view_div"],
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1vw;
   grid-row-gap: 1vh;
-  padding-top: 5vh;
-  padding-left: 5vw;
+  /* padding-top: 5vh;
+  padding-left: 5vw; */
   padding-bottom: 5vh;
 }
 .search_topic_points,
@@ -51,11 +51,15 @@ div[class^="cluster_view_div"],
 {
   grid-template-rows: 0fr 1fr 1fr 1fr;
 }
-
 /*Specialrules*/
-div[class^='ring_topic_points_'] .header,
-.cluster_viewable .header{
-  grid-column:span 4
+.header-div{
+  grid-column:span 3;
+}
+div[class^='ring_topic_points_'],.cluster_viewable .header-div{
+  grid-column: span 4;
+}
+.point .header-div{
+  grid-column: span 2;
 }
 .topics_holder,
 .rings_holder{
@@ -69,8 +73,8 @@ div[class^='ring_topic_points_'] .header,
   grid-template-rows: 1fr 0.5fr;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
-  padding-top: 5vh;
-  padding-left: 5vw;
+  /* padding-top: 5vh;
+  padding-left: 5vw; */
 }
 .point_view .point{
   display: grid;

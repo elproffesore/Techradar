@@ -9,7 +9,7 @@ var circles = {
   "Work":220,
   "Reduce":100
 }
-var offsets = [500,550] //x,y offsets of the radar
+var offsets = [500,500] //x,y offsets of the radar
 var oldview = "NoD";//Global visible View
 var appview = "Rings"
 var colors = {

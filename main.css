@@ -13,7 +13,7 @@ body{
 }
 .main{
   display:grid;
-  grid-template-columns:40% 60%;
+  grid-template-columns:45% 55%;
 }
 .nav{
   font-weight: 700;
@@ -63,15 +63,6 @@ body{
 .sites{
   cursor:pointer;
   text-align: center;
-}
-.header-div{
-  grid-column:span 3;
-}
-div[class^='ring_topic_points_'] .header-div{
-  grid-column: span 4;
-}
-.point .header-div{
-  grid-column: span 2;
 }
 #tooltip{
     transform:translate(-30px, -35%);

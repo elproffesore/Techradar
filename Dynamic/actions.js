@@ -114,12 +114,12 @@ change_view("search_topic_points")
 }
 const show_point = (point) => {
   clear_rings()
-  d3.select("#"+point.id).attr("fill",colors.red)
-  d3.select("#point_view_header")
-  .attr("style","grid-column:1 /span 2")
-  .html("<img class='picto' src='Data/Pics/"+point.ring+".svg'> "+point.name)
   var topic = point.topic || "No Topic"
   var topic_wsc = point.topic == null ? null : point.topic.replace(/ /g,"_").replace(/&/g,"u")
+  d3.select("#"+point.id).attr("fill",colors.red)
+  d3.select("#point_view_header")
+  .html("<img class='picto' src='Data/Pics/"+point.ring+".svg'> "+point.name)
+  .on("click",() => {change_view(`ring_topic_points_${point.ring}_${topic_wsc}`)})
   d3.select("#point_0").html("Ring: "+point.ring).on("click",() => {change_view("ring_topics_"+point.ring)})
   d3.select("#point_1").html("Topic: "+topic).on("click",() => {change_view("ring_topic_points_"+point.ring+"_"+topic_wsc)})
   d3.select("#point_2").html("Subtopic: "+(point.subtopic || "No Subtopic"))
