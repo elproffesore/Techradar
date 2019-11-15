@@ -4,27 +4,47 @@ const draw_radar = () => {
     var ir = ri === 4 ? 0 : circles[keys[ri + 1]]
     var or = circles[r]
     var arc = d3.arc().innerRadius(ir).outerRadius(or).startAngle(0).endAngle(2 * Math.PI)
-    radar_group.append("path")
+    var ring = radar_group.append("path")
       .attr("class", "main_circs")
       .attr("id", "main_circle_" + r)
       .attr("d", arc)
-      .attr("fill", "rgba(255,255,255,0." + (ri + 2) + ")")
+      .attr("fill", "rgba(92,72,151,0.25)")
+      .attr("stroke","rgba(231,69,79,0.5)")
+      .attr("stroke-width","2px")
       .on("click", function() {
+        clear_rings()
         redraw_rings(r)
-        change_view("ring_topics_" + r);
+        show_filter("ring",r);
+        d3.select("#nav-view").property("value","ring")
       })
+    var text = text_group.append('text')
+        .attr('x',0)
+        .attr('y',-(or-(or-ir)/2))
+        .attr('fill',"rgba(255,255,255,1)")
+        .attr('font-family',"Roboto")
+        .attr('font-weight',700)
+        .attr('font-size',"2.5vh")
+        .attr('text-anchor',"middle")
+        .attr("dominant-baseline","middle")
+        .text(r)
+        text.append("animate")
+          .attr("id","text-animation")
+          .attr("attributeName", "opacity")
+          .attr("attributeType", "XML")
+          .attr("values","0.3;1;0.3")
+          .attr("dur","8s")
+          .attr("repeatCount", "indefinite")
+
   })
   draw_radargadgets()
   draw_points()
 }
 const redraw_rings = (ring) => {
-  svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
-  svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
-  svg.selectAll("#main_circle_" + ring).attr("fill", opacity_colors.purple+"0.5)")
+  svg.selectAll(`#main_circle_${ring}`).attr("fill","rgba(92,72,151,0.5")
 }
 const clear_rings = () => {
   svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)")
-  svg.selectAll(".main_circs").attr("fill",(d,i) =>{ return "rgba(255,255,255,0."+(i+2)+")"})
+  svg.selectAll(".main_circs").attr("fill","rgba(92,72,151,0.25")
 }
 const draw_radargadgets = () => {
   for(var i = 0; i < 3;i+=2){
@@ -52,4 +72,10 @@ const draw_radargadgets = () => {
     .attr("begin",(i)+"s")
     .attr("repeatCount", "indefinite")
   }
+  gadget_group.append("line")
+  .attr("stroke","rgba(245,245,245,0.8)")
+  .attr("stroke-width","1.5px")
+  .attr("id","point-line")
+  .attr("display","none")
+
 }

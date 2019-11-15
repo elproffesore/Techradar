@@ -1,73 +1,165 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
- <head>
-   <meta charset="utf-16">
-   <link rel="stylesheet" href="main.css">
-   <link rel="stylesheet" href="text.css">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-   <script src="Librarys/fuse.js" charset="utf-8"></script>
-   <script src="Librarys/d3.min.js" charset="utf-8"></script>
-   <title>Novatec Techradar</title>
- </head>
- <body >
-   <div class="nav">
-     <div>
-       <a href="https://novatec-gmbh.de" target="_blank">
-       <img src="Data/Pics/nt-logo.png.svg" class="nt-logo" alt="nt-logo" style="cursor:pointer;">
-       </a>
-     </div>
-     <input type="text" class="search-bar" name="search" onfocus="this.value=''" value="Search a Technologie" onkeyup="search(this.value);" onchange="this.value = ''">
-     <select class="cluster-option" onchange="change_cluster(this.value);cluster=this.value">
-       <option selected value="Category">Category</option>
-       <option value="Topic">Topic (Some points don't have a topic)</option>
-       <option value="NoCluster" >No Clustering</option>
-     </select>
-     <select class="cluster-option" onchange="change_appview(this.value)">
-       <option value="Category">Category</option>
-       <option selected value="Rings" >Ringe</option>
-     </select>
-   </div>
-   <div class="main">
-     <svg viewBox="0 0 1000 1000"></svg>
-     <div class="text-body">
-       <div class="rings"></div>
-       <div class="ring_topics"></div>
-       <div class="ring_topic_points"></div>
-       <div class="search"></div>
-       <div class="search_topics"></div>
-       <div class="search_topic_points"></div>
-       <div class="cluster"></div>
-       <div class="cluster_rings"></div>
-       <div class="cluster_ring_points"></div>
-       <div class="cluster_view"></div>
-       <div class="point_view">
-         <div class="point">
-           <div class="header-div">
-             <p class="aheader hover" id="point_view_header"></p>
-           </div>
-           <p class="info_section" id="point_0"></p>
-           <p class="info_section" id="point_1"></p>
-           <p class="info_section" id="point_2"></p>
-           <p class="info_section" id="point_3"></p>
-           <article class="point_view_description" id="point_4"></article>
-         </div>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <script src="Librarys/fuse.js" charset="utf-8"></script>
+  <script src="Librarys/d3.min.js" charset="utf-8"></script>
+  <title>Novatec Techradar</title>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <a href="https://novatec-gmbh.de" target="_blank">
+        <img src="Data/Pics/nt-logo.png.svg" id="nav-logo" alt="nt-logo">
+      </a>
+    </div>
+    <div class="input">
+      <img id="home-button" src="Data/Pics/home.svg">
+      <input class="nav-elements" type="text" id="nav-search" name="search" onfocus="this.value=''" value="Search a technology" onkeyup="search(this.value)" onblur="this.value='Search a technology'">
+      <select class="nav-elements" id="nav-cluster" onchange="change_cluster(this.value);cluster=this.value">
+        <option selected value="category">Category</option>
+        <option value="topic">Topic (Some points don't have a topic)</option>
+        <option value="nocluster">No Cluster</option>
+      </select>
+      <select class="nav-elements" id="nav-view" onchange="show_cluster(this.value)">
+        <option value="category">Category</option>
+        <option selected value="ring">Rings</option>
+      </select>
+    </div>
+  </nav>
+  <main>
+    <svg viewBox="0 0 1000 1000">
+      <filter id="shadow" height="230%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="10" /> <!-- stdDeviation is how much to blur -->
+        <feOffset dx="0" dy="0" result="offsetblur" /> <!-- how much to offset -->
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.5" /> <!-- slope is the opacity of the shadow -->
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </svg>
+    <div class="content">
+      <div id="cluster">
+        <div>
+          <h1 class="header"></h1>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div>
+          <h1 class="header"></h1>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div>
+          <h1 class="header"></h1>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div>
+          <h1 class="header"></h1>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div>
+          <h1 class="header"></h1>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div>
+          <h1 class="header"></h1>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
       </div>
-   </div>
-   <div id="tooltip" style="display:none">
-     <p></p>
-     <i></i>
-   </div>
-   <script src="global.js" charset="utf-8"></script>
-   <script src="Dynamic/actions.js" charset="utf-8"></script>
-   <script src="Dynamic/search.js" charset="utf-8"></script>
-   <script src="SVG/draw_points.js" charset="utf-8"></script>
-   <script src="SVG/draw_radar.js" charset="utf-8"></script>
-   <script src="HTML/static_html_normal.js" charset="utf-8"></script>
-   <script src="HTML/static_html_cluster.js" charset="utf-8"></script>
-   <script src="HTML/static_html_search.js" charset="utf-8"></script>
-   <script src="Data_Process/points.js" charset="utf-8"></script>
-   <script src="Data_Process/density.js" charset="utf-8"></script>
-   <script src="Data_Process/clusters.js" charset="utf-8"></script>
- </body>
+      <div id="filter">
+        <div class="header">
+          <img class="arrow">
+          <h1></h1>
+        </div>
+      </div>
+      <div id="points">
+        <div class="header">
+          <img class="arrow">
+          <h1></h1>
+        </div>
+        <div class="parts_holder"></div>
+        <div class="pages">
+          <img class="pictogram pages-arrows" id="pages-arrow-left" src="Data/Pics/arrow_left.svg">
+          <img class="pictogram pages-arrows" id="pages-arrow-right" src="Data/Pics/arrow_right.svg">
+        </div>
+      </div>
+      <div id="point">
+        <div class="header">
+          <img class="arrow">
+          <h1></h1>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <article></article>
+      </div>
+    </div>
+  </main>
+  <div id="tooltip">
+    <p>Placeholder</p>
+    <i></i>
+  </div>
+  <div id="info-tooltip">
+    <p style="margin:0">?</p>
+  </div>
+  <div id="info">
+    <h3 style="text-align:center">The Rings explained:</h3>
+    <article>
+      <p><span class="info-text"><img class="info-icon" src="Data/Pics/Observe.svg">Observe:</span><br>
+        In this ring you will find all the topics that we at Novatec have in mind, but we are not yet sure if we can use them profitably in our context.</p>
+      <p> <span class="info-text"><img class="info-icon" src="Data/Pics/Evaluate.svg">Evaluate:</span><br>
+        This ring contains all topics that are of interest to us and that we are already evaluating and investigating.</p>
+      <p> <span class="info-text"><img class="info-icon" src="Data/Pics/Build-Up.svg">Build-Up:</span><br>
+        If we classify topics from the "evaluate" ring as profitable and rewarding, they will appear in this ring. Here you will find all topics that are currently under construction in our company and where we are building up expertise.</p>
+      <p> <span class="info-text"><img class="info-icon" src="Data/Pics/Work.svg">Work:</span><br>
+        This is where we generate sales. All topics in this ring are used by us in connection with consulting, development and training services. Here we are experts.</p>
+      <p> <span class="info-text"><img class="info-icon" src="Data/Pics/Reduce.svg">Reduce:</span><br>
+        Also here we generate sales. However, we are slowly reducing the use of these topics and are certain that we will use them much less or no longer in the near future.</p>
+    </article>
+  </div>
+  <script src="global.js" charset="utf-8"></script>
+  <script src="Dynamic/cluster.js" charset="utf-8"></script>
+  <script src="Dynamic/filter.js" charset="utf-8"></script>
+  <script src="Dynamic/point.js" charset="utf-8"></script>
+  <script src="Dynamic/points.js" charset="utf-8"></script>
+  <script src="Dynamic/search.js" charset="utf-8"></script>
+  <script src="SVG/draw_points.js" charset="utf-8"></script>
+  <script src="SVG/draw_radar.js" charset="utf-8"></script>
+  <script src="Data_Process/process_data.js" charset="utf-8"></script>
+  <script src="Data_Process/calc_density.js" charset="utf-8"></script>
+  <script src="Data_Process/calc_clusters.js" charset="utf-8"></script>
+</body>
+
 </html>

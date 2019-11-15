@@ -5,8 +5,8 @@
   create_coordinate(points)
   create_clustering(points,"topic")
   create_clustering(points,"category")
-  append_static_html()
   draw_radar()
+  show_cluster("ring")
   d3.selectAll("svg > g")
     .attr("transform","translate("+offsets[0]+","+offsets[1]+")")
 })()
@@ -26,7 +26,7 @@ const clear_data = (data) => {
       "category":datapoint.fields.customfield_13501,
       "description":datapoint.fields.customfield_13513,
       "coordinates":{
-        "normal":{
+        "nocluster":{
           "x":0,
           "y":0
         },
@@ -54,8 +54,8 @@ const create_coordinate = (points) => {
         }
         var x = Math.round((distance*Math.cos(pi*radiant_ring))*100)/100
         var y = Math.round((distance*Math.sin(pi*radiant_ring))*100)/100
-        p.coordinates.normal.x = x
-        p.coordinates.normal.y = y
+        p.coordinates.nocluster.x = x
+        p.coordinates.nocluster.y = y
       })
     })
 }
@@ -69,7 +69,7 @@ const create_clustering = (points,cluster) => {
       var off = 0
       Object.keys(densitys.clusters).forEach(key => {
         var part = Math.round((densitys.clusters[key]/densitys.max)*100)/100
-        var puffer = part* 0.15
+        var puffer = part* 0.1
         var puffered_part = part - puffer
         var cluster_part = {
           part:puffered_part,
@@ -81,7 +81,7 @@ const create_clustering = (points,cluster) => {
       //create the coordinates for each Cluster element
       Object.keys(circles).forEach((r,ri) => {
         //standard distance
-        distance = circles[r] - 20
+        distance = circles[r] - 30
         Object.keys(densitys.clusters).forEach((cl,cli) => {
           var array = points.filter(p => (p.ring == r && p[cluster] == cl))
           var cluster_item = 0;
