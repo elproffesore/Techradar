@@ -97,7 +97,7 @@ article{
   vertical-align: -8.5px
 }
 .pages{
-  grid-area: 4 / 3;
+  grid-area: 5 / 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items:center;
