@@ -51,6 +51,7 @@ d3.select('#home-button')
 //View and cluster changer
 const change_view = (newview) => {
   d3.select('main').selectAll("p,h1,h2").html("")
+  d3.select('main').selectAll('img').attr('src',"")
   d3.select("#point-line").attr("display","none")
   d3.selectAll(".circles").attr("fill","rgba(245,245,245,0.9)")
   d3.select(`#${oldview}`).style("display","none")
@@ -69,4 +70,14 @@ const change_cluster =  (cluster) => {
   .attr("cy",(d) => {return d.coordinates[cluster].y})
   d3.selectAll(`.hull_${cluster}_group , .hullnames_${cluster}_group`)
   .transition().delay(500).attr("display","block")
+}
+
+const start = () => {
+    d3.select('#start').style('visibility','hidden')
+    change_view('cluster')
+    show_cluster("ring")
+    draw_points()
+    d3.select(".hull_category_group").attr("display","block")
+    d3.select(".hullnames_category_group").attr("display","block")
+
 }

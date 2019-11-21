@@ -26,6 +26,10 @@ function search(searchword){
         }
       ]
     }
+    d3.selectAll('#cluster > div > img')
+   .attr('class','pictogram showmore')
+   .style('cursor','pointer')
+   .style('transform','rotate(-90deg)')
     var f = new Fuse(points,options)
     var results_array = f.search(searchword)
     results_array = results_array.map(er =>{return er = er.item})
@@ -46,6 +50,11 @@ function search(searchword){
         .on("mouseover",() => {d3.select("#"+point.id).attr("r",points_radius*1.5)})
         .on("mouseout",() => {d3.select("#"+point.id).attr("r",points_radius)})
       })
+      if(array.length > 5){
+        d3.selectAll(`.showmore:nth-child(${ringIndex})`)
+          .attr('src',`Data/Pics/arrow_left.svg`)
+          .on("click",() => {show_filter_search(array,ring,searchword)})
+      }
     })
   }
 }

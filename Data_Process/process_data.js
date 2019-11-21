@@ -6,7 +6,6 @@
   create_clustering(points,"topic")
   create_clustering(points,"category")
   draw_radar()
-  show_cluster("ring")
   d3.selectAll("svg > g")
     .attr("transform","translate("+offsets[0]+","+offsets[1]+")")
 })()

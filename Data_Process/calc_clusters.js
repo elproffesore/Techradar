@@ -15,8 +15,6 @@ const create_hulls = (points,cluster) => {
     }
   })
   //First hulls to see on start
-  d3.select(".hull_category_group").attr("display","block")
-  d3.select(".hullnames_category_group").attr("display","block")
 }
 const draw_hulls = (hull,cl,cluster,group,group_names,index) => {
   var path = d3.line()
@@ -39,7 +37,7 @@ const draw_hulls = (hull,cl,cluster,group,group_names,index) => {
   .on("mouseover",function(d){d3.select(this).attr("opacity",1)})
   .on("mouseout",function(d){d3.select(this).attr("opacity",0.7)})
   .on("click",function(){
-    clusteriew = cluster
+    clusterview = cluster
     d3.select("#nav-view").property("value",cluster)
     clear_rings();
     show_points(cluster,cl,"Work")

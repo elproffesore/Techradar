@@ -50,11 +50,11 @@ const show_points_array = (cluster,spec,part,array,page) => {
     .style("color",(d,i) => {if(parts == part){return colors.red}})
     .on("click",(d,i) => {show_points(cluster,spec,parts)})
   })
+  var sites = Math.floor(array_length/45)
 
-  if(array_length > ((page+1)*45)){
-    d3.selectAll("#points > .pages > p")
+  d3.selectAll("#footer > .pages > p")
     .html((p,i) => {
-      if(i <= (page+1)){
+      if(i <= sites && sites > 0){
         return i+1
       }
     })
@@ -64,8 +64,4 @@ const show_points_array = (cluster,spec,part,array,page) => {
       }
     })
     .on("click",(p,i) => {show_points_array(cluster,spec,part,array,i)})
-  }else{
-    d3.select("#points > .pages > #pages-arrow-right")
-    .style("display","none")
-  }
 }

@@ -50,10 +50,10 @@ nav *{
 /* Content styling*/
 main {
   display: grid;
-  grid-template-columns: 45% 55%
+  grid-template-columns: 45% 55% 
 }
 .content{
-  margin-top: 5vh
+  margin-top: 3vh
 }
 #cluster,#filter,#points,#point{
   display: none;
@@ -62,8 +62,7 @@ main {
   grid-template-columns: 1fr 1fr 1fr;
 }
 #points{
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 1vw;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
 }
 #point{
   grid-template-columns: 2fr 3fr;
@@ -71,6 +70,9 @@ main {
   padding:35px;
   border:1px solid rgba(245,245,245,0.8);
   border-radius: 5px
+}
+#cluster div{
+ /* text-align: center*/
 }
 article{
   grid-area: 2 / 2 / 8 / 2;
@@ -97,18 +99,30 @@ article{
   vertical-align: -8.5px
 }
 .pages{
-  grid-area: 5 / 2;
-  display: grid;
-  grid-template-columns: 1fr ;
-  justify-items:center;
+  grid-area: 1 / 2;
+  display: inline-block;
 }
 .pages-arrows{
   display: none;
   cursor: pointer;
 }
+#footer{
+  grid-area: 2/2;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+}
+#footer p:hover{
+  color: rgba(231,69,79);
+  cursor:pointer;
+}
+#footer p {
+  display: inline-block;
+  padding: 15px
+}
 /* Text Styling */
 p{
   cursor: default;
+  margin: 0.9em 0
 }
 h1{
   font-size: 4.8vmin;
@@ -220,4 +234,27 @@ span{
 .info-text{
   font-weight: 700;
   font-size: 2.5vmin;
+}
+#start h1{
+  margin-top:0px 
+}
+#start{
+  text-align: center;
+    visibility:visible;
+  position: absolute;
+  top: 15vh;
+  right: 5vw;
+  padding: 15px;
+  background-color: black;
+  min-width: 45vw;
+  max-width: 50vw;
+}
+#start article{
+  text-align: start;
+}
+#start p{
+  padding: 15px
+}
+#start h2:hover{
+  color: rgba(231,69,79)
 }

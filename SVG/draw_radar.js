@@ -12,6 +12,7 @@ const draw_radar = () => {
       .attr("stroke","rgba(231,69,79,0.5)")
       .attr("stroke-width","2px")
       .on("click", function() {
+        clusterview = 'ring'
         clear_rings()
         redraw_rings(r)
         show_filter("ring",r);
@@ -37,7 +38,6 @@ const draw_radar = () => {
 
   })
   draw_radargadgets()
-  draw_points()
 }
 const redraw_rings = (ring) => {
   svg.selectAll(`#main_circle_${ring}`).attr("fill","rgba(92,72,151,0.5")
