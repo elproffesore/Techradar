@@ -17,11 +17,13 @@ const show_cluster = (cluster) => {
       .on("mouseover",() => {transition_highlight(part_wsc)})
       .on("mouseout",() => {delight()})
       .on("click",() => {show_filter(cluster,part)})
+
       d3.select(d3.selectAll("#cluster > div").nodes()[partIndex])
       .selectAll("p").html((d,i) => {return array[i].name})
       .on("mouseover",(d,i) => {single_highlight(array[i].id)})
       .on("mouseout",(d,i) => {delight()})
       .on("click",(d,i) => {show_point(array[i])})
 
+      d3.select('#cluster > div')
   })
 }

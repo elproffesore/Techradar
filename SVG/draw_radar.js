@@ -31,7 +31,7 @@ const draw_radar = () => {
           .attr("id","text-animation")
           .attr("attributeName", "opacity")
           .attr("attributeType", "XML")
-          .attr("values","0.3;1;0.3")
+          .attr("values","0.5;1;0.5")
           .attr("dur","8s")
           .attr("repeatCount", "indefinite")
 
@@ -54,6 +54,7 @@ const draw_radargadgets = () => {
     .attr("cy", 0)
     .attr("stroke", "rgba(57,255,20,0.8)")
     .attr("stroke-width", "1.5px")
+    .attr('pointer-event','none')
     .attr("fill", "none")
   radar_ping.append("animate")
     .attr("attributeName", "r")

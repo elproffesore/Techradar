@@ -73,7 +73,7 @@ main {
   border-radius: 5px
 }
 article{
-  grid-area: 2 / 2 / 6 / 2;
+  grid-area: 2 / 2 / 8 / 2;
   font-size: 1.75vmin;
   padding:0px 20px
 }
@@ -87,7 +87,7 @@ article{
   cursor: pointer
 }
 .parts_holder{
-  grid-area: 2 / 4 / 5 / 4;
+  grid-area: 2 / 4 / 6 / 4;
   text-align: right;
   padding-right: 10px
 }
@@ -99,7 +99,7 @@ article{
 .pages{
   grid-area: 5 / 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr ;
   justify-items:center;
 }
 .pages-arrows{

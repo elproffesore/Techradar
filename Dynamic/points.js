@@ -14,7 +14,7 @@ const show_points = (cluster,spec,part) => {//cluster bsp:ring spec bsp:Build-Up
     }
   }
   //Passing the array to the show function ->  could be in one function in future, but need a seperate
-  //function for showing the search results later 
+  //function for showing the search results later
   var array = points.filter(p => p[cluster] == spec && (cluster == "ring"?p.topic:p.ring) == part)
   show_points_array(cluster,spec,part,array,0)
 }
@@ -30,9 +30,9 @@ const show_points_array = (cluster,spec,part,array,page) => {
       return `${spec} / ${part} /${array_length} Items`
     }
   })
-  var sliced = array.length > 45? array.slice((page*45),((page+1)*45)):array.slice(0,45)
+  var sliced = array.slice((page*45),((page+1)*45))
     sliced.map((point,pointIndex) => {
-      d3.selectAll("#points > div:not(.parts_holder) > p").filter((d,i) => (i == pointIndex)).html(point.name)
+      d3.selectAll("#points > div:not(.parts_holder):not(.pages) > p").filter((d,i) => (i == pointIndex)).html(point.name)
       .on("mouseover",() => {single_highlight(point.id)})
       .on("mouseout",() => {delight()})
       .on("click",() => {show_point(point)})
@@ -52,17 +52,20 @@ const show_points_array = (cluster,spec,part,array,page) => {
   })
 
   if(array_length > ((page+1)*45)){
-    d3.select("#points > .pages > #pages-arrow-right").style("display","block")
-    .on("click",() => {show_points_array(cluster,spec,part,array,(page+1))})
+    d3.selectAll("#points > .pages > p")
+    .html((p,i) => {
+      if(i <= (page+1)){
+        return i+1
+      }
+    })
+    .style('text-decoration',(p,i) => {
+      if(i == page){
+        return 'underline'
+      }
+    })
+    .on("click",(p,i) => {show_points_array(cluster,spec,part,array,i)})
   }else{
     d3.select("#points > .pages > #pages-arrow-right")
-    .style("display","none")
-  }
-  if(((page+1)*45) != 45){
-    d3.select("#points > .pages > #pages-arrow-left").style("display","block")
-    .on("click",() => {show_points_array(cluster,spec,part,array,(page-1))})
-  }else{
-    d3.select("#points > .pages > #pages-arrow-left")
     .style("display","none")
   }
 }
