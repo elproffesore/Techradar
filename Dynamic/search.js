@@ -51,7 +51,7 @@ function search(searchword){
         .on("mouseout",() => {d3.select("#"+point.id).attr("r",points_radius)})
       })
       if(array.length > 5){
-        d3.selectAll(`.showmore:nth-child(${ringIndex})`)
+        d3.select(d3.selectAll(`.showmore`).nodes()[ringIndex])
           .attr('src',`Data/Pics/arrow_left.svg`)
           .on("click",() => {show_filter_search(array,ring,searchword)})
       }
@@ -121,19 +121,4 @@ const show_points_search = (search_array,ring,topic,searchword,page) => {
     .style("color",(d,i) => {if(parts == topic){return colors.red}})
     .on("click",(d,i) => {show_points_search(search_array,ring,parts,searchword,0)})
   })
-
-  if(array.length > ((page+1)*40)){
-    d3.select("#points > .pages > #pages-arrow-right").style("display","block")
-    .on("click",() => {show_points_search(search_array,ring,topic,searchword,(page+1))})
-  }else{
-    d3.select("#points > .pages > #pages-arrow-right")
-    .style("display","none")
-  }
-  if(((page+1)*40) != 40){
-    d3.select("#points > .pages > #pages-arrow-left").style("display","block")
-    .on("click",() => {show_points_search(search_array,ring,topic,searchword,(page-1))})
-  }else{
-    d3.select("#points > .pages > #pages-arrow-left")
-    .style("display","none")
-  }
 }

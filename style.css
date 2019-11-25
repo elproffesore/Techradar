@@ -50,7 +50,7 @@ nav *{
 /* Content styling*/
 main {
   display: grid;
-  grid-template-columns: 45% 55% 
+  grid-template-columns: 45% 55%
 }
 .content{
   margin-top: 3vh
@@ -202,14 +202,17 @@ span{
 }
 #info-tooltip{
   position: absolute;
-  top: 4.5vh;
+  top: 3.5vh;
   right: 3vw;
   border:1px solid rgba(231,69,79);
   border-radius: 50%;
-  width: 1vw;
-  height: 1vw;
+  width: 2vw;
+  height: 2vw;
   text-align: center;
   cursor:default;
+}
+#info-tooltip p{
+  font-size: 2.80vmin
 }
 #info{
   visibility:hidden;
@@ -236,7 +239,7 @@ span{
   font-size: 2.5vmin;
 }
 #start h1{
-  margin-top:0px 
+  margin-top:0px
 }
 #start{
   text-align: center;
