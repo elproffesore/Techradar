@@ -1,263 +1,493 @@
 /* Layout Styling */
 html {
-  height: 100%;
-  overflow: hidden;
-  font-family: "Roboto",sans-serif;
-  font-weight: 400;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
 }
+
 body {
-  height: 100%;
-  background-color: black;
-  color: white;
-  margin: 0;
-  display: grid;
-  grid-template-rows: 10% 90%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 10% 90%;
 }
+
 nav {
-  display: inline-grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: 45% 55%;
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 45% 55%;
 
 }
-nav *{
-  font-size: 2vmin;
-  background-color: black;
-  color: white;
+
+nav * {
+    font-size: 2vmin;
+    background-color: black;
+    color: white;
 }
-.input{
-  display: inline-grid;
-  grid-template-columns: 7% 40% 20% 20%;
-  align-items: center
+
+.input {
+    display: inline-grid;
+    grid-template-columns: 7% 40% 20% 20%;
+    align-items: center
 }
-.nav-elements{
-  border: 0.5px solid #ebebeb;
-  border-radius: 3px;
-  padding: 10px 0px 10px 20px;
-  margin:5px 0px 5px 0px;
+
+.nav-elements {
+    border: 0.5px solid #ebebeb;
+    border-radius: 3px;
+    padding: 10px 0px 10px 20px;
+    margin: 5px 0px 5px 0px;
 }
-.nav-elements:not(#nav-search){
-  margin-left: 1vw
+
+.nav-elements:not(#nav-search) {
+    margin-left: 1vw
 }
-#nav-logo{
-  height: 10vh;
-  cursor:pointer;
+
+#nav-logo {
+    height: 10vh;
+    cursor: pointer;
 }
-#home-button{
-  height: 4vh;
-  cursor: pointer;
+
+#home-button {
+    height: 4vh;
+    cursor: pointer;
 }
+
 /* Content styling*/
 main {
-  display: grid;
-  grid-template-columns: 45% 55%
+    display: grid;
+    grid-template-columns: 45% 55%
 }
-.content{
-  margin-top: 3vh
+
+.content {
+    margin-top: 3vh
 }
-#cluster,#filter,#points,#point{
-  display: none;
-}
-#cluster,#filter,#search{
-  grid-template-columns: 1fr 1fr 1fr;
-}
-#points{
-  grid-template-columns: 1fr 1fr 1fr 0.5fr;
-}
-#point{
-  grid-template-columns: 2fr 3fr;
-  margin-right: 35px;
-  padding:35px;
-  border:1px solid rgba(245,245,245,0.8);
-  border-radius: 5px
-}
-#cluster div{
- /* text-align: center*/
-}
-article{
-  grid-area: 2 / 2 / 8 / 2;
-  font-size: 1.75vmin;
-  padding:0px 20px
-}
-.pictogram{
-  height: 5vmin;
-  vertical-align: -8.5px;
-}
-.pictogram-filter{
-  height: 4vmin;
-  vertical-align: -8.5px;
-  cursor: pointer
-}
-.parts_holder{
-  grid-area: 2 / 4 / 6 / 4;
-  text-align: right;
-  padding-right: 10px
-}
-.arrow{
-  cursor: pointer;
-  height: 5vmin;
-  vertical-align: -8.5px
-}
-.pages{
-  grid-area: 1 / 2;
-  display: inline-block;
-}
-.pages-arrows{
-  display: none;
-  cursor: pointer;
-}
-#footer{
-  grid-area: 2/2;
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr 0.5fr;
-}
-#footer p:hover{
-  color: rgba(231,69,79);
-  cursor:pointer;
-}
-#footer p {
-  display: inline-block;
-  padding: 15px
-}
-/* Text Styling */
-p{
-  cursor: default;
-  margin: 0.9em 0
-}
-h1{
-  font-size: 4.8vmin;
-  font-weight: 700;
-  cursor: default;
-}
-h2{
-  font-size: 3vmin;
-  font-weight: 700;
-  cursor: pointer
-}
-p{
-  font-size: 1.80vmin;
-}
-#cluster p,#points p{
-  cursor: pointer;
-}
-#cluster p:hover,#points p:hover{
-  color:rgba(231,69,79);
-}
-#cluster h1:hover,#filter h2:hover{
-  color:rgba(231,69,79);
-  cursor:pointer;
-}
-#filter .header,
-#points .header,
-#point .header{
-  grid-column: span 3;
-  display: grid;
-  grid-template-columns: 5% 95%;
-  align-items: center
-}
-#points .header{
-  grid-column: span 4;
-}
-#point .header{
-  grid-column: span 2;
-}
-/* Special rules*/
-span{
-  font-size: 2.05vmin;
-  font-weight: 400;
-}
-/* Tooltip*/
-#tooltip{
-    transform:translate(-30px, -35%);
-    padding:5px 15px;
-    color:#444444;
-    background-color:#EEEEEE;
-    font-weight:normal;
-    border-radius:5px;
-    position:absolute;
-    box-sizing:border-box;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.5);
+
+#cluster, #filter, #points, #point {
     display: none;
 }
+
+#cluster, #filter, #search {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#points {
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+}
+
+#point {
+    grid-template-columns: 2fr 3fr;
+    margin-right: 35px;
+    padding: 35px;
+    border: 1px solid rgba(245, 245, 245, 0.8);
+    border-radius: 5px
+}
+
+.point_information {
+    display: grid;
+    grid-column: span 2;
+    grid-template-columns: 50% 50%;
+}
+
+.novatec_information {
+    grid-column: span 2;
+    border: none;
+    border-top: 0.5px solid white;
+    padding: 20px 0 0 0;
+}
+
+legend {
+    text-align: center;
+}
+
+#cluster div {
+    /* text-align: center*/
+}
+
+article {
+    grid-area: 2 / 2 / 8 / 2;
+    font-size: 1.75vmin;
+}
+
+.pictogram {
+    height: 5vmin;
+    vertical-align: -8.5px;
+}
+
+.pictogram-filter {
+    height: 4vmin;
+    vertical-align: -8.5px;
+    cursor: pointer
+}
+
+.parts_holder {
+    grid-area: 2 / 4 / 6 / 4;
+    text-align: right;
+    padding-right: 10px
+}
+
+.arrow {
+    cursor: pointer;
+    height: 5vmin;
+    vertical-align: -8.5px
+}
+
+.pages {
+    grid-area: 1 / 2;
+    display: inline-block;
+}
+
+.pages-arrows {
+    display: none;
+    cursor: pointer;
+}
+
+#footer {
+    grid-area: 2/2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+}
+
+#footer p:hover {
+    color: rgba(231, 69, 79, 1);
+    cursor: pointer;
+}
+
+#footer p {
+    display: inline-block;
+    padding: 15px
+}
+
+/* Text Styling */
+p {
+    cursor: default;
+    margin: 0.9em 0
+}
+
+h1 {
+    font-size: 4.8vmin;
+    font-weight: 700;
+    cursor: default;
+}
+
+h2 {
+    font-size: 3vmin;
+    font-weight: 700;
+    cursor: pointer
+}
+
+p {
+    font-size: 1.80vmin;
+}
+
+#cluster p, #points p {
+    cursor: pointer;
+}
+
+#cluster p:hover, #points p:hover {
+    color: rgba(231, 69, 79, 1);
+}
+
+#cluster h1:hover, #filter h2:hover {
+    color: rgba(231, 69, 79, 1);
+    cursor: pointer;
+}
+
+#filter .header,
+#points .header,
+#point .header {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 5% 95%;
+    align-items: center
+}
+
+#points .header {
+    grid-column: span 4;
+}
+
+#point .header {
+    grid-column: span 2;
+}
+
+#point .description {
+    overflow-wrap: break-word;
+}
+
+/* Special rules*/
+span {
+    font-size: 2.05vmin;
+    font-weight: 400;
+}
+
+/* Tooltip*/
+#tooltip {
+    transform: translate(-30px, -35%);
+    padding: 5px 15px;
+    color: #444444;
+    background-color: #EEEEEE;
+    font-weight: normal;
+    border-radius: 5px;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
 #tooltip i {
-    position:absolute;
-    top:90%;
-    left:15px;
-    width:24px;
-    height:24px;
-    overflow:hidden;
+    position: absolute;
+    top: 90%;
+    left: 15px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
 }
 
 #tooltip i::after {
-    content:'';
-    position:absolute;
-    width:24px;
-    height:24px;
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
     left: 50%;
-    transform:translate(-50%,-50%) rotate(45deg);
-    background-color:#EEEEEE;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background-color: #EEEEEE;
 }
-#tooltip p{
-  font-size: 1.75vmin
+
+#tooltip p {
+    font-size: 1.75vmin
 }
-#info-tooltip{
-  position: absolute;
-  top: 3.5vh;
-  right: 3vw;
-  border:1px solid rgba(231,69,79);
-  border-radius: 50%;
-  width: 2vw;
-  height: 2vw;
-  text-align: center;
-  cursor:default;
+
+#info-tooltip {
+    position: absolute;
+    top: 3.4vh;
+    right: 3vw;
+    border: 1.5px solid rgba(231, 69, 79, 1);
+    border-radius: 50%;
+    width: 2vw;
+    height: 2vw;
+    text-align: center;
+    cursor: default;
+    display: table;
 }
-#info-tooltip p{
-  font-size: 2.80vmin
+
+#info-tooltip p {
+    font-size: 2.50vmin;
+    display: table-cell;
+    vertical-align: middle;
 }
-#info{
-  visibility:hidden;
-  position: absolute;
-  top: 15vh;
-  right: 5vw;
-  padding: 15px;
-  background-color: black;
-  border: 1px solid rgba(231,69,79);
-  border-radius: 5px;
-  min-width: 45vw;
-  max-width: 50vw;
+
+#info {
+    visibility: hidden;
+    position: absolute;
+    top: 15vh;
+    right: 5vw;
+    padding: 15px;
+    background-color: black;
+    border: 1px solid rgba(231, 69, 79, 1);
+    border-radius: 5px;
+    min-width: 45vw;
+    max-width: 50vw;
 }
+
 #info article p {
-  margin-bottom:40px
+    margin-bottom: 40px
 }
-.info-icon{
-  height: 2.5vh;
-  vertical-align: -0.4vh;
-  padding-right: 5px
+
+.info-icon {
+    height: 2.5vh;
+    vertical-align: -0.4vh;
+    padding-right: 5px
 }
-.info-text{
-  font-weight: 700;
-  font-size: 2.5vmin;
+
+.info-text {
+    font-weight: 700;
+    font-size: 2.5vmin;
 }
-#start h1{
-  margin-top:0px
+
+#start h1 {
+    margin-top: 0
 }
-#start{
-  text-align: center;
-    visibility:visible;
-  position: absolute;
-  top: 15vh;
-  right: 5vw;
-  padding: 15px;
-  background-color: black;
-  min-width: 45vw;
-  max-width: 50vw;
+
+#start {
+    text-align: center;
+    visibility: visible;
+    position: absolute;
+    top: 10vh;
+    right: 5vw;
+    padding: 15px;
+    background-color: black;
+    min-width: 45vw;
+    max-width: 50vw;
 }
-#start article{
-  text-align: start;
+
+#start article {
+    text-align: start;
 }
-#start p{
-  padding: 15px
+
+#start p {
+    padding: 15px
 }
-#start h2:hover{
-  color: rgba(231,69,79)
+
+button {
+    padding: 1vw 4vw;
+    font-size: 3vmin;
+    background: rgba(125, 125, 125, 0.2);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444444;
+}
+
+@media all and (orientation: portrait) {
+    svg {
+        display: none;
+    }
+
+    html {
+        overflow: visible;
+    }
+
+    main {
+        grid-template-columns: 100%;
+    }
+
+    .input {
+        display: none;
+    }
+
+    #info-tooltip {
+        display: none;
+    }
+
+    #start {
+        right: 0;
+        min-width: 0;
+        max-width: 100%;
+        width: 90vw;
+        padding: 5vw;
+    }
+
+    .info-icon {
+        height: 6vmin;
+    }
+
+    .info-text {
+        font-size: 6vmin;
+    }
+
+    button {
+        font-size: 5vmin;
+    }
+
+    p {
+        font-size: 4vmin;
+        margin: 1.5em 0;
+    }
+
+    h1 {
+        font-size: 8vmin;
+    }
+
+    h2 {
+        font-size: 5vmin;
+    }
+
+    .pictogram {
+        height: 8vmin;
+        vertical-align: -1.4vw;
+    }
+
+    #footer {
+        grid-area: 3 / 1;
+    }
+
+    #cluster {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    #cluster div {
+        padding-bottom: 100px;
+    }
+
+    #filter {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    #filter > .header {
+        grid-column: 1;
+    }
+
+    #filter > div {
+        padding-bottom: 50px;
+    }
+
+    span {
+        font-size: 4.5vmin;
+    }
+
+    #points {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    #points .header {
+        grid-column: span 1;
+    }
+
+    #points .parts_holder {
+        display: none;
+    }
+
+    #point {
+        grid-template-columns: 1fr;
+        text-align: center;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #point .header {
+        grid-column: span 1;
+    }
+
+    .point_information {
+        display: block;
+        margin: 35px;
+    }
+
+    .novatec_information {
+        display: block;
+        margin: 0 35px;
+    }
+
+    #point article {
+        font-size: 4vmin;
+    }
+
+    #point legend {
+        padding: 100px 0;
+        font-size: 4vmin;
+    }
+
+    #point .description {
+        padding-top: 100px;
+    }
+
+    #point .header, #points .header, #filter .header {
+        grid-template-columns: 100%;
+    }
+
+    .arrow {
+        height: 10vmin;
+    }
 }
