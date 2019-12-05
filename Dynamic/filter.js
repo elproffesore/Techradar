@@ -1,6 +1,4 @@
 var show_filter = (cluster, spec) => {
-  cache_view.func = "show_filter";
-  cache_view.args = [cluster, spec];
   if (cluster == "ring") {
     redraw_rings(spec)
   }
@@ -19,7 +17,13 @@ var show_filter = (cluster, spec) => {
   }
   d3.select("#filter > .header > img").attr("src", "Data/Pics/arrow_left.svg")
       .on("click", () => {
-        backToOldView()
+          if(oldview === cache_view.func.slice(5)){
+              cache_view.func = "show_cluster";
+              cache_view.args = [clusterview];
+              backToOldView()
+          }else{
+              backToOldView()
+          }
       });
   d3.select("#filter > .header > h1").html(() => {
     if (cluster == "ring") {
@@ -46,6 +50,8 @@ var show_filter = (cluster, spec) => {
         })
         .on("click", () => {
           show_points(cluster, spec, part)
+            cache_view.func = "show_filter";
+            cache_view.args = [cluster, spec];
         })
   })
 };

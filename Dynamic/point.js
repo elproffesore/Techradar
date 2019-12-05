@@ -1,6 +1,4 @@
 var show_point = (point) => {
-  cache_view.func = "show_point";
-  cache_view.args = [point];
   change_view("point");
   single_highlight(point.id);
   d3.select("#point > .header > img").attr("src", `Data/Pics/arrow_left.svg`)

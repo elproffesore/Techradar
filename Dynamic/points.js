@@ -1,6 +1,4 @@
 var show_points = (cluster, spec, part) => {//cluster bsp:ring spec bsp:Build-Up part bsp: Cloud
-  cache_view.func = "show_points";
-  cache_view.args = [cluster, spec, part];
   change_view("points");
   d3.selectAll(".pages-arrows")
       .style("display", "none");
@@ -21,13 +19,17 @@ var show_points = (cluster, spec, part) => {//cluster bsp:ring spec bsp:Build-Up
   show_points_array(cluster, spec, part, array, 0)
 };
 var show_points_array = (cluster, spec, part, array, page) => {
-  cache_view.func = "show_points_array";
-  cache_view.args = [cluster, spec, part, array, page];
   change_view("points");
   var array_length = array.length;
   d3.select("#points > .header > img").attr("src", "Data/Pics/arrow_left.svg")
       .on("click", () => {
-        backToOldView()
+          if(oldview === cache_view.func.slice(5,11)){
+              cache_view.func = "show_filter"
+              cache_view.args = [cluster,spec]
+              backToOldView()
+          }else{
+              backToOldView()
+          }
       });
   d3.select("#points > .header > h1").html(() => {
     if (cluster == "ring") {
@@ -47,6 +49,8 @@ var show_points_array = (cluster, spec, part, array, page) => {
         })
         .on("click", () => {
           show_point(point)
+            cache_view.func = "show_points_array";
+            cache_view.args = [cluster, spec, part, array, page];
         })
   });
   var parts = [...new Set(points.filter(p => p[cluster] == spec).map(p => p = (cluster == "ring" ? p.topic : p.ring)))];
@@ -66,6 +70,8 @@ var show_points_array = (cluster, spec, part, array, page) => {
         })
         .on("click", (d, i) => {
           show_points(cluster, spec, parts)
+            cache_view.func = "show_points_array";
+            cache_view.args = [cluster, spec, part, array, page];
         })
   });
   var sites = Math.floor(array_length / 45);
@@ -83,5 +89,7 @@ var show_points_array = (cluster, spec, part, array, page) => {
       })
       .on("click", (p, i) => {
         show_points_array(cluster, spec, part, array, i)
+          cache_view.func = "show_points_array";
+          cache_view.args = [cluster, spec, part, array, page];
       })
 };

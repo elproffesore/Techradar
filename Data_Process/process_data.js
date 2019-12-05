@@ -43,7 +43,11 @@ const clear_data = (data) => {
         }
       }
     };
-    points.push(point)
+    if(datapoint.fields.customfield_13631 != "false"){
+        points.push(point)
+    }else{
+        console.log(datapoint)
+    }
   })
 };
 const create_coordinate = (points) => {

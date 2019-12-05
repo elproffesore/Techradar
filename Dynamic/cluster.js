@@ -1,5 +1,6 @@
 var show_cluster = (cluster) => {
     clusterview = cluster;
+    d3.select("#nav-view").property("value",cluster)
     cache_view.func = "show_cluster";
     cache_view.args = [cluster];
     clear_rings();
@@ -29,7 +30,9 @@ var show_cluster = (cluster) => {
                 delight()
             })
             .on("click", () => {
-                show_filter(cluster, part)
+                show_filter(cluster, part);
+                cache_view.func = "show_cluster";
+                cache_view.args = [cluster];
             });
 
         var div = d3.select(d3.selectAll("#cluster > div").nodes()[partIndex]);
@@ -45,6 +48,8 @@ var show_cluster = (cluster) => {
             })
             .on("click", (d, i) => {
                 show_point(array[i])
+                cache_view.func = "show_cluster";
+                cache_view.args = [cluster];
             });
 
         d3.selectAll('#cluster > div > img')
@@ -55,6 +60,8 @@ var show_cluster = (cluster) => {
             })
             .on("click", (d, i) => {
                 show_filter(cluster, part)
+                cache_view.func = "show_cluster";
+                cache_view.args = [cluster];
             })
     })
 };

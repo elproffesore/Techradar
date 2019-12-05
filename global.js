@@ -60,7 +60,8 @@ d3.select('#home-button').on('click', () => {
 
 //Back Button functionality
 const backToOldView = () => {
-  window[cache_view.func](...cache_view.args);
+    console.log(cache_view)
+    window[cache_view.func](...cache_view.args);
 };
 //View and cluster changer
 const change_view = (newview) => {

@@ -1,7 +1,5 @@
 var search = (searchword) => {
   cache_searchword = searchword;
-  cache_view.func = "search";
-  cache_view.args = [searchword];
   if (searchword == "") {
     show_cluster(clusterview)
   } else {
@@ -50,6 +48,8 @@ var search = (searchword) => {
           })
           .on("click", () => {
             show_filter_search(results_array, ring, searchword)
+              cache_view.func = "search";
+              cache_view.args = [searchword];
           });
 
       array.map((point, pointIndex) => {
@@ -58,6 +58,8 @@ var search = (searchword) => {
             .selectAll("p").filter((d, i) => (i == pointIndex)).html(point.name)
             .on("click", () => {
               show_point(point)
+                cache_view.func = "search";
+                cache_view.args = [searchword];
             })
             .on("mouseover", () => {
               d3.select("#" + point.id).attr("r", points_radius * 1.5)
@@ -77,14 +79,18 @@ var search = (searchword) => {
   }
 };
 var show_filter_search = (search_array, ring, searchword) => {
-  cache_view.func = "show_filter_search";
-  cache_view.args = [search_array, ring, searchword];
   change_view("filter");
   var topics = [...new Set(search_array.filter(p => p.ring == ring).map(p => p = p.topic))];
   var ring_array = search_array.filter(p => p.ring == ring);
   d3.select("#filter > .header > img").attr("src", "Data/Pics/arrow_left.svg")
       .on("click", () => {
-        backToOldView()
+          if(oldview === cache_view.func.slice(5,11)){
+              cache_view.func = "search"
+              cache_view.args = [searchword]
+              backToOldView()
+          }else {
+              backToOldView()
+          }
       });
   d3.select("#filter > .header > h1").html(`"${searchword}" / <img class='pictogram' src='Data/Pics/${ring}.svg'>${ring} / ${ring_array.length} Items`);
   var filter_length = d3.selectAll("#filter > div").nodes().length - 1;
@@ -111,12 +117,12 @@ var show_filter_search = (search_array, ring, searchword) => {
         })
         .on("click", () => {
           show_points_search(search_array, ring, topic, searchword, 0)
+            cache_view.func = "show_filter_search";
+            cache_view.args = [search_array, ring, searchword];
         })
   })
 };
 var show_points_search = (search_array, ring, topic, searchword, page) => {
-  cache_view.func = "show_points_search";
-  cache_view.args = [search_array, ring, topic, searchword, page];
   change_view("points");
   var points_length = d3.selectAll("#points > div").nodes().length;
   if (points_length < (60 / 5)) {
@@ -131,7 +137,13 @@ var show_points_search = (search_array, ring, topic, searchword, page) => {
   var array = search_array.filter(p => p.ring == ring && p.topic == topic);
   d3.select("#points > .header > img").attr("src", "Data/Pics/arrow_left.svg")
       .on("click", () => {
-        backToOldView()
+          if(oldview === cache_view.func.slice(5,11)){
+              cache_view.func = "show_filter_search"
+              cache_view.args = [search_array,ring,searchword]
+              backToOldView()
+          }else {
+              backToOldView()
+          }
       });
   d3.select("#points > .header > h1")
       .html(`"${searchword}" / <img class='pictogram' src='Data/Pics/${ring}.svg'>${ring} / ${topic || "No Topic"} / ${array.length} Items`);
@@ -146,6 +158,8 @@ var show_points_search = (search_array, ring, topic, searchword, page) => {
         })
         .on("click", () => {
           show_point(point)
+            cache_view.func = "show_points_search";
+            cache_view.args = [search_array, ring, topic, searchword, page];
         })
   });
   var parts = [...new Set(search_array.filter(p => p.ring == ring).map(p => p = p.topic))];
@@ -165,6 +179,8 @@ var show_points_search = (search_array, ring, topic, searchword, page) => {
         })
         .on("click", (d, i) => {
           show_points_search(search_array, ring, parts, searchword, 0)
+            cache_view.func = "show_points_search";
+            cache_view.args = [search_array, ring, topic, searchword, page];
         })
   })
 };
