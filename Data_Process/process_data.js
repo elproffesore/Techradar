@@ -1,6 +1,6 @@
 //Anonymous Data Funciton
 (async () => {
-  var data = await d3.json('Data/radar_data.json').then((data) => {
+  var data = await d3.json('../Data/radar_data.json').then((data) => {
     data = data.issues;
     return data;
   });
@@ -8,9 +8,6 @@
   create_coordinate(points);
   create_clustering(points, "topic");
   create_clustering(points, "category");
-  draw_radar();
-  d3.selectAll("svg > g")
-      .attr("transform", "translate(" + offsets[0] + "," + offsets[1] + ")")
 })();
 const clear_data = (data) => {
   data.map((datapoint,dpi) => {
@@ -43,10 +40,8 @@ const clear_data = (data) => {
         }
       }
     };
-    if(datapoint.fields.customfield_13631 != "false"){
+    if(datapoint.fields.customfield_13631 != "false" || datapoint.fields.customfield_13631 == null){
         points.push(point)
-    }else{
-        console.log(datapoint)
     }
   })
 };

@@ -1,4 +1,5 @@
 var show_cluster = (cluster) => {
+    history.pushState({page:"cluster"},"",window.location.origin+"#cluster")
     clusterview = cluster;
     d3.select("#nav-view").property("value",cluster)
     cache_view.func = "show_cluster";

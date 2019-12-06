@@ -1,4 +1,5 @@
 var show_point = (point) => {
+    history.pushState({page:"point"},"",window.location.origin+"#point")
   change_view("point");
   single_highlight(point.id);
   d3.select("#point > .header > img").attr("src", `Data/Pics/arrow_left.svg`)

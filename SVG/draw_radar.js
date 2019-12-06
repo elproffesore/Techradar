@@ -47,7 +47,7 @@ const draw_radargadgets = () => {
             .attr("stroke", "rgba(57,255,20,0.8)")
             .attr("stroke-width", "1.5px")
             .attr('pointer-event', 'none')
-            .attr("fill", "none");
+            .attr("fill", "none")
         radar_ping.append("animate")
             .attr("attributeName", "r")
             .attr("attributeType", "XML")

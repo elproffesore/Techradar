@@ -72,7 +72,9 @@ var search = (searchword) => {
         d3.select(d3.selectAll(`.showmore`).nodes()[ringIndex])
             .attr('src', `Data/Pics/arrow_left.svg`)
             .on("click", () => {
-              backToOldView()
+              show_filter_search(results_array, ring, searchword)
+                cache_view.func = "search";
+                cache_view.args = [searchword];
             })
       }
     })

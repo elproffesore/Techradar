@@ -1,4 +1,5 @@
 var show_filter = (cluster, spec) => {
+    history.pushState({page:"filter"},"",window.location.origin+"#filter")
   if (cluster == "ring") {
     redraw_rings(spec)
   }

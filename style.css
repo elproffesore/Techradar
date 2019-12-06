@@ -332,8 +332,11 @@ span {
 }
 
 button {
+    position: absolute;
+    left: -30vw;
+    top: 30vh;
     padding: 1vw 4vw;
-    font-size: 3vmin;
+    font-size: 10vmin;
     background: rgba(125, 125, 125, 0.2);
     color: white;
     border: 1px solid white;
@@ -384,7 +387,8 @@ button:hover {
     }
 
     button {
-        font-size: 5vmin;
+        font-size: 15vmin;
+        position: initial;
     }
 
     p {
@@ -428,7 +432,7 @@ button:hover {
     }
 
     #filter > div {
-        padding-bottom: 50px;
+        padding-bottom: 30px;
     }
 
     span {

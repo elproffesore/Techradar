@@ -60,7 +60,6 @@ d3.select('#home-button').on('click', () => {
 
 //Back Button functionality
 const backToOldView = () => {
-    console.log(cache_view)
     window[cache_view.func](...cache_view.args);
 };
 //View and cluster changer
@@ -92,9 +91,17 @@ const change_cluster = (cluster) => {
   d3.selectAll(`.hull_${cluster}_group , .hullnames_${cluster}_group`)
       .transition().delay(500).attr("display", "block")
 };
+history.pushState({page:"start"},"",window.location.origin+"#start")
 
+window.onpopstate = function(event) {
+    console.log(event)
+    window[event.currentTarget.cache_view.func](...event.currentTarget.cache_view.args);
+}
 const start = () => {
   d3.select('#start').style('visibility', 'hidden');
+  draw_radar();
+  d3.selectAll("svg > g")
+        .attr("transform", "translate(" + offsets[0] + "," + offsets[1] + ")")
   change_view('cluster');
   show_cluster("ring");
   draw_points();

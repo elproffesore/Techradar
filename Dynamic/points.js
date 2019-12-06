@@ -1,4 +1,5 @@
 var show_points = (cluster, spec, part) => {//cluster bsp:ring spec bsp:Build-Up part bsp: Cloud
+    history.pushState({page:"points"},"",window.location.origin+"#points")
   change_view("points");
   d3.selectAll(".pages-arrows")
       .style("display", "none");
@@ -19,6 +20,7 @@ var show_points = (cluster, spec, part) => {//cluster bsp:ring spec bsp:Build-Up
   show_points_array(cluster, spec, part, array, 0)
 };
 var show_points_array = (cluster, spec, part, array, page) => {
+    history.pushState({page:"points"},"",window.location.origin+"#points#page"+page)
   change_view("points");
   var array_length = array.length;
   d3.select("#points > .header > img").attr("src", "Data/Pics/arrow_left.svg")
