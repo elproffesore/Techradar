@@ -53,13 +53,9 @@ var show_cluster = (cluster) => {
                 cache_view.args = [cluster];
             });
 
-        d3.selectAll('#cluster > div > img')
-            .attr('src', (d, i) => {
-                if (i <= partIndex) {
-                    return `Data/Pics/arrow_left.svg`
-                }
-            })
-            .on("click", (d, i) => {
+        d3.select(d3.selectAll("#cluster > div > img").nodes()[partIndex])
+            .attr('src',`Data/Pics/arrow_left.svg`)
+            .on("click", () => {
                 show_filter(cluster, part)
                 cache_view.func = "show_cluster";
                 cache_view.args = [cluster];

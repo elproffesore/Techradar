@@ -1,6 +1,6 @@
 //Anonymous Data Funciton
 (async () => {
-  var data = await d3.json('../Data/radar_data.json').then((data) => {
+  var data = await d3.json('../Data/data.json').then((data) => {
     data = data.issues;
     return data;
   });
