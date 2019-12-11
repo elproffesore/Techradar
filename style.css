@@ -164,7 +164,8 @@ article {
 /* Text Styling */
 p {
     cursor: default;
-    margin: 0.9em 0
+    margin: 0.9em 0;
+    font-size: 1.80vmin;
 }
 
 h1 {
@@ -178,9 +179,9 @@ h2 {
     font-weight: 700;
     cursor: pointer
 }
-
-p {
-    font-size: 1.80vmin;
+a {
+    color:rgba(231, 69, 79, 1);
+    text-decoration: none;
 }
 
 #cluster p, #points p {
