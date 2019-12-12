@@ -1,6 +1,6 @@
 var svg = d3.select("svg");
 var points = [];
-var points_radius = 5;
+var points_radius = 6;
 //radius of each ring from outer to inner
 var circles = {
   "Observe": 400,

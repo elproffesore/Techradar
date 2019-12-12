@@ -43,7 +43,7 @@ const clear_data = (data) => {
     if(datapoint.fields.customfield_13631 != "false" || datapoint.fields.customfield_13631 == null){
         points.push(point)
     }
-  })
+  });
 };
 const create_coordinate = (points) => {
   Object.keys(circles).forEach((r, ri) => {
