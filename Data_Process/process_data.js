@@ -42,6 +42,8 @@ const clear_data = (data) => {
     };
     if(datapoint.fields.customfield_13631 != "false" || datapoint.fields.customfield_13631 == null){
         points.push(point)
+    }else{
+      console.log(datapoint.fields.summary)
     }
   });
 };

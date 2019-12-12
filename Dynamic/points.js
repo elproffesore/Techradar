@@ -76,7 +76,7 @@ var show_points_array = (cluster, spec, part, array, page) => {
             cache_view.args = [cluster, spec, part, array, page];
         })
   });
-  var sites = Math.floor(array_length / 45);
+  var sites = Math.floor(array_length / 46);
 
   d3.selectAll("#footer > .pages > p")
       .html((p, i) => {
