@@ -55,7 +55,10 @@ var show_points_array = (cluster, spec, part, array, page) => {
             cache_view.args = [cluster, spec, part, array, page];
         })
   });
-  var parts = [...new Set(points.filter(p => p[cluster] == spec).map(p => p = (cluster == "ring" ? p.topic : p.ring)))];
+  var parts = cluster == "ring"
+        ? [...new Set(points.filter(p => p["ring"] == spec).map(p => p=p.topic))].sort()
+        : ["Observe", "Evaluate", "Build-Up", "Work", "Reduce"]
+
   var parts_holder_length = d3.select(".parts_holder > p").nodes().length;
   if (parts.length > parts_holder_length) {
     var diff = parts.length - parts_holder_length;
@@ -63,7 +66,7 @@ var show_points_array = (cluster, spec, part, array, page) => {
       let div = d3.select(".parts_holder").append("p")
     }
   }
-  parts.sort().map((parts, partsIndex) => {
+  parts.map((parts, partsIndex) => {
     d3.selectAll(".parts_holder > p").filter((d, i) => (i == partsIndex)).html(parts || "No Topic")
         .style("color", (d, i) => {
           if (parts == part) {

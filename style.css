@@ -72,10 +72,12 @@ main {
 
 #cluster, #filter, #search {
     grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 50px;
 }
 
 #points {
     grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    grid-column-gap: 50px;
 }
 
 #point {
