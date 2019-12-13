@@ -20,15 +20,19 @@
     <div class="input">
       <img id="home-button" src="Data/Pics/home.svg">
       <input class="nav-elements" type="text" id="nav-search" name="search" onfocus="this.value=''" value="Search a technology" onkeyup="search(this.value)" onblur="this.value='Search a technology'">
+      <span id="select_cluster_browser_arrow">
       <select class="nav-elements" id="nav-cluster" onchange="change_cluster(this.value);cluster=this.value">
         <option selected value="category">Category</option>
         <option value="topic">Topic</option>
         <option value="nocluster">No Cluster</option>
       </select>
+      </span>
+      <span id="select_view_browser_arrow">
       <select class="nav-elements" id="nav-view" onchange="show_cluster(this.value)">
         <option value="category">Category</option>
         <option selected value="ring">Rings</option>
       </select>
+      </span>
     </div>
   </nav>
   <main>

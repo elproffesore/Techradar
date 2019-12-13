@@ -9,7 +9,7 @@ var circles = {
     "Work": 220,
     "Reduce": 100
 };
-var offsets = [500, (window.innerHeight * 0.05) + 400];//x,y offsets of the radar
+var offsets = [500, window.innerHeight/2];//x,y offsets of the radar
 var oldview = null;//Global visible View
 var clusterview = null;
 var cache_view = {
@@ -64,34 +64,37 @@ const backToOldView = () => {
 };
 //View and cluster changer
 const change_view = (newview) => {
-    d3.select('main').selectAll("p,h1,h2").html("");
-    d3.select('main').selectAll('img').attr('src', "");
-    d3.select("#point-line").attr("display", "none");
-    d3.selectAll(".circles").attr("fill", "rgba(245,245,245,0.5)");
-    d3.select(`#${oldview}`).style("display", "none");
-    d3.select(`#${newview}`).style("display", "grid");
-    oldview = newview
+
+        d3.select('main').selectAll("p,h1,h2").html("");
+        d3.select('main').selectAll('img').attr('src', "");
+        d3.select("#point-line").attr("display", "none");
+        d3.selectAll(".circles").attr("fill", "rgba(245,245,245,0.5)");
+        d3.select(`#${oldview}`).style("display", "none");
+        d3.select(`#${newview}`).style("display", "grid");
+        oldview = newview
 };
 const change_cluster = (cluster) => {
-    if (cluster === "topic") {
-        d3.selectAll(".null").attr("display", "none")
-    }else {
-        d3.selectAll(".circles").attr("display", "block")
+    if(oldview !== "start") {
+        if (cluster === "topic") {
+            d3.selectAll(".null").attr("display", "none")
+        } else {
+            d3.selectAll(".circles").attr("display", "block")
+        }
+        d3.selectAll(".hull_group > g , .hullnames_group > g").attr("display", "none");
+        d3.selectAll(".circles")
+            .transition()
+            .duration(500)
+            .attr("cx", (d) => {
+                return d.coordinates[cluster].x
+            })
+            .attr("cy", (d) => {
+                return d.coordinates[cluster].y
+            })
+        d3.selectAll(`.hull_${cluster}_group , .hullnames_${cluster}_group`)
+            .transition()
+            .delay(500)
+            .attr("display", "block")
     }
-    d3.selectAll(".hull_group > g , .hullnames_group > g").attr("display", "none");
-    d3.selectAll(".circles")
-        .transition()
-        .duration(500)
-        .attr("cx", (d) => {
-            return d.coordinates[cluster].x
-        })
-        .attr("cy", (d) => {
-            return d.coordinates[cluster].y
-        })
-    d3.selectAll(`.hull_${cluster}_group , .hullnames_${cluster}_group`)
-        .transition()
-        .delay(500)
-        .attr("display", "block")
 };
 history.pushState({page: "start"}, "", window.location.origin + "#start")
 

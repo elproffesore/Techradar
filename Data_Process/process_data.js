@@ -8,6 +8,7 @@
   create_coordinate(points);
   create_clustering(points, "topic");
   create_clustering(points, "category");
+  oldview = "start"
 })();
 const clear_data = (data) => {
   data.map((datapoint,dpi) => {

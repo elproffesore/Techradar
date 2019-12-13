@@ -11,12 +11,12 @@ const create_hulls = (points,cluster) => {
       var array = points.filter(p => p[cluster] == cl)
       var points_processed = [...array.map(p => {return [p.coordinates[cluster].x,p.coordinates[cluster].y]})]
       var hull = array.length > 2 ?d3.polygonHull(points_processed):points_processed
-      draw_hulls(hull,cl,cluster,group,group_names,cli)
+      draw_hulls(hull,cl,cluster,group,group_names,cli,points[0].ring)
     }
   })
   //First hulls to see on start
 }
-const draw_hulls = (hull,cl,cluster,group,group_names,index) => {
+const draw_hulls = (hull,cl,cluster,group,group_names,index,ring) => {
   var path = d3.line()
       .x(function (d) {
            return d[0];
@@ -37,10 +37,9 @@ const draw_hulls = (hull,cl,cluster,group,group_names,index) => {
   .on("mouseover",function(d){d3.select(this).attr("opacity",1)})
   .on("mouseout",function(d){d3.select(this).attr("opacity",0.7)})
   .on("click",function(){
-    clusterview = cluster
-    d3.select("#nav-view").property("value",cluster)
+    d3.select("#nav-view").property("value",cluster);
     clear_rings();
-    show_points(cluster,cl,"Work")
+    show_points(cluster,cl,ring)
   })
 
   polygon.append("animate")
