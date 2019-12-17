@@ -1,9 +1,9 @@
 //Creates a density based on the highest density per cluster element in a ring
 const calculate_density = (points,cluster) => {
-  var maxDensity = 0
-  var density = 0;
-  var length = 0;
-  var densitysCluster = {
+  let maxDensity = 0;
+  let density = 0;
+  let length = 0;
+  let densitysCluster = {
     clusters:{},
     max:0,
   };

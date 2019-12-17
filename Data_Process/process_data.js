@@ -4,14 +4,25 @@
     data = data.issues;
     return data;
   });
-  clear_data(data);
-  create_coordinate(points);
-  create_clustering(points, "topic");
-  create_clustering(points, "category");
-  oldview = "start"
+  clear_data(data) // coordinates will be made after the data cleaning
+      .then(() => {
+        create_coordinate(points);
+        create_clustering(points, "topic");
+        create_clustering(points, "category");
+        draw_points();
+        oldview = "start"
+      })
+      .then(() => {
+        d3.select('#start').append('button')
+            .html('Start')
+            .on('click',() => {
+                start();
+                window.scrollTo(0,0)
+            })
+      })
 })();
 const clear_data = (data) => {
-  data.map((datapoint,dpi) => {
+  return Promise.all(data.map((datapoint,dpi) => {
     Object.keys(datapoint.fields).forEach((key) => {
       if (datapoint.fields[key] != null && datapoint.fields[key].value) {
         datapoint.fields[key] = datapoint.fields[key].value
@@ -44,7 +55,8 @@ const clear_data = (data) => {
     if(datapoint.fields.customfield_13631 != "false" || datapoint.fields.customfield_13631 == null){
         points.push(point)
     }
-  });
+  })
+  );
 };
 const create_coordinate = (points) => {
   Object.keys(circles).forEach((r, ri) => {

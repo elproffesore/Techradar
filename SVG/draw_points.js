@@ -21,6 +21,7 @@ const draw_points = () => {
         return d.coordinates.category.y
       })
       .attr("fill", "rgba(245,245,245,0.5)")
+      .attr('visibility',"hidden")
   .attr("r",points_radius)
   .on("mouseover",function(d,i){
     d3.select(this).attr("r", points_radius * 2);

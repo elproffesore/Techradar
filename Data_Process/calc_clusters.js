@@ -11,7 +11,7 @@ const create_hulls = (points,cluster) => {
       var array = points.filter(p => p[cluster] == cl)
       var points_processed = [...array.map(p => {return [p.coordinates[cluster].x,p.coordinates[cluster].y]})]
       var hull = array.length > 2 ?d3.polygonHull(points_processed):points_processed
-      draw_hulls(hull,cl,cluster,group,group_names,cli,points[0].ring)
+      draw_hulls(hull,cl,cluster,group,group_names,cli,array[0].ring)
     }
   })
   //First hulls to see on start
@@ -37,9 +37,13 @@ const draw_hulls = (hull,cl,cluster,group,group_names,index,ring) => {
   .on("mouseover",function(d){d3.select(this).attr("opacity",1)})
   .on("mouseout",function(d){d3.select(this).attr("opacity",0.7)})
   .on("click",function(){
-    d3.select("#nav-view").property("value",cluster);
+    d3.select("#nav-view").property("value",() => {
+      if(cluster != "topic"){
+        return cluster
+      }
+    });
     clear_rings();
-    show_points(cluster,cl,ring)
+    show_points(cluster,cl,ring)//click in topic cluster ring => ("topic",ML&AI,Observe)
   })
 
   polygon.append("animate")
@@ -85,5 +89,19 @@ const draw_hull_names = (hull,cl,cluster,group) => {
     .attr("cursor","default")
     .text(cl)
     .attr("fill","white")
+  }else if (hull.length === 2){
+    center = [(hull[0][0]+hull[1][0])/2,(hull[0][1]+hull[1][1])/2];
+    group.append("text")
+        .attr("class","hull_name")
+        .attr("x",center[0])
+        .attr("y",center[1])
+        .attr("text-anchor","middle")
+        .attr("font-family","Roboto")
+        .attr("font-weight",700)
+        .attr("font-size","2.5vh")
+        .attr("style","filter:url(#shadow)")
+        .attr("cursor","default")
+        .text(cl)
+        .attr("fill","white")
   }
 }

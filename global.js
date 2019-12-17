@@ -101,7 +101,7 @@ history.pushState({page: "start"}, "", window.location.origin + "#start")
 window.onpopstate = function (event) {
     console.log(event)
     window[event.currentTarget.cache_view.func](...event.currentTarget.cache_view.args);
-}
+};
 const start = () => {
     d3.select('#start').style('visibility', 'hidden');
     draw_radar();
@@ -109,7 +109,7 @@ const start = () => {
         .attr("transform", "translate(" + offsets[0] + "," + offsets[1] + ")")
     change_view('cluster');
     show_cluster("ring");
-    draw_points();
+    d3.selectAll('.circles').attr('visibility','visible');
     d3.select(".hull_category_group").attr("display", "block");
     d3.select(".hullnames_category_group").attr("display", "block")
 
