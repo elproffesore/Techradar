@@ -382,7 +382,6 @@ button {
 button:hover {
     background-color: #444444;
 }
-
 @media all and (orientation: portrait) {
     svg {
         display: none;

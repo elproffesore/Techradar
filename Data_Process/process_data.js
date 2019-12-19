@@ -82,8 +82,8 @@ const create_clustering = (points, cluster) => {
     //creating the weighted radiants for each cluster element
     var radiants = {};
     var off = 0;
-    Object.keys(densitys.clusters).forEach(key => {
-      var part = Math.round((densitys.clusters[key] / densitys.max) * 100) / 100;
+    Object.keys(densitys_cluster.clusters).forEach(key => {
+      var part = Math.round((densitys_cluster.clusters[key] / densitys.max) * 100) / 100;
       var puffer = part * 0.1;
       var puffered_part = part - puffer;
       var cluster_part = {
@@ -97,7 +97,7 @@ const create_clustering = (points, cluster) => {
       Object.keys(circles).forEach((r,ri) => {
         //standard distance
         distance = circles[r] - 30;
-        Object.keys(densitys.clusters).forEach((cl, cli) => {
+        Object.keys(densitys_cluster.clusters).forEach((cl, cli) => {
           var array = points.filter(p => (p.ring == r && p[cluster] == cl));
           var cluster_item = 0;
           var cluster_length = array.length;
