@@ -382,6 +382,14 @@ button {
 button:hover {
     background-color: #444444;
 }
+.impressum{
+  grid-area: 1/4;
+  display: flex;
+  align-items: center;
+}
+.cc-message{
+  font-size: 12pt;
+}
 @media all and (orientation: portrait) {
     svg {
         display: none;
