@@ -47,9 +47,6 @@ var show_point = (point) => {
                 string = string.replace(/h2\.(.[^\n]*)/g, function (match, p1) {
                     return "<h3>" + p1 + "</h3>"
                 });
-                string = string.replace(/[^\w]\-(.*)/g, function (match, p1) {
-                    return "<li>" + p1 + "</li>"
-                });
 
                 return string
             }
