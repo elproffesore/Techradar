@@ -1,4 +1,4 @@
-//Anonymous Data Funciton
+//Anonymous Data Funciton which fetches the data and starts the processing and the app in general
 (async () => {
   var data = await d3.json('../Data/data.json').then((data) => {
     data = data.issues;
@@ -21,6 +21,7 @@
             })
       })
 })();
+// This function creates a datapoint for each technologie in the json
 const clear_data = (data) => {
   return Promise.all(data.map((datapoint,dpi) => {
     Object.keys(datapoint.fields).forEach((key) => {
@@ -58,6 +59,7 @@ const clear_data = (data) => {
   })
   );
 };
+//This function creates the normal coordinates which are simply calculated by 2*PI/ number of points in this ring
 const create_coordinate = (points) => {
   Object.keys(circles).forEach((r, ri) => {
     var array = points.filter(p => p.ring == r);
@@ -74,6 +76,8 @@ const create_coordinate = (points) => {
     })
   })
 };
+//This function calculates the coordinates for the specifiv cluster views such as category and topic.
+//The cluster get averaged before by the density function to get represential area.
 const create_clustering = (points, cluster) => {
   //get densitys
   var densitys_cluster = calculate_density(points, cluster);

@@ -1,3 +1,4 @@
+//This function shows a specific point if the user clicks on the point itself or on the name
 var show_point = (point) => {
     history.pushState({page: "point"}, "", window.location.origin + "#point");
     change_view("point");

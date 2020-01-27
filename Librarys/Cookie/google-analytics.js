@@ -59,10 +59,10 @@ window.addEventListener("load", function () {
         "position":"bottom",
         "type": "opt-in",
         "content": {
-            "message": "We are using Tracking-Cookies, to improve the quality of this website. This is total anonymous.",
+            "message": "We are using Tracking-Cookies to improve the quality of this website. This is total anonymous.",
             "allow": "Allow Cookies",
             "deny": "Refuse Cookies",
-            "link": "Lean more",
+            "link": "Learn more",
             "href": "https://www.novatec-gmbh.de/datenschutz/",
             "policy": 'Cookie settings'
         },

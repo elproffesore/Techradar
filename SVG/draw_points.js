@@ -5,6 +5,7 @@ const draw_points = () => {
   .enter()
   .append("circle")
       .attr("class", (d, i) => {
+        //each point has several classes which identifys its its attributes like topic etc.
         var class_string = "circles ";
         class_string += d.ring + " ";
         class_string += d.category.split(" (")[0].replace(/ /g, "_").replace(/&/, "u") + " ";

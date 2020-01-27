@@ -1,3 +1,4 @@
+//The filter function just sorts the points into their topics and displays the topics and how many points are in them.
 var show_filter = (cluster, spec) => {
     history.pushState({page: "filter"}, "", window.location.origin + "#filter")
     if (cluster == "ring") {

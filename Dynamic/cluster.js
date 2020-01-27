@@ -10,7 +10,9 @@ var show_cluster = (cluster) => {
         .attr('class', 'pictogram')
         .style('cursor', 'pointer')
         .style('transform', 'rotate(-90deg)');
-    var cluster_parts = cluster == "ring"
+    var cluster_parts =
+    // new if else with spread operator ...
+    cluster == "ring"
         ? ["Observe", "Evaluate", "Build-Up", "Work", "Reduce"]
         : [...new Set(points.map(p => p = p[cluster]))];
     cluster_parts.map((part, partIndex) => {

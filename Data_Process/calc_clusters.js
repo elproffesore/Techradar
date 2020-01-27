@@ -1,3 +1,8 @@
+
+// These functions create the hulls with their convex hull and the names.
+
+
+
 const create_hulls = (points,cluster) => {
   var group = hull_group.append("g")
   .attr("class","hull_"+cluster+"_group")
@@ -90,6 +95,7 @@ const draw_hull_names = (hull,cl,cluster,group) => {
     .text(cl)
     .attr("fill","white")
   }else if (hull.length === 2){
+    //only if there are less than 3 points which could create a convex hull, we create a simple hull with only 2 points
     center = [(hull[0][0]+hull[1][0])/2,(hull[0][1]+hull[1][1])/2];
     group.append("text")
         .attr("class","hull_name")

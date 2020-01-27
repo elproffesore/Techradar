@@ -535,4 +535,27 @@ button:hover {
     .arrow {
         height: 10vmin;
     }
+    .impressum{
+      grid-area: 1/4;
+      display: flex;
+      align-items: center;
+      font-size: 16pt;
+    }
+    .cc-message{
+      font-size: 30pt;
+      padding: 10px;
+      line-height: 150%
+    }
+    .cc-compliance{
+      padding: 30px;
+      font-size: 30pt
+    }
+    .cc-window.cc-floating{
+      flex-direction: column;
+      max-width: 100%;
+      border-top: 2px solid white
+    }
+    .cc-btn{
+      padding: 30px
+    }
 }

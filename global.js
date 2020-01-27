@@ -1,16 +1,26 @@
+
+// <------ Global variables ------>
 var svg = d3.select("svg");
 var points = [];
 var points_radius = 6;
-//radius of each ring from outer to inner
+
+//Radians of the different rings in pixels
 var circles = {
     "Observe": 400,
     "Evaluate": 340,
     "Build-Up": 280,
     "Work": 220,
     "Reduce": 100
-};
-var offsets = [500, window.innerHeight/2];//x,y offsets of the radar
-var oldview = null;//Global visible View
+}
+//x,y offsets of the radar because SVG start in the upper left corner
+var offsets = [500];
+if(window.innerHeight/2 < 400){
+  offsets.push(500)
+}else{
+  offsets.push(window.innerHeight/2)
+}
+//Global visible View
+var oldview = null;
 var clusterview = null;
 var cache_view = {
     func: null,
@@ -24,8 +34,10 @@ var colors = {
     green: "rgba(31,175,152,1.0)",
     gray: "rgba(255,255,255,0.7)"
 };
-//In a specified arrangement because render layer is specified by Order and hullnames
-//and Gadgets have to be on top of all
+
+//<----- Global variables END ------>
+
+//In a specified arrangement because render layer is specified by Order and hullnames and Gadgets have to be on top of all
 var text_group = svg.append("g").attr("class", "text_group");
 var radar_group = svg.append("g").attr("class", "radar_group");
 var hull_group = svg.append("g").attr("class", "hull_group");
@@ -39,7 +51,7 @@ const transition_highlight = (selector) => {
 };
 const normal_highlight = (selector) => {
     d3.selectAll(`.${selector}`).attr("r", points_radius * 1.5)
-};
+};//Global visible View
 const single_highlight = (selector) => {
     d3.select(`#${selector}`).attr("fill", "rgba(231,69,79,0.8)").attr("r", points_radius * 2).transition().duration(500).attr("r", points_radius)
 };
@@ -62,7 +74,9 @@ d3.select('#home-button').on('click', () => {
 const backToOldView = () => {
     window[cache_view.func](...cache_view.args);
 };
+
 //View and cluster changer
+
 const change_view = (newview) => {
 
         d3.select('main').selectAll("p,h1,h2").html("");
@@ -96,12 +110,17 @@ const change_cluster = (cluster) => {
             .attr("display", "block")
     }
 };
+
+//Page history
+
 history.pushState({page: "start"}, "", window.location.origin + "#start")
 
 window.onpopstate = function (event) {
     console.log(event)
     window[event.currentTarget.cache_view.func](...event.currentTarget.cache_view.args);
 };
+
+// Start button functionality
 const start = () => {
     d3.select('#start').style('visibility', 'hidden');
     draw_radar();

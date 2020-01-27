@@ -1,4 +1,5 @@
 const draw_radar = () => {
+  // draw the radarSVG with the radians of the different rings
   var keys = Object.keys(circles);
   keys.forEach((r, ri) => {
       var ir = ri === 4 ? 0 : circles[keys[ri + 1]];
@@ -38,6 +39,7 @@ const clear_rings = () => {
     svg.selectAll(".ci").attr("fill", "rgba(255,255,255,0.7)");
     svg.selectAll(".main_circs").attr("fill", "rgba(92,72,151,0.25")
 };
+// this draws the radar pulse in a static interval
 const draw_radargadgets = () => {
     for (var i = 0; i < 3; i += 2) {
         var radar_ping = gadget_group.append("circle")
@@ -66,6 +68,7 @@ const draw_radargadgets = () => {
             .attr("begin", (i) + "s")
             .attr("repeatCount", "indefinite")
     }
+//the pointer line for the point view    
     gadget_group.append("line")
         .attr("stroke", "rgba(245,245,245,0.8)")
         .attr("stroke-width", "1.5px")
